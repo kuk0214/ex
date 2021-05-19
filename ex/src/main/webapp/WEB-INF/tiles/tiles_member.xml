@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<definition name="memberlayout" template="/WEB-INF/view/member/inc/layout.jsp">
+	    <put-attribute name="title" value="" />
+	    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+	    <put-attribute name="aside" value="/WEB-INF/view/member/inc/aside.jsp" />
+	    <put-attribute name="body" value="" />
+	</definition>
+	
+	<definition name="/*.man" extends="memberlayout">
+		<put-attribute name="title" value="회원관련" />
+	    <put-attribute name="body" value="/WEB-INF/views/memeber.{1}.{2}jsp" />
+	</definition>
+</tiles-definitions>

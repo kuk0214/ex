@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<definition name="mainlayout" template="/WEB-INF/views//inc/layout.jsp">
+		<put-attribute name="title" value="" />
+	    <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
+	    <put-attribute name="body" value="" />
+	</definition>
+	
+	<definition name="main" extends="mainlayout">
+		<put-attribute name="title" value="Study" />
+	    <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+	</definition>
+</tiles-definitions>
