@@ -10,11 +10,9 @@
 <body>
 	<div class="wrapper row0">
 		<div id="topbar" class="hoc clear">
-			<div class="fl_left">
+			<div class="fl_right">
 				<ul class="nospace">
 					<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact</a></li>
 					<li><a href="#">로그인</a></li>
 					<li><a href="#">가입하기</a></li>
 				</ul>
@@ -25,7 +23,7 @@
 	<div class="wrapper row1">
 		<header id="header" class="hoc clear"> 
 			<div id="logo" class="fl_left">
-			  <h1><a href="/study/main.man">STUDY</a></h1>
+			  <a href="/study/main.man"><img src="/study/img/로고.JPG"></a>
 			</div>
 			<nav id="mainav" class="fl_right">
 				<ul class="clear">
@@ -51,6 +49,7 @@
 							<li><a href="#">회원 탈퇴</a></li>
 						</ul>
 					</li>
+					<li><a class="drop" href="#">고객센터</a></li>
 				</ul>
 			</nav>
 		</header>

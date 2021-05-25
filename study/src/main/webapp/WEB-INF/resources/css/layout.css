@@ -13,7 +13,7 @@ File: Layout CSS
 
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
-.row0{border-top:5px solid; width: 1200px; position: relative;}
+.row0{}
 .row1, .row1 a{}
 .row2, .row2 a{}
 .row3, .row3 a{}
@@ -40,7 +40,9 @@ File: Layout CSS
 #header #logo h1{font-size:32px; font-variant:small-caps;}
 #header #logo p{font-size:12px; text-transform:lowercase;}
 .cnt {background-color:#252525; }
-
+img {
+	width: 100px;
+}
 /* Page Intro
 --------------------------------------------------------------------------------------------------------------- */
 #pageintro{padding:150px 0;}
@@ -327,10 +329,13 @@ table a, #comments a{background-color:inherit;}
 
 /* Max Wrapper Width - Laptop, Desktop etc.
 --------------------------------------------------------------------------------------------------------------- */
-@media screen and (min-width:978px){
-	.hoc{max-width:978px;}
+@media screen and (min-width:1200px){
+	.hoc{max-width:1200px;}
 }
-
+.wrapper {
+	position: relative;
+	z-index: 2;
+}
 
 /* Mobile Devices
 --------------------------------------------------------------------------------------------------------------- */
@@ -359,7 +364,7 @@ table a, #comments a{background-color:inherit;}
 }
 
 
-@media screen and (max-width:750px){
+@media screen and (max-width:1500px){
 	.imgl, .imgr{display:inline-block; float:none; margin:0 0 10px 0;}
 	.fl_left, .fl_right{display:block; float:none;}
 	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:none; width:auto; margin:0 0 30px 0; padding:0;}
@@ -367,7 +372,7 @@ table a, #comments a{background-color:inherit;}
 	#topbar{padding-top:15px; text-align:center;}
 	#topbar ul{margin:0 0 15px 0; line-height:normal;}
 
-	#header{text-align:center;}
+	#header{}
 	#header #logo{margin:0 0 30px 0;}
 
 	#mainav form{margin-top:0;}

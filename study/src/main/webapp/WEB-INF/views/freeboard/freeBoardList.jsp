@@ -19,6 +19,9 @@
 		height: 20px;
 		width: auto;
 	}
+	div.w3-content {
+		float: right;
+	}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -75,28 +78,18 @@ $(document).ready(function(){
 </head>
 <body  class="w3-content" style="max-width:1200px">
 	<%@ include file="../include/header.jsp" %>
+	<%@ include file="../include/aside.jsp" %>
 	<form method="POST" action="/study/freeboard/freeBoardList.man" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 		<input type="hidden" name="frbno" id="frbno" value="${data.frbno}">
 	</form>
 	
-	<div class="w3-content mxw850 w3-margin-top">
-		<div class="w3-col w3-card-4 w3-margin-top w3-margin-bottom">
+	<div class="w3-content w3-margin-top">
+		<div class="w3-col w3-margin-top w3-margin-bottom">
 			<h1 class="w3-blue w3-padding w3-center mg0">자유게시판</h1>
-			<div class="w3-bar w3-lime h25">
-				<span class="w3-col w100 h25 w3-lime w3-hover-green w3-button" id="hbtn">home</span>
-		<c:if test="${empty SID}">
-				<span class="w3-col w100 h25 w3-lime w3-hover-light-green w3-button w3-right" id="lbtn">login</span>
-				<span class="w3-col w100 h25 w3-lime w3-hover-amber w3-button w3-right" id="jbtn">join</span>
-		</c:if>
-		<c:if test="${not empty SID}">
-				<span class="w3-col w100 h25 w3-lime w3-hover-deep-orange w3-button w3-right" id="wbtn">write</span>
-				<span class="w3-col w100 h25 w3-lime w3-hover-orange w3-button w3-right" id="outbtn">logout</span>
-		</c:if>
-			</div>
-		</div>
+			
 		
-		<div class="w3-col w3-margin-top w3-padding w3-card-4 datafr">
+		<div class="w3-col w3-margin-top w3-padding w3-border datafr">
 			<div class="w3-col w3-margin-top">
 				<span class="w3-col w600 w3-center w3-green w3-border-right w3-border-sand">제목</span>
 				<span class="w3-col w150 w3-center w3-green w3-border-right w3-border-sand">작성자</span>

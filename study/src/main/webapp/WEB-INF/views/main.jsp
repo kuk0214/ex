@@ -72,12 +72,16 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {
 <body class="w3-content" style="max-width:1200px">
 
 	<%@ include file="include/header.jsp" %>
-	<div id="map"  style="width:1200px;height:1000px;"></div>
+	<div id="map"  style="width:1200px;height:800px;"></div>
 		<script>
 		var container = document.getElementById('map');
 		var options = {
 			center: new kakao.maps.LatLng(37.55507, 126.97070),
-			level: 8
+			level: 8,
+			scrollwheel : false,
+			draggable : false,
+			disableDoubleClickZoom : false,
+			disableDoubleClick : false
 		};
 
 		var map = new kakao.maps.Map(container, options);
