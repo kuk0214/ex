@@ -11,12 +11,6 @@
 <script type="text/javascript" src="/study/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/study/js/w3color.js"></script>
 <style type="text/css">
-.w3-sidebar a {
-	font-family: "Roboto", sans-serif
-	}
-body,h1,h2,h3,h4,h5,h6,.w3-wide {
-	font-family: "Montserrat", sans-serif;
-	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){

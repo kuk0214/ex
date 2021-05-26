@@ -7,20 +7,18 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/study/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/study/css/w3-colors-flat.css">
-<link rel="stylesheet" type="text/css" href="/study/css/user.css">
+<link href="/study/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <style type="text/css">
 	aside {
-		position : relative;
-		left: 22%;
-		margin-top: 100px;
-		z-index: 1;
+		float: left;
+		overflow: hidden;
 	}
 </style>
 </head>
 <body>
-	<aside class="w3-sidebar mxw200 w3-bar-block w3-white w3-collapse w3-top"id="mySidebar">
-	  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-	  	<h1>게시판</h1><br>
+	<aside class=" mxw190 w3-bar-block w3-white bdr"id="mySidebar">
+	  <div class="pdt10 w3-large w3-text-grey">
+	  	<a><h1 class="ft24 mgt20">게시판</h1></a><br>
 	    <a href="#" class="w3-bar-item w3-button" id="userbtn"> 자유 게시판 </a>
 	    <a href="#" class="w3-bar-item w3-button" id="studybtn"> 질문&답변 게시판 </a>
 	    <a href="#" class="w3-bar-item w3-button" id="userEditbtn"> 후기 게시판</a>

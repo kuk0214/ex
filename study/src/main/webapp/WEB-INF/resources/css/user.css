@@ -1,5 +1,6 @@
-.mxw200 {
-	max-width: 200px;
+.mxw190 {
+	max-width: 190px;
+	max-height: 50%;
 }
 .mxw500 {
 	max-width: 500px;
@@ -44,6 +45,9 @@
 .mg0 {
 	margin: 0px;
 }
+.mgt5 {
+	margin-top: 5px;
+}
 .mgt10 {
 	margin-top: 10px;
 }
@@ -67,6 +71,10 @@
 }
 
 /* 패딩 클래스*/
+.pd0 {
+	padding: 0px;
+}
+
 .pdAll10 {
 	padding: 10px;
 }
@@ -107,8 +115,8 @@
 .w500 {
 	width: 500px;
 }
-.w600 {
-	width: 600px;
+.w650 {
+	width: 650px;
 }
 .w250 {
 	width: 250px;
@@ -125,9 +133,15 @@
 .w50 {
 	width: 50px;
 }
+.w70 {
+	width: 70px;
+}
 
 .h20 {
 	height: 20px;
+}
+.h40 {
+	height: 40px;
 }
 .h100per {
 	height: auto;
@@ -198,4 +212,21 @@
 
 .border3px {
 	border: 3px solid lightgrey;
+}
+
+.bdt {
+	border-top: 5px solid #A3D044;
+}
+
+.bdr {
+	border-right: 2px solid #A3D044;
+}
+
+.bgc {
+	background-color: #f5f5f5;
+}
+
+seation {
+	flot: left;
+	overflow: hidden;
 }

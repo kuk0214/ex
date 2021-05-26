@@ -13,8 +13,8 @@ File: Layout CSS
 
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
-.row0{}
-.row1, .row1 a{}
+.row0{border-top: solid 5px;}
+.row1{border-bottom: solid 5px; border-color:#A3D044;}
 .row2, .row2 a{}
 .row3, .row3 a{}
 .row4, .row4 a{}
@@ -142,19 +142,19 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 /* Top Navigation */
 #mainav{}
-#mainav ul.clear{margin-top:3px;}
+#mainav ul.clear{margin-top:3px; height: 50px;}
 #mainav ul{text-transform:uppercase;}
 #mainav ul ul{z-index:9999; position:absolute; width:180px; text-transform:none;}
 #mainav ul ul ul{left:180px; top:0;}
 #mainav li{display:inline-block; position:relative; margin:0 15px 0 0; padding:0;}
 #mainav li:last-child{margin-right:0;}
 #mainav li li{width:100%; margin:0;}
-#mainav li a{display:block; padding:30px 0;}
+#mainav li a{display:block; padding:5px 0;}
 #mainav li li a{border:solid; border-width:0 0 1px 0;}
 #mainav .drop{padding-left:15px;}
 #mainav li li a, #mainav li li .drop{display:block; margin:0; padding:10px 15px;}
 #mainav .drop::after, #mainav li li .drop::after{content:"\f0d7";}
-#mainav .drop::after{top:35px; left:5px;}
+#mainav .drop::after{top:10px; left:5px;}
 #mainav li li .drop::after{top:15px; left:5px;}
 #mainav ul ul{visibility:hidden; opacity:0;}
 #mainav ul li:hover > ul{visibility:visible; opacity:1;}
@@ -220,7 +220,7 @@ td{border-width:0 1px;}
 .faico a{display:inline-block; width:36px; height:36px; line-height:36px; font-size:18px; text-align:center;}
 
 .faico a{color:#050505; background-color:#A3D044;}
-.faico a:hover{color:#FFFFFF;}
+.faico a:hover{}
 
 .faicon-dribble:hover{background-color:#EA4C89;}
 .faicon-facebook:hover{background-color:#3B5998;}
@@ -239,11 +239,11 @@ td{border-width:0 1px;}
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
-body{color:#FFFFFF;}
+body{}
 a{color: black;}
 a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey background */
 hr, .borderedbox{border-color:#D7D7D7;}
-label span{color:#FF0000; background-color:inherit;}
+
 input:focus, textarea:focus, *:required:focus{border-color:#A3D044;}
 .overlay{color:#FFFFFF; background-color:inherit;}
 .overlay::after{color:inherit; background-color:rgba(0,0,0,.55); background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhJREFUeNpiYGBgePz//38GRhABAgABBgBFTAbfCBNE2AAAAABJRU5ErkJggg==");}
@@ -370,7 +370,7 @@ table a, #comments a{background-color:inherit;}
 	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:none; width:auto; margin:0 0 30px 0; padding:0;}
 
 	#topbar{padding-top:15px; text-align:center;}
-	#topbar ul{margin:0 0 15px 0; line-height:normal;}
+	#topbar ul{margin:0px; line-height:normal;}
 
 	#header{}
 	#header #logo{margin:0 0 30px 0;}
@@ -400,4 +400,242 @@ table a, #comments a{background-color:inherit;}
 
 	.font-x2{font-size:1.4rem;}
 	.font-x3{font-size:1.6rem;}
+}
+/* user.css
+-------------------------------------------------------------------------------------------------- */
+.mxw190 {
+	max-width: 190px;
+	height: 530px;
+}
+.mxw500 {
+	max-width: 500px;
+}
+.mxw550 {
+	max-width: 550px;
+}
+.mxw600 {
+	max-width: 600px;
+}
+.mxw650 {
+	max-width: 650px;
+}
+.mxw700 {
+	max-width: 700px;
+}
+.mxw750 {
+	max-width: 750px;
+}
+.mxw800 {
+	max-width: 800px;
+}
+.mxw850 {
+	max-width: 850px;
+}
+.mxw900 {
+	max-width: 900px;
+}
+.mxw1200 {
+	max-width: 1200px;
+}
+
+/* 디스플레이 */
+.inblock {
+	display: inline-block;
+}
+.nodisplay {
+	display: none;
+}
+
+/* 마진 클래스 */
+.mg0 {
+	margin: 0px;
+}
+.mgt5 {
+	margin-top: 5px;
+}
+.mgt10 {
+	margin-top: 10px;
+}
+.mgt20 {
+	margin-top: 20px;
+}
+.mgb0 {
+	margin-bottom: 0px;
+}
+.mgb10 {
+	margin-bottom: 10px;
+}
+.mgb20 {
+	margin-bottom: 20px;
+}
+.mgl10 {
+	margin-left: 10px;
+}
+.mgl20 {
+	margin-left: 20px;
+}
+
+/* 패딩 클래스*/
+.pd0 {
+	padding: 0px;
+}
+
+.pdAll10 {
+	padding: 10px;
+}
+.pdAll20 {
+	padding: 20px;
+}
+
+.pdt5 {
+	padding-top: 5px;
+}
+.pdt10 {
+	padding-top: 10px;
+}
+.pdb10 {
+	padding-bottom: 10px;
+}
+.pdl10 {
+	padding-left: 10px;
+}
+.pdl20 {
+	padding-left: 20px;
+}
+.pdl30 {
+	padding-left: 30px;
+}
+.pdr20 {
+	padding-right: 20px;
+}
+.pdr30 {
+	padding-right: 30px;
+}
+.pdv30 {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+/* size */
+.w500 {
+	width: 500px;
+}
+.w650 {
+	width: 650px;
+}
+.w250 {
+	width: 250px;
+}
+.w150 {
+	width: 150px;
+}
+.w120 {
+	width: 120px;
+}
+.w100 {
+	width: 100px;
+}
+.w50 {
+	width: 50px;
+}
+.w70 {
+	width: 70px;
+}
+
+.h20 {
+	height: 20px;
+}
+.h40 {
+	height: 40px;
+}
+.h100per {
+	height: auto;
+	bottom: 0px;
+}
+.bdminH {
+	min-height: 60px;
+	padding-bottom: 5px;
+}
+.box250 {
+	width: 250px;
+	height: 250px;
+}
+.cntnt100 {
+	width: 100px;
+	height: 100px;
+} 
+
+.imgBox230 {
+	width: 230px;
+	height: 230px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+.img210 {
+	width: 230px;
+	height: auto;
+}
+
+.ft8 {
+	font-size: 8pt;
+}
+.ft10 {
+	font-size: 10pt;
+}
+.ft12 {
+	font-size: 12pt;
+}
+
+.ft14 {
+	font-size: 14pt;
+	font-weight: bold;
+}
+.ft24 {
+	font-size: 24pt;
+	font-weight: bold;
+}
+.clrgrey {
+	color: #aaaaaa;
+}
+.box120 {
+	width: 120px;
+	height: 120px;
+}
+.avtBox100 {
+	width: 100px;
+	height: auto;
+}
+
+.noresize {
+	resize: none;
+}
+.vresize {
+	resize: vertical;
+}
+
+.avtBoxPosition {
+	position: relative;
+	left: -7px;
+}
+
+.border3px {
+	border: 3px solid lightgrey;
+}
+
+.bdt {
+	border-top: 5px solid #A3D044;
+}
+
+.bdr {
+	border-right: 5px solid #A3D044;
+}
+
+.bgc {
+	background-color: #f5f5f5;
+}
+
+section {
+	float: right;
+	overflow: hidden;
 }

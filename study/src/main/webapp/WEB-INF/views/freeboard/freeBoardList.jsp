@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/study/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/study/css/w3-colors-flat.css">
-<link rel="stylesheet" type="text/css" href="/study/css/user.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script type="text/javascript" src="/study/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/study/js/w3color.js"></script>
@@ -18,9 +17,6 @@
 	img {
 		height: 20px;
 		width: auto;
-	}
-	div.w3-content {
-		float: right;
 	}
 </style>
 <script type="text/javascript">
@@ -77,37 +73,45 @@ $(document).ready(function(){
 </script>
 </head>
 <body  class="w3-content" style="max-width:1200px">
-	<%@ include file="../include/header.jsp" %>
-	<%@ include file="../include/aside.jsp" %>
+	<%@ include file="../include/layout.jsp" %>
 	<form method="POST" action="/study/freeboard/freeBoardList.man" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 		<input type="hidden" name="frbno" id="frbno" value="${data.frbno}">
 	</form>
 	
-	<div class="w3-content w3-margin-top">
+	<section class="w3-content w3-margin-top">
 		<div class="w3-col w3-margin-top w3-margin-bottom">
-			<h1 class="w3-blue w3-padding w3-center mg0">자유게시판</h1>
-			
+			<h2 class="w3-padding mgb10 ft24">자유게시판</h2>
+		</div>
+		<div class="w3-right w500">
+			<div class="w3-col w3-button w70 h20 mgl10 w3-right pd0 w3-green">검색</div>
+			<input type="text" class="w3-col mgl10 w120 h20 w3-right" id="search" name="search">
+			<select class="w3-col w70 h20 w3-right">
+				<option>제목</option>
+				<option>내용</option>
+				<option>작성자</option>
+			</select>
+		</div>
 		
-		<div class="w3-col w3-margin-top w3-padding w3-border datafr">
-			<div class="w3-col w3-margin-top">
-				<span class="w3-col w600 w3-center w3-green w3-border-right w3-border-sand">제목</span>
-				<span class="w3-col w150 w3-center w3-green w3-border-right w3-border-sand">작성자</span>
-				<span class="w3-col w100 w3-center w3-green w3-border-right w3-border-sand">조회수</span>
-				<div class="w-rest w3-center w3-green w3-border-right w3-border-sand">작성일</div>
+		<div class="w3-col w3-margin-top datafr">
+			<div class="w3-col w3-margin-top w3-border-bottom bgc bdt h40">
+				<span class="w3-col w650 mgt5 w3-center w3-border-right">제목</span>
+				<span class="w3-col w120 mgt5 w3-center w3-border-right">작성자</span>
+				<span class="w3-col w100 mgt5 w3-center w3-border-right">조회수</span>
+				<div class="w-rest mgt5 w3-center">작성일</div>
 			</div>
 			
 			<!-- 글 리스트 -->
 <c:forEach var="data" items="${LIST}">
-			<div class="w3-col w3-border-left w3-border-right w3-border-bottom w3-hover-lime list" id="l${data.frbno}">
-				<span class="w3-col w600 pdl30 w3-border-right">
+			<div class="w3-col  w3-border-bottom w3-hover-lime list" id="l${data.frbno}">
+				<span class="w3-col w650 pdl30">
 					${data.title}
 			<c:if test="${data.cnt != 0}">
 					<i class='far fa-comment-alt'></i> ${data.cnt}
 			</c:if> 
 				</span>
-				<span class="w3-col w150 w3-center w3-border-right">${data.wid}</span>
-				<span class="w3-col w100 w3-center w3-border-right">${data.click}</span>
+				<span class="w3-col w120 w3-center ">${data.wid}</span>
+				<span class="w3-col w100 w3-center ">${data.click}</span>
 				<div class="w3-rest w3-center">${data.sdate1}</div>
 			</div>
 </c:forEach>
@@ -144,6 +148,6 @@ $(document).ready(function(){
 			</div>
 		</div>
 		
-	</div>
+	</section>
 </body>
 </html>

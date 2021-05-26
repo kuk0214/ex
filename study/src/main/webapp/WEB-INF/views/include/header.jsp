@@ -6,10 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/study/css/layout.css" rel="stylesheet" type="text/css" media="all">
+
 </head>
 <body>
 	<div class="wrapper row0">
 		<div id="topbar" class="hoc clear">
+			<div id="logo" class="fl_left">
+			  <a href="/study/main.man"><h1>Study</h1></a>
+			</div>
 			<div class="fl_right">
 				<ul class="nospace">
 					<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
@@ -22,9 +26,6 @@
 
 	<div class="wrapper row1">
 		<header id="header" class="hoc clear"> 
-			<div id="logo" class="fl_left">
-			  <a href="/study/main.man"><img src="/study/img/로고.JPG"></a>
-			</div>
 			<nav id="mainav" class="fl_right">
 				<ul class="clear">
 					<li class="active"><a href="/study/main.man">Home</a></li>
