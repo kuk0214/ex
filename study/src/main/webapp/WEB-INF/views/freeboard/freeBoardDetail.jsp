@@ -25,6 +25,7 @@
 		$('#sbtn').click(function() {
 			var tbody = $('#body').val().trim();
 			var tfrbno = $('#frbno').val();
+			var wid = '${SID}';
 			if(!tbody) {
 				alert('내용이 없습니다');
 				return;
@@ -32,13 +33,14 @@
 			$.ajax({
 				url: '/study/freeboard/freeBoardReplyProc.man',
 				type: 'post',
-				dataType: 'text',
+				dataType: 'json',
 				data: {
 					body: tbody,
-					frbno: tfrbno
+					frbno: tfrbno,
+					wid: wid
 				},
 				success: function(obj) {
-					if(obj.result == 'YES') {
+					if(obj.result == 'OK') {
 						document.location.reload();
 					} else {
 						alert('*** 댓글 달기에 실패했습니다! ***');
@@ -116,7 +118,7 @@
 		
 		$(document).on('click', '.del', function() {
 			var tfrreno = $(this).attr('id').substring(1);
-				
+			
 			$.ajax({
 				url: '/study/freeboard/freeBoardReplyDelProc.man',
 				type: 'post',

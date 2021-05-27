@@ -1,5 +1,6 @@
 package com.increpas.study.controller;
 
+import java.io.PrintWriter;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,14 +51,23 @@ public class FreeBoard {
 		return mv;
 	}
 	
-	@RequestMapping(value="/freeBoardReplyProc.man", method=RequestMethod.POST, params="frbno")
 	@ResponseBody
-	public String freeBRDReplyProc(int frbno) {
-		int cnt = fDao.freeBRDReplyProc(frbno);
-		String result = "NO";
-		if(cnt == 1) {
-			result = "YES";
+	@RequestMapping(value="/freeBoardReplyProc.man", method=RequestMethod.POST)
+	public HashMap<String, String> freeBRDReplyProc(BoardVO bVO) {
+		int cnt = fDao.freeBRDReplyProc(bVO);
+		System.out.println("###### cnt : " + cnt);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("result", "NO");
+		/*
+		pw.println("{");
+		pw.println("\"result\": \"NO\"");
+		*/
+		if(cnt != 1) {
+			map.put("result", "OK");
+//			pw.println("\"result\": \"OK\"");
 		}
-		return result;
+//		pw.println("}");
+		
+		return map;
 	}
 }

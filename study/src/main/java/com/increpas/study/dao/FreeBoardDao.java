@@ -34,7 +34,7 @@ public class FreeBoardDao {
 	}
 	
 	// 자유게시판 댓글 등록 전담 처리함수
-	public int freeBRDReplyProc(int frbno) {
-		return sqlSession.insert("fSQL.freeBRDReplyProc", frbno);
+	public int freeBRDReplyProc(BoardVO bVO) {
+		return sqlSession.insert("fSQL.freeBRDReplyProc", bVO);
 	}
 }

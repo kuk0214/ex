@@ -80,16 +80,10 @@
 	
 	<!-- 댓글 등록 요청 질의명령 -->
 	<insert id="freeBRDReplyProc" parameterType="bVO">
-		<selectKey keyProperty="frreno" resultType="int" order="BEFORE">
-			SELECT
-				NVL(MAX(frreno) + 1, 1000001)
-			FROM
-				freeboardreply
-		</selectKey>
 		INSERT INTO
 		    freeboardreply(frreno, groupno, frbno, body, wid)
 		VALUES(
-		    #{frreno},
+		    (SELECT NVL(MAX(frreno) + 1, 1000001) FROM freeboardreply),
 		    (SELECT NVL(MAX(groupno) + 1, 1) FROM freeboardreply),
 		     #{frbno}, #{body}, #{wid}
 		)
