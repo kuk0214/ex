@@ -76,7 +76,7 @@ $(document).ready(function(){
 	<%@ include file="../include/layout.jsp" %>
 	<form method="POST" action="/study/freeboard/freeBoardList.man" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
-		<input type="hidden" name="frbno" id="frbno" value="${data.frbno}">
+		<input type="hidden" name="frbno" id="frbno">
 	</form>
 	
 	<section class="w3-content w3-margin-top">
@@ -112,7 +112,7 @@ $(document).ready(function(){
 				</span>
 				<span class="w3-col w120 w3-center ">${data.wid}</span>
 				<span class="w3-col w100 w3-center ">${data.click}</span>
-				<div class="w3-rest w3-center">${data.sdate1}</div>
+				<div class="w3-rest w3-center">${data.sdate}</div>
 			</div>
 </c:forEach>
 		<c:if test="${empty LIST}">

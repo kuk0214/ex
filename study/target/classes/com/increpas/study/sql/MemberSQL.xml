@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="mSQL">
+
+
+	<!-- 회원가입시 이메일 체크 질의 명령 -->
+	<select id="email" resultType="string" parameterType="int">
+		SELECT
+			mail
+		FROM
+			member
+		WHERE
+			mno = #{mno}
+	</select>
+	
+	<!-- 회원가입시 아이디 체크 질의 명령 -->
+	<select id="idCheck" resultType="int" parameterType="string">
+		SELECT
+			count(*)
+		FROM
+			member
+		WHERE
+			id = #{id}
+	</select>
+	
+	<!-- 로그인 처리 질의 명령 -->
+	<select id="login" resultType="int" parameterType="mVO">
+		SELECT
+			count(*)
+		FROM
+			member
+		WHERE
+			isshow = 'Y'
+			AND id = #{id}
+			AND pw = #{pw}
+	</select>
+
+	<!-- 패스워드 체크 질의 명령 -->
+	<select id="pwCheck" resultType="int" parameterType="mVO">
+		SELECT
+			count(*)
+		FROM
+			member
+		WHERE
+			id = #{id}
+			AND pw = #{pw}
+	</select>
+	
+	<!-- 이메일 인증시 회원번호 조회 질의 명령 -->
+	<select id="mnoInfo" resultType="int" parameterType="string">
+		SELECT
+			mno
+		FROM
+			member
+		WHERE
+			isshow = 'N'
+			AND id = #{id}
+	</select>
+	
+	<!-- 회원정보 조회 질의 명령 -->
+	<select id="memberIdInfo" resultType="mVO" parameterType="string">
+		SELECT
+			mno, id, name, mail, tel, gen, grade, loc, point, jdate
+		FROM
+			member
+		WHERE
+			isShow = 'Y'
+			AND id = #{id}
+	</select>
+	 
+	<select id="memberNoInfo" resultType="mVO" parameterType="int">
+		SELECT
+			mno, id, name, mail, tel, gen, grade, loc, point, jdate
+		FROM
+			member
+		WHERE
+			isShow = 'Y'
+			AND mno = #{mno}
+	</select>
+	
+	<!-- 회원가입 질의명령 -->
+	<insert id="addMember"  parameterType="mVO" >	
+		<selectKey keyProperty="mno" resultType="int" order="BEFORE">
+			SELECT 
+				NVL(MAX(mno) + 1, 1001) 
+			FROM 
+				member
+		</selectKey>
+		
+		INSERT INTO  
+		    member(mno, id, pw, name, mail, tel, gen, grade, loc, isshow)  
+		VALUES(
+				#{mno}, #{id}, #{pw}, #{name}, #{mail}, #{tel}, #{gen}, #{grade}, #{loc}, 'N'
+				)
+	</insert>
+	
+	<!-- 회원정보 수정 질의명령 -->
+	<update id="editMyInfo" parameterType="mVO">
+		UPDATE
+			member
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="pw neq null">
+				pw = #{pw},
+			</if>
+			<if test="name neq null">
+				name = #{name},
+			</if>
+			<if test="tel neq null">
+				tel = #{tel},
+			</if>
+			<if test="grade neq null">
+				grade = #{grade},
+			</if>
+			<if test="loc neq null">
+				loc = #{loc},
+			</if>
+			<if test="gen neq null">
+				gen = #{gen},
+			</if>
+
+		</trim>		
+		WHERE
+			id = #{id}		
+	</update>
+
+	<!-- 메일인증 처리 질의명령 -->
+	<update id="editIsshow" parameterType="int">
+		UPDATE
+			member
+		SET
+			isshow = 'Y'
+		WHERE
+			mno = #{mno}
+	</update>
+
+	<!-- 회원탈퇴 처리 질의명령 -->
+	<update id="delMember" parameterType="string">
+		UPDATE
+			member
+		SET
+			isshow = 'N'
+		WHERE
+			id = #{id}
+	</update>
+	
+	
+</mapper>

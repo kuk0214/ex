@@ -32,7 +32,7 @@
 			$.ajax({
 				url: '/study/freeboard/freeBoardReplyProc.man',
 				type: 'post',
-				dataType: 'json',
+				dataType: 'text',
 				data: {
 					body: tbody,
 					frbno: tfrbno
@@ -208,14 +208,7 @@
 			$('#pfrm').submit();
 		});
 		
-		$('#dbtn').click(function() {
-			if(${CNT} != 0) {
-				alert('댓글이 있으면 삭제가 불가능 합니다');
-				return;
-			}
-			$('#pfrm').attr('action', '/study/freeboard/freeBoardDel.man');
-			$('#pfrm').submit();
-		});
+		
 		
 		$('#ebtn').click(function() {
 			$('#pfrm').attr('action', '/study/freeboard/freeBoardEdit.man');

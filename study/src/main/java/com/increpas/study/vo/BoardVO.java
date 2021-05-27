@@ -159,26 +159,6 @@ public class BoardVO {
 	public void setWtime(Time wtime) {
 		this.wtime = wtime;
 		setSdate();
-		System.out.println(getWtime());
-		System.out.println(getWdate());
-		System.out.println(getSysdate());
 	}
-	public String getSdate1() {
-		return sdate1;
-	}
-	public void setSdate1() {
-		SimpleDateFormat form1 = new SimpleDateFormat("MM-dd");
-		SimpleDateFormat form2 = new SimpleDateFormat("HH:mm");
-		String wdate1 = form1.format(getWdate());
-		String nowdate = form1.format(getSysdate());
-		if(wdate1.equals(nowdate)) {
-			sdate1 = form2.format(getWtime());
-		} else {
-			sdate1 = form1.format(getWdate());
-		}
-
-	}
-	public void setSdate1(String sdate1) {
-		this.sdate1 = sdate1;
-	}
+	
 }

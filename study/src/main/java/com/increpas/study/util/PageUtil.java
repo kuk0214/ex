@@ -14,6 +14,8 @@ public class PageUtil {
 	private int startCont;	// 현재 페이지에서 보여질 시작 게시물 행번호(nownum)
 	private int endCont;	// 현재 페이지에서 보여질 마지막 게시물 행번호(rownum)
 	
+	private int frbno;
+	
 	public PageUtil() {
 		nowPage = 1;
 	}
@@ -134,6 +136,14 @@ public class PageUtil {
 
 	public void setEndCont(int endCont) {
 		this.endCont = endCont;
+	}
+
+	public int getFrbno() {
+		return frbno;
+	}
+
+	public void setFrbno(int frbno) {
+		this.frbno = frbno;
 	}
 
 	@Override

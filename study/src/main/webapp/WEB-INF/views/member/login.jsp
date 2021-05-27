@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cafe login</title>
+<title>Study login</title>
 <link rel="stylesheet" type="text/css" href="/study/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/study/css/user.css">
 <link rel="stylesheet" type="text/css" href="/study/css/style.css">
@@ -34,37 +34,10 @@
 			$("#frm").submit();
 		});
 		
-		// forgot passwoard click event
-		$('#fpbtn').click(function(){		
-			var sid = prompt("USER ID : ");
-			var smail = prompt("USER MAIL : ");
-				$.ajax({
-					url: '/study/gmail/fpmailSendAction.man',
-					type: 'post',
-					dataType: 'json',
-					data: {
-						id: sid,
-						mail: smail
-					},
-					success: function(data){
-						var result = data.result;
-						
-						if(result == 'OK'){
-							alert('*** 메일을 확인하세요 ***');
-							location.href = '/study/main.man';
-						} else {
-							alert('### 실패 하였습니다.###');							
-						}
-					},
-					error: function(){
-							alert('### 통신 실패 ###');
-					}
-				});			
+		// home click event
+		$('#hbtn').click(function(){
+			$(location).attr('href', '/cafe/main.cafe')
 		});
-
-
-
-		
 		
 	});
 </script>
@@ -87,7 +60,7 @@
 			</div>
 		</form>
 		<div class="caption">
-			<a href="#" id="fpbtn">Forgot Passowrd?</a>
+			<a href="#">Forgot Passowrd?</a>
 		</div>
 	</section>
 	
