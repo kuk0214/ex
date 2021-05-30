@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 	
-	@RequestMapping("/main.man")
+	@RequestMapping("/main.mentor")
 	public String main() {
 		return "main";
 	}

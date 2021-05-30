@@ -30,31 +30,31 @@ $(document).ready(function(){
 		$('#frbno').val(tno);
 		
 		// 폼태그가 전송될 주소를 셋팅하고
-		$('#frm').attr('action', '/study/freeboard/freeBoardDetail.man');
+		$('#frm').attr('action', '/study/freeboard/freeBoardDetail.mentor');
 		
 		// 폼태그를 전송한다.
 		$('#frm').submit();
 	});
 	
 	$('#wbtn').click(function() {
-		$('#frm').attr('action', '/study/freeboard/freeBoardWrite.man')
+		$('#frm').attr('action', '/study/freeboard/freeBoardWrite.mentor')
 		$('#frm').submit();
 	});
 	
 	$('#jbtn').click(function() {
-		$(location).attr('href', '/study/join.man');
+		$(location).attr('href', '/study/join.mentor');
 	});
 	
 	$('#lbtn').click(function() {
-		$(location).attr('href', '/study/login.man');
+		$(location).attr('href', '/study/login.mentor');
 	});
 	
 	$('#outbtn').click(function() {
-		$(location).attr('href', '/study/logout.man');
+		$(location).attr('href', '/study/logout.mentor');
 	});
 	
 	$('#hbtn').click(function() {
-		$(location).attr('href', '/study/main.man');
+		$(location).attr('href', '/study/main.mentor');
 	});
 	
 	$('.w3-button.pbtn').click(function(){
@@ -74,7 +74,7 @@ $(document).ready(function(){
 </head>
 <body  class="w3-content" style="max-width:1200px">
 	<%@ include file="../include/layout.jsp" %>
-	<form method="POST" action="/study/freeboard/freeBoardList.man" id="frm" name="frm">
+	<form method="POST" action="/study/freeboard/freeBoardList.mentor" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 		<input type="hidden" name="frbno" id="frbno">
 	</form>
@@ -112,7 +112,7 @@ $(document).ready(function(){
 				</span>
 				<span class="w3-col w120 w3-center ">${data.wid}</span>
 				<span class="w3-col w100 w3-center ">${data.click}</span>
-				<div class="w3-rest w3-center">${data.sdate}</div>
+				<div class="w3-rest w3-center">${data.sdate1}</div>
 			</div>
 </c:forEach>
 		<c:if test="${empty LIST}">
@@ -146,6 +146,7 @@ $(document).ready(function(){
 				<span class="w3-bar-item w3-button w3-hover-lime pbtn">next</span>
 	</c:if>
 			</div>
+		<div class="w3-button w3-right w3-margin-top w3-border w3-border-lime" id="wbtn">글쓰기</div>
 		</div>
 		
 	</section>

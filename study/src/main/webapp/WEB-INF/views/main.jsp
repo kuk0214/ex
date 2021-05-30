@@ -44,7 +44,7 @@
 			
 			switch(tid){
 			case 'sjbtn':
-				url = '/study/studyboard/studyboardList.man'
+				url = '/study/studyboard/studyboardList.cls'
 				break;	
 			}
 			$(location).attr('href', url);
@@ -53,7 +53,7 @@
 		$('#modalbtn').click(function(){
 			var search = $('#search').val();
 			if(search == 'DB'){
-				$(location).attr('href', '/study/DBTableSet.man');
+				$(location).attr('href', '/study/DBTableSet.cls');
 			}
 			$('#searchModal').css('display', 'none');
 		});

@@ -14,7 +14,7 @@ File: Layout CSS
 /* Rows
 --------------------------------------------------------------------------------------------------------------- */
 .row0{border-top: solid 5px;}
-.row1{border-bottom: solid 5px; border-color:#A3D044;}
+.row1{}
 .row2, .row2 a{}
 .row3, .row3 a{}
 .row4, .row4 a{}
@@ -41,7 +41,8 @@ File: Layout CSS
 #header #logo p{font-size:12px; text-transform:lowercase;}
 .cnt {background-color:#252525; }
 img {
-	width: 100px;
+	width: 1200px;
+	height: 100px;
 }
 /* Page Intro
 --------------------------------------------------------------------------------------------------------------- */

@@ -42,7 +42,7 @@
 		
 	<servlet-mapping>
 		<servlet-name>studyServlet</servlet-name>
-		<url-pattern>*.man</url-pattern>
+		<url-pattern>*.mentor</url-pattern>
 	</servlet-mapping>
 
 </web-app>

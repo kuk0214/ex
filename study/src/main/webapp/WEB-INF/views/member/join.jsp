@@ -38,7 +38,7 @@
 			}
 			
 			$.ajax({
-				url: '/study/idcheck.man',
+				url: '/study/idcheck.mentor',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -70,7 +70,7 @@
 			var smail = $('#mail').val();
 
 			$.ajax({
-				url: '/study/gmail/gmailSendAction.man',
+				url: '/study/gmail/gmailSendAction.mentor',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -146,7 +146,7 @@
 <body>
 	<section class="login-form" >
 		<h1>RESISTER</h1>
-		<form method="POST" action="/study/member/joinProc.man" name="frm" id="frm"
+		<form method="POST" action="/study/member/joinProc.mentor" name="frm" id="frm"
 			class="">
 			<div class="int-area">
 				<input type="text" name="name" id="name" autocomplete="off" required>

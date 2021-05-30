@@ -19,7 +19,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#lbtn').click(function() {
-			$(location).attr('href', '/study/freeboard/freeBoardList.man');
+			$(location).attr('href', '/study/freeboard/freeBoardList.mentor');
 		});
 		
 		$('#sbtn').click(function() {
@@ -31,7 +31,7 @@
 				return;
 			}
 			$.ajax({
-				url: '/study/freeboard/freeBoardReplyProc.man',
+				url: '/study/freeboard/freeBoardReplyProc.mentor',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -65,7 +65,7 @@
 				return;
 			}
 			$.ajax({
-				url: '/study/freeboard/freeBoardReplyProc2.man',
+				url: '/study/freeboard/freeBoardReplyProc2.mentor',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -96,7 +96,7 @@
 				return;
 			}
 			$.ajax({
-				url: '/study/freeboard/freeBoardReplyEditProc.man',
+				url: '/study/freeboard/freeBoardReplyEditProc.mentor',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -120,7 +120,7 @@
 			var tfrreno = $(this).attr('id').substring(1);
 			
 			$.ajax({
-				url: '/study/freeboard/freeBoardReplyDelProc.man',
+				url: '/study/freeboard/freeBoardReplyDelProc.mentor',
 				type: 'post',
 				dataType: 'json',
 				data: {
@@ -213,14 +213,14 @@
 		
 		
 		$('#ebtn').click(function() {
-			$('#pfrm').attr('action', '/study/freeboard/freeBoardEdit.man');
+			$('#pfrm').attr('action', '/study/freeboard/freeBoardEdit.mentor');
 			$('#pfrm').submit();
 		});	
 	});
 </script>
 </head>
 <body>
-	<form method="POST" action="/study/freeboard/freeBoardDetail.man" id="pfrm" name="pfrm">
+	<form method="POST" action="/study/freeboard/freeBoardDetail.mentor" id="pfrm" name="pfrm">
 		<input type="hidden" name="nowPage1" id="nowPage1" value="${Page.nowPage}">
 		<input type="hidden" name="frbno" id="frbno" value="${DATA.frbno}">
 	</form>
@@ -322,7 +322,7 @@
 	</c:if>
 	<c:if test="${not empty SID}">
 		<div class="replysubmit">
-			<form method="POST" action="/study/freeboard/freeBoardReplyProc.man" class="w3-col w3-margin-top" id="frm" name="frm">
+			<form method="POST" action="/study/freeboard/freeBoardReplyProc.mentor" class="w3-col w3-margin-top" id="frm" name="frm">
 				<textarea rows="7" class="w3-col pdAll10 vresize" id="body" name="body" placeholder="댓글을 입력하세요"></textarea>
 			</form>
 			<div class="w3-col w3-margin-top w3-margin-bottom">

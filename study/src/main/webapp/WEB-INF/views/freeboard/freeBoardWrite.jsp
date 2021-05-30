@@ -43,14 +43,14 @@
 </script>
 </head>
 <body>
-	<form method="POST"  action="/study/freeboard/freeBoardList.man" id="pfrm" name="pfrm">
+	<form method="POST"  action="/study/freeboard/freeBoardList.mentor" id="pfrm" name="pfrm">
 		<input type="hidden" id="nowPage" name="nowPage" value="${nowPage}">
 	</form>
 	<div class="w3-content mxw700 w3-margin-top w3-padding">
 		<h1 class="w3-purple w3-padding w3-center w3-card-4 w3-margin-top w3-margin-bottom">글 작성</h1>
 		
 		<!-- form 태그 -->
-		<form method="POST" action="/study/freeboard/freeBoardWriteProc.man" name="frm" id="frm"
+		<form method="POST" action="/study/freeboard/freeBoardWriteProc.mentor" name="frm" id="frm"
 			class="w3-col w3-padding w3-margin-bottom w3-card-4 ">
 			<div class="w3-col w3-margin-top pdb10 w3-border-bottom w3-border-light-grey">
 				<div class="w3-rest pdr30">

@@ -45,7 +45,7 @@
 <body>
 	<section class="login-form">
 		<h1>LOGIN</h1>
-		<form method="POST" action="/study/member/loginProc.man" name="frm" id="frm"
+		<form method="POST" action="/study/member/loginProc.mentor" name="frm" id="frm"
 			class="">
 			<div class="int-area">
 				<input type="text" name="id" id="id" autocomplete="off" required>

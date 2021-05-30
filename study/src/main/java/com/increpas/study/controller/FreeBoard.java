@@ -20,7 +20,7 @@ public class FreeBoard {
 	@Autowired
 	FreeBoardDao fDao;
 	
-	@RequestMapping("/freeBoardList.man")
+	@RequestMapping("/freeBoardList.mentor")
 	public ModelAndView freeboardList(ModelAndView mv, PageUtil page) {
 		int nowPage = page.getNowPage();
 		if(nowPage == 0) {
@@ -34,7 +34,7 @@ public class FreeBoard {
 		return mv;
 	}
 	
-	@RequestMapping("/freeBoardDetail.man")
+	@RequestMapping("/freeBoardDetail.mentor")
 	public ModelAndView freeboardDetail(ModelAndView mv, PageUtil page, int frbno) {
 		int nowPage = page.getNowPage();
 		if(nowPage == 0) {
@@ -52,17 +52,16 @@ public class FreeBoard {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/freeBoardReplyProc.man", method=RequestMethod.POST)
+	@RequestMapping(value="/freeBoardReplyProc.mentor", method=RequestMethod.POST)
 	public HashMap<String, String> freeBRDReplyProc(BoardVO bVO) {
 		int cnt = fDao.freeBRDReplyProc(bVO);
-		System.out.println("###### cnt : " + cnt);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("result", "NO");
 		/*
 		pw.println("{");
 		pw.println("\"result\": \"NO\"");
 		*/
-		if(cnt != 1) {
+		if(cnt == 1) {
 			map.put("result", "OK");
 //			pw.println("\"result\": \"OK\"");
 		}

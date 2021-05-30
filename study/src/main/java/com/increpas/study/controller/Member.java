@@ -23,10 +23,10 @@ public class Member {
 	@Autowired
 	MemberDao mDao;
 	
-	@RequestMapping("/login.man")
+	@RequestMapping("/login.mentor")
 	public ModelAndView getLogin(HttpSession session, ModelAndView mv, RedirectView rv) {
 		if(isLogin(session)) {
-			rv.setUrl("/study/main.man");
+			rv.setUrl("/study/main.mentor");
 			mv.setView(rv);
 		} else {
 			String view = "member/login";
@@ -36,10 +36,10 @@ public class Member {
 		return mv;
 	}
 	
-	@RequestMapping("/loginProc.man")
+	@RequestMapping("/loginProc.mentor")
 	public ModelAndView loginProc( MemberVO mVO, ModelAndView mv, 
 										HttpSession session, RedirectView rv) {
-		String view = "/study/main.man";
+		String view = "/study/main.mentor";
 		if(isLogin(session)) {
 		} else {
 
@@ -47,7 +47,7 @@ public class Member {
 			if(cnt == 1) {
 				session.setAttribute("SID", mVO.getId());
 			} else {
-				view = "/study/member/login.man";
+				view = "/study/member/login.mentor";
 			}
 		}
 
@@ -58,7 +58,7 @@ public class Member {
 		return mv;
 	}
 	
-	@RequestMapping(value="/idCheck.man", params="id", method=RequestMethod.POST)
+	@RequestMapping(value="/idCheck.mentor", params="id", method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, String> idCheck(String id) {
 		int cnt = mDao.getIdCnt(id);
@@ -73,16 +73,16 @@ public class Member {
 
 	
 
-	@RequestMapping("/logout.man")
+	@RequestMapping("/logout.mentor")
 	public ModelAndView logout(HttpSession session, ModelAndView mv, RedirectView rv) {
 		session.removeAttribute("SID");
-		rv.setUrl("/study/main.man");
+		rv.setUrl("/study/main.mentor");
 		mv.setView(rv);		
 		return mv;
 	}
 	
 	// 회원가입 폼보기 함수
-	@RequestMapping("/join.man")
+	@RequestMapping("/join.mentor")
 	public ModelAndView joinForm( ModelAndView mv, HttpSession session, RedirectView rv) {
 		
 		if(isLogin(session)) {
@@ -96,11 +96,11 @@ public class Member {
 	}
 	
 	// 회원가입 처리 함수
-	@RequestMapping("/joinProc.man")
+	@RequestMapping("/joinProc.mentor")
 	public ModelAndView joinProc( ModelAndView mv, HttpSession session, MemberVO mVO, RedirectView rv) {
 		
 		if(isLogin(session)) {
-			rv.setUrl("/study/main.man");
+			rv.setUrl("/study/main.mentor");
 			mv.setView(rv);
 			return mv;
 		} 
@@ -111,7 +111,7 @@ public class Member {
 			session.setAttribute("SID", mVO.getId());
 			rv.setUrl("/study/");
 		}else {
-			rv.setUrl("/study/member/join.man");		
+			rv.setUrl("/study/member/join.mentor");		
 		}
 		mv.setView(rv);			
 		return mv;
@@ -120,7 +120,7 @@ public class Member {
 
 	
 	// 내정보조회 요청 처리함수
-	@RequestMapping("/userInfo.man")
+	@RequestMapping("/userInfo.mentor")
 	public ModelAndView myInfo(ModelAndView mv, HttpSession session, RedirectView rv) {
 		if(isLogin(session)) {
 			String sid = (String) session.getAttribute("SID");
@@ -130,17 +130,17 @@ public class Member {
 			mv.setViewName("member/userInfo");
 		} else {
 
-			rv.setUrl("/study/member/login.man");
+			rv.setUrl("/study/member/login.mentor");
 			mv.setView(rv);	
 		}
 		return mv;			
 	}
 	
 	// 내 정보 수정 폼보기요청 처리함수
-	@RequestMapping("/userInfoEdit.man")
+	@RequestMapping("/userInfoEdit.mentor")
 	public ModelAndView memberEdit(ModelAndView mv, HttpSession session, RedirectView rv) {
 		if(!isLogin(session)) {
-			rv.setUrl("/study/member/login.man");
+			rv.setUrl("/study/member/login.mentor");
 			mv.setView(rv);
 			return mv;
 		} 
@@ -154,18 +154,18 @@ public class Member {
 	}
 	
 	// 내 정보 수정 처리 요청 처리함수
-	@RequestMapping("/myInfoEditProc.man")
+	@RequestMapping("/myInfoEditProc.mentor")
 	public ModelAndView memberEditProc(MemberVO mVO, ModelAndView mv, HttpSession session, RedirectView rv) {
 		if(!isLogin(session)) {
-			rv.setUrl("/study/member/login.man");
+			rv.setUrl("/study/member/login.mentor");
 			mv.setView(rv);
 			return mv;
 		} 
 		
 		int cnt = mDao.updateInfo(mVO);
-		String view ="/study/member/userInfo.man";
+		String view ="/study/member/userInfo.mentor";
 		if(cnt != 1) {
-			view = "/study/member/userInfoEdit.man";
+			view = "/study/member/userInfoEdit.mentor";
 		}
 		rv.setUrl(view);
 		mv.setView(rv);

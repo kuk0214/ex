@@ -1,14 +1,12 @@
 package com.increpas.study.vo;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 
 public class BoardVO {
 	private int frbno, frreno, no, qnabno, rvbno, sbno, askno, upno, mtno, click, cnt, groupno;
 	private String id, wid, upid, title, body, category, loc, juje, sdate, sdate1;
 	private Date wdate, sysdate;
-	private Time wtime;
 	public int getFrbno() {
 		return frbno;
 	}
@@ -134,12 +132,28 @@ public class BoardVO {
 	}
 	public void setSdate() {
 		
-		SimpleDateFormat form1 = new SimpleDateFormat("yyyy.MM.dd");
-		SimpleDateFormat form2 = new SimpleDateFormat(" HH:mm");
-		sdate = form1.format(wdate) + form2.format(wtime);
+		SimpleDateFormat form = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+		sdate = form.format(wdate);
 	}
 	public void setSdate(String sdate) {
 		this.sdate = sdate;
+	}
+	public String getSdate1() {
+		return sdate1;
+	}
+	public void setSdate1() {
+		Date nowDate = sysdate;
+		Date wDate = wdate;
+		SimpleDateFormat form = null;
+		if(wDate == nowDate) {
+			form = new SimpleDateFormat("HH:mm");			
+		} else {
+			form = new SimpleDateFormat("MM.dd");
+		}
+		sdate1 = form.format(wdate);
+	}
+	public void setSdate1(String sdate1) {
+		this.sdate1 = sdate1;
 	}
 	public Date getSysdate() {
 		return sysdate;
@@ -152,13 +166,7 @@ public class BoardVO {
 	}
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
-	}
-	public Time getWtime() {
-		return wtime;
-	}
-	public void setWtime(Time wtime) {
-		this.wtime = wtime;
 		setSdate();
+		setSdate1();
 	}
-	
 }

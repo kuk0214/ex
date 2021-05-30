@@ -16,7 +16,7 @@
 </style>
 </head>
 <body>
-	<aside class=" mxw190 w3-bar-block w3-white bdr"id="mySidebar">
+	<aside class=" mxw190 w3-bar-block w3-white"id="mySidebar">
 	  <div class="pdt10 w3-large w3-text-grey">
 	  	<a><h1 class="ft24 mgt20">게시판</h1></a><br>
 	    <a href="#" class="w3-bar-item w3-button" id="userbtn"> 자유 게시판 </a>

@@ -18,7 +18,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#cbtn').click(function() {
-			$('#frm').attr('action', '/study/freeboard/freeBoardDetail.man');
+			$('#frm').attr('action', '/study/freeboard/freeBoardDetail.mentor');
 			$('#frm').submit();
 		});
 		
@@ -41,7 +41,7 @@
 </head>
 <body>
 	<div class="w3-content mxw700 w3-margin-top w3-padding">
-		<form method="POST" action="/study/freeboard/freeBoardEditProc.man" name="frm" id="frm"
+		<form method="POST" action="/study/freeboard/freeBoardEditProc.mentor" name="frm" id="frm"
 				class="w3-col w3-padding w3-margin-bottom w3-border w3-border-light-grey">
 			<input type="hidden" name="nowPage" id="nowPage" value="${nowPage}">
 			<input type="hidden" name="frbno" id="frbno" value="${DATA.frbno}">
