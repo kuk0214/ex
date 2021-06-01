@@ -82,6 +82,8 @@
 		-->
 		<mapper resource="com/increpas/study/sql/FreeBoardSQL.xml" />
 		<mapper resource="com/increpas/study/sql/MemberSQL.xml" />
+		<mapper resource="com/increpas/study/sql/NoticeSQL.xml" />
+		<mapper resource="com/increpas/study/sql/ReviewBoardSQL.xml" />
 	</mappers>
 
 </configuration>

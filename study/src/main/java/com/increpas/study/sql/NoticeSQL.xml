@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybaits.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="nSQL">
+ 	 <!-- 자유게시판 글 리스트 조회 질의명령 -->
+ 	 <select id="noticeList" resultType="bVO" parameterType="page">
+ 	 	SELECT
+			    rno, frbno, title, wid, wdate, wtime, click, sysdate, cnt
+			FROM
+			    (
+			        SELECT
+			            ROWNUM rno, frbno, title, wid, wdate, wtime, click, sysdate, cnt
+			        FROM
+			            (
+			                SELECT
+			                    f.frbno frbno, title, f.wid wid, f.wdate wdate, f.wdate wtime, click, sysdate, COUNT(re.frbno) cnt
+			                FROM
+			                    freeboard f, freeboardreply re
+			                WHERE
+			                    f.frbno = re.frbno(+)
+			                    AND f.isShow = 'Y'
+			                    AND re.isShow(+) = 'Y'
+			                GROUP BY
+			                    f.frbno, title, f.wid, f.wdate, click, sysdate
+			                ORDER BY
+			                    f.wdate DESC
+			            )
+			    )
+			WHERE
+			    rno BETWEEN #{startCont} AND #{endCont}
+ 	 </select>
+ 	 
+ 	<!-- 총게시글수 조회 질의명령 -->
+	<select id="getTotal" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			freeboard
+		WHERE
+			isShow = 'Y'
+	</select>
+	
+	<!-- 자유게시판 상세보기 질의명령 -->
+	<select id="freeBRDDetail" resultType="bVO">
+		SELECT
+			    frbno, title, body, wid, click, wdate 
+			FROM
+			    freeboard
+			WHERE
+			    frbno = #{frbno}
+			    AND isShow = 'Y'
+	</select>
+	
+	<!-- 자유게시판 댓글 보기 질의명령 -->
+	<select id="freeBRDReply" resultType="bVO" parameterType="page">
+		SELECT
+		    rno, frreno, groupno, body, wid, upid, wdate
+		FROM
+		    (
+		        SELECT
+		            ROWNUM rno, frreno, groupno, body, wid, upid, wdate
+		        FROM
+		            (
+		                SELECT
+		                    frbno, frreno, groupno, body, wid, upid, wdate
+		                FROM
+		                    freeboardreply
+		                WHERE
+		                    frbno = #{frbno}
+		                    AND isShow = 'Y'
+		                ORDER BY
+		                    groupno, wdate
+		            )
+		    )
+		WHERE
+		    rno BETWEEN #{startCont} AND #{endCont}
+	</select>
+	
+	<!-- 댓글 등록 요청 질의명령 -->
+	<insert id="freeBRDReplyProc" parameterType="bVO">
+		INSERT INTO
+		    freeboardreply(frreno, groupno, frbno, body, wid)
+		VALUES(
+		    (SELECT NVL(MAX(frreno) + 1, 1000001) FROM freeboardreply),
+		    (SELECT NVL(MAX(groupno) + 1, 1) FROM freeboardreply),
+		     #{frbno}, #{body}, #{wid}
+		)
+	</insert>
+</mapper>

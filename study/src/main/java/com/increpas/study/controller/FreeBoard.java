@@ -1,18 +1,29 @@
 package com.increpas.study.controller;
 
-import java.io.PrintWriter;
 import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.*;
 
-import com.increpas.study.dao.FreeBoardDao;
-import com.increpas.study.util.PageUtil;
-import com.increpas.study.vo.BoardVO;
+import com.increpas.study.dao.*;
+import com.increpas.study.util.*;
+import com.increpas.study.vo.*;
+
+/**
+ * 이 클래스는 자유게시판 관련 요청을 처리할 클래스
+ * @author	조경국
+ * @since	2021.06.01
+ * @version v.1.0
+ * @see
+ * 			작업이력 ]
+ * 					2021.06.01	-	담당자		: 조경국
+ * 									작업내용	: 클래스제작
+ * 												  자유게시판 리스트, 상세보기, 자유게시판 댓글 등록 처리
+ * 												  
+ *
+ */
 
 @Controller
 @RequestMapping("/freeboard")
@@ -51,21 +62,16 @@ public class FreeBoard {
 		return mv;
 	}
 	
-	@ResponseBody
 	@RequestMapping(value="/freeBoardReplyProc.mentor", method=RequestMethod.POST)
+	@ResponseBody
 	public HashMap<String, String> freeBRDReplyProc(BoardVO bVO) {
 		int cnt = fDao.freeBRDReplyProc(bVO);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("result", "NO");
-		/*
-		pw.println("{");
-		pw.println("\"result\": \"NO\"");
-		*/
+		
 		if(cnt == 1) {
 			map.put("result", "OK");
-//			pw.println("\"result\": \"OK\"");
 		}
-//		pw.println("}");
 		
 		return map;
 	}
