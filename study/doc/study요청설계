@@ -1,0 +1,193 @@
+# 스터디 요청 설계
+
+====================================================================================================
+
+# 자유게시판 관련 요청 설계
+
+1. 자유게시판 글 리스트 보기 요청
+	요청내용	:	/study/freeboard/freeBoardList.mentor
+	파라미터	:	무
+	컨트롤러	:	com.increpas.study.controller.FreeBoard
+	처리함수	:	freeBoardList();
+	뷰			:	/WEB-INF/views/study/freeboard/freeBoardList.jsp
+
+2. 자유게시판 글 상세 보기 요청
+	요청내용	:	/study/freeboard/freeBoardDetail.mentor
+	파라미터	:	frbno, nowPage
+	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardDetail
+	뷰			:	/WEB-INF/views/study/freeboard/freeBoardDetail.jsp
+	
+3. 자유게시판 댓글 등록 처리 요청
+	요청내용	:	/study/freeboard/freeBoardReplyProc.mentor
+	파라미터	:	frbno, body
+	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardReplyProc
+	뷰			:	ajax ] json
+	
+4. 자유게시판 대댓글 등록 처리 요청
+	요청내용	:	/study/freeboard/freeBoardReplyProc2.mentor
+	파라미터	:	frbno, body
+	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardReplyProc2
+	뷰			:	ajax ] json
+	
+5. 자유게시판 글 작성 폼보기 요청
+	요청내용	:	/study/freeboard/freeBoardWrite.mentor
+	파라미터	:	무(SID)
+	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardWrite
+	뷰			:	/WEB-INF/views/study/freeboard/freeBoardWrite.jsp
+
+6. 자유게시판 글 삭제 처리 요청
+	요청내용	:	/study/freeboard/freeBoardDel.mentor
+	파라미터	:	frbno(SID)
+	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardDel
+	뷰			:	redirect ]
+						성공&실패 : /WEB-INF/views/study/notice/noticeList.jsp
+
+7. 자유게시판 글 수정 폼보기 요청
+	요청내용	:	/study/freeboard/freeBoardEdit.mentor
+	파라미터	:	무(SID)
+	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardEdit
+	뷰			:	/WEB-INF/views/study/freeboard/freeBoardEdit.jsp
+	
+8. 자유게시판 글 수정 처리 요청
+	요청내용	:	/study/freeboard/freeBoardEditProc.mentor
+	파라미터	:	frbno, title || body
+	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardEditProc
+	뷰			:	redirect ]
+						성공 : /WEB-INF/views/study/freeboard/freeBoardList.jsp
+
+9. 자유게시판 댓글 수정 처리 요청
+	요청내용	:	/study/freeboard/freeBoardReplyEditProc.mentor
+	파라미터	:	frreno, body
+	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardReplyEditProc
+	뷰			:	ajax ] json
+	
+9. 자유게시판 댓글 삭제 처리 요청
+	요청내용	:	/study/freeboard/freeBoardReplyDelProc.mentor
+	파라미터	:	frreno
+	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardReplyEditDelProc
+	뷰			:	ajax ] json
+	
+======================================================================================================================
+
+# QnA 게시판 관련 요청 설계
+
+1. QnA 게시판 글 리스트 보기 요청
+	요청내용	:	/study/QnAboard/QnABoardList.mentor
+	파라미터	:	무
+	컨트롤러	:	com.increpas.study.controller.QnAboard.QnABoardList
+	뷰			:	/WEB-INF/views/study/QnAboard/QnABoardList.jsp
+	
+======================================================================================================================
+
+# 후기 게시판 관련 요청 설계
+
+1. 후기 게시판 글 리스트 보기 요청
+	요청내용	:	/study/reviewboard/reviewBoardList.mentor
+	파라미터	:	무
+	컨트롤러	:	com.increpas.study.controller.ReviewBoard
+	처리함수	:	reviewBRDList()
+	뷰			:	/WEB-INF/views/study/reviewboard/reviewBoardList.jsp
+	
+2. 후기 게시판 글 작성 폼보기 요청
+	요청내용	:	/study/reviewboard/reviewBoardWrite.mentor
+	파라미터	:	무(SID)
+	컨트롤러	:	com.increpas.study.controller.ReviewBoard
+	처리함수	:	reviewBRDWrite()
+	뷰			:	/WEB-INF/views/study/reviewboard/ReviewBoardWrite.jsp
+	
+3. 후기 게시판 글 작성 처리 요청
+	요청내용	:	/study/reviewboard/reviewBoardWriteProc.mentor
+	파라미터	:	rvbno, category, title, body
+	컨트롤러	:	com.increpas.study.controller.ReviewBoard
+	처리함수	:	reviewBRDWriteProc()
+	뷰			:	redirect ]
+						성공 : /study/reviewboard/reviewBoardList.mentor
+						실패 : /study/reviewboard/reviewBoardWrite.mentor
+	
+4. 후기 게시판 글 상세보기 요청
+	요청내용	:	/study/reviewboard/reviewBoardDetail.mentor
+	파라미터	:	rvbno
+	컨트롤러	:	com.increpas.study.controller.ReviewBoard
+	처리함수	:	reviewBRDDetail()
+	뷰			:	/WEB-INF/views/study/reviewboard/ReviewBoardDetail.jsp
+	
+5. 후기 게시판 글 수정 폼보기 요청
+	요청내용	:	/study/reviewboard/reviewBoardEdit.mentor
+	파라미터	:	rvbno
+	컨트롤러	:	com.increpas.study.controller.ReviewBoard
+	처리함수	:	reviewBRDEdit()
+	뷰			:	/WEB-INF/views/study/reviewboard/ReviewBoardEdit.jsp
+	
+6. 후기 게시판 글 수정 처리 요청
+	요청내용	:	/study/reviewboard/reviewBoardEditProc.mentor
+	파라미터	:	rvbno, (category || title || body)
+	컨트롤러	:	com.increpas.study.controller.ReviewBoard
+	처리함수	:	reviewBRDEditProc()
+	뷰			:	redirect ]
+						성공 : /study/reviewboard/ReviewBoardList.mentor
+						실패 : /study/reviewboard/ReviewBoardEdit.mentor
+						
+7. 후기 게시판 글 삭제 처리 요청
+	요청내용	:	/study/reviewboard/reviewBoardEditProc.mentor
+	파라미터	:	rvbno
+	컨트롤러	:	com.increpas.study.controller.ReviewBoard
+	처리함수	:	reviewBRDDel()
+	뷰			:	redirect ]
+						성공 & 실패 : /study/reviewboard/ReviewBoardList.mentor
+	
+======================================================================================================================
+
+# 공지사항 관련 요청
+
+1. 공지사항 글 리스트 보기 요청
+	요청내용	:	/study/notice/noticeList.mentor
+	파라미터	:	무
+	컨트롤러	:	com.increpas.study.controller.Notice
+	처리함수	:	noticeList()
+	뷰			:	/WEB-INF/views/study/notice/noticeList.jsp
+	
+2. 공지사항 글 상세 보기 요청
+	요청내용	:	/study/notice/noticeDetail.mentor
+	파라미터	:	no
+	컨트롤러	:	com.increpas.study.controller.Notice
+	처리함수	:	noticeDetail()
+	뷰			:	/WEB-INF/views/study/notice/noticeDetail.jsp
+	
+3. 공지사항 글 등록 폼보기 요청
+	요청내용	:	/study/notice/noticeWrite.mentor
+	파라미터	:	무(id: 관리자1)
+	컨트롤러	:	com.increpas.study.controller.Notice
+	처리함수	:	noticeWrite()
+	뷰			:	/WEB-INF/views/study/notice/noticeWrite.jsp
+	
+4. 공지사항 글 등록 처리 요청
+	요청내용	:	/study/notice/noticeWriteProc.mentor
+	파라미터	:	no, title, body
+	컨트롤러	:	com.increpas.study.controller.Notice
+	뷰			:	redirect ]
+						성공 : /study/noticeList.mentor
+						실패 : /study/noticeWrite.mentor
+					
+5. 공지사항 글 수정 폼보기 요청
+	요청내용	:	/study/notice/noticeEdit.mentor
+	파라미터	:	no
+	컨트롤러	:	com.increpas.study.controller.Notice
+	처리함수	:	noticeEdit()
+	뷰			:	/WEB-INF/views/study/notice/noticeEdit.jsp
+	
+6. 공지사항 글 수정 처리 요청
+	요청내용	:	/study/notice/noticeEditProc.mentor
+	파라미터	:	no, (title || body)
+	컨트롤러	:	com.increpas.study.controller.Notice
+	처리함수	:	noticeEditProc()
+	뷰			:	redirect ]
+						성공 : /study/notice/noticeDetail.mentor
+						실패 : /study/notice/noticeEdit.metor
+						
+7. 공지사항 글 삭제 처리 요청
+	요청내용	:	/study/notice/noticeDel.mentor
+	파라미터	:	no
+	컨트롤러	:	com.increpas.study.controller.Notice
+	처리함수	:	noticeDel()
+	뷰			:	redirect ]
+						성공&실패 : /study/noticeList.mentor

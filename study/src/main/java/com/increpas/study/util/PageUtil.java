@@ -73,7 +73,7 @@ public class PageUtil {
 	public void setNowPage(int nowPage) {
 		this.nowPage = nowPage;
 	}
-
+	
 	public int getTotalPage() {
 		return totalPage;
 	}

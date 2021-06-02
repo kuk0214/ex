@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/study/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/study/css/w3-colors-flat.css">
-<link rel="stylesheet" type="text/css" href="/study/css/user.css">
+<link rel="stylesheet" type="text/css" href="/study/css/layout.css">
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script type="text/javascript" src="/study/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/study/js/w3color.js"></script>
@@ -73,44 +74,51 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<body>
+<body class="w3-content" style="max-width:1200px">
+	<%@ include file="../include/boardlayout.jsp" %>
 	<form method="POST" action="/study/reviewboard/reviewBoardList.mentor" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 		<input type="hidden" name="rvbno" id="rvbno" value="${data.rvbno}">
 	</form>
-	<div class="w3-content mxw850 w3-margin-top">
-		<div class="w3-col w3-card-4 w3-margin-top w3-margin-bottom">
-			<h1 class="w3-blue w3-padding w3-center mg0">후기게시판</h1>
-			<div class="w3-bar w3-lime h25">
-				<span class="w3-col w100 h25 w3-lime w3-hover-green w3-button" id="hbtn">home</span>
-		<c:if test="${empty SID}">
-				<span class="w3-col w100 h25 w3-lime w3-hover-light-green w3-button w3-right" id="lbtn">login</span>
-				<span class="w3-col w100 h25 w3-lime w3-hover-amber w3-button w3-right" id="jbtn">join</span>
-		</c:if>
-		<c:if test="${not empty SID}">
-				<span class="w3-col w100 h25 w3-lime w3-hover-deep-orange w3-button w3-right" id="wbtn">write</span>
-				<span class="w3-col w100 h25 w3-lime w3-hover-orange w3-button w3-right" id="outbtn">logout</span>
-		</c:if>
-			</div>
+	
+	<section class="w3-content w3-margin-top">
+		<div class="w3-col w3-margin-top w3-margin-bottom">
+			<h2 class="w3-padding mgb10 ft24">리뷰게시판</h2>
+		</div>
+		<div class="w3-right w500">
+			<div class="w3-col w3-button w70 h20 mgl10 w3-right pd0 w3-green">검색</div>
+			<input type="text" class="w3-col mgl10 w120 h20 w3-right" id="search" name="search">
+			<select class="w3-col w70 h20 w3-right">
+				<option>제목</option>
+				<option>내용</option>
+				<option>작성자</option>
+			</select>
 		</div>
 		
-		<div class="w3-col w3-margin-top w3-padding w3-card-4 datafr">
-			<div class="w3-col w3-margin-top">
-				<span class="w3-col w100 w3-center w3-green w3-border-right w3-border-sand">분류</span>
-				<span class="w3-col w500 w3-center w3-green w3-border-right w3-border-sand">제목</span>
-				<span class="w3-col w150 w3-center w3-green w3-border-right w3-border-sand">작성자</span>
-				<span class="w3-col w100 w3-center w3-green w3-border-right w3-border-sand">조회수</span>
-				<div class="w-rest w3-center w3-green w3-border-right w3-border-sand">작성일</div>
+		<div class="w3-col w3-margin-top">
+			<div class="3-col w3-margin-top w3-border-bottom bgc bdt h40">
+				<span class="w3-col w100 mgt5 w3-center w3-border-right">분류</span>
+				<span class="w3-col w550 mgt5 w3-center w3-border-right">제목</span>
+				<span class="w3-col w120 mgt5 w3-center w3-border-right">작성자</span>
+				<span class="w3-col w100 mgt5 w3-center w3-border-right">조회수</span>
+				<div class="w-rest mgt5 w3-center">작성일</div>
 			</div>
 			
 			<!-- 글 리스트 -->
 <c:forEach var="data" items="${LIST}">
-			<div class="w3-col w3-border-left w3-border-right w3-border-bottom w3-hover-lime list" id="l${data.rvbno}">
-				<span class="w3-col w100 w3-center w3-border-right">${data.category}</span>
-				<span class="w3-col w500 pdl30 w3-border-right">${data.title}</span>
-				<span class="w3-col w150 w3-center w3-border-right">${data.wid}</span>
-				<span class="w3-col w100 w3-center w3-border-right">${data.click}</span>
+	<fmt:formatDate var="nowDate" type="date" value="${data.sysdate}" pattern="yyyy.MM.dd"/>
+	<fmt:formatDate var="wDate" type="date" value="${data.wdate}" pattern="yyyy.MM.dd"/>
+			<div class="w3-col  w3-border-bottom w3-hover-lime list" id="l${data.rvbno}">
+				<span class="w3-col w100 w3-center">${data.category}</span>
+				<span class="w3-col w550 pdl30">${data.title}</span>
+				<span class="w3-col w120 w3-center">${data.wid}</span>
+				<span class="w3-col w100 w3-center">${data.click}</span>
+			<c:if test="${nowDate eq wDate}">
+				<div class="w3-rest w3-center">${data.sdate2}</div>
+			</c:if>
+			<c:if test="${nowDate ne wDate}">
 				<div class="w3-rest w3-center">${data.sdate1}</div>
+			</c:if>
 			</div>
 </c:forEach>
 		<c:if test="${empty LIST}">
@@ -144,8 +152,9 @@ $(document).ready(function(){
 				<span class="w3-bar-item w3-button w3-hover-lime pbtn">next</span>
 	</c:if>
 			</div>
+			<div class="w3-button w3-right w3-margin-top w3-border w3-border-lime" id="wbtn">글쓰기</div>
 		</div>
 		
-	</div>
+	</section>
 </body>
 </html>

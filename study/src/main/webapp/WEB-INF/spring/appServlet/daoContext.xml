@@ -11,4 +11,6 @@
 
 	<bean id="fDao" class="com.increpas.study.dao.FreeBoardDao" />
 	<bean id="mDao" class="com.increpas.study.dao.MemberDao" />
+	<bean id="nDao" class="com.increpas.study.dao.NoticeDao" />
+	<bean id="rvDao" class="com.increpas.study.dao.ReviewBoardDao" />
 </beans>

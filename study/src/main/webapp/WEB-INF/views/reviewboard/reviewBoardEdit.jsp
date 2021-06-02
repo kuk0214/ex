@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/study/css/w3.css">
-<link rel="stylesheet" type="text/css" href="/study/css/user.css">
+<link rel="stylesheet" type="text/css" href="/study/css/layout.css">
 <script type="text/javascript" src="/study/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/study/js/w3color.js"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
@@ -17,6 +17,16 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var op1 = $('option').eq(0).val();
+		var op2 = $('option').eq(1).val();
+		var op3 = $('option').eq(2).val();
+		if(op1 == '${DATA.category}') {
+			$('option').eq(0).prop('selected', true);
+		} else if(op2 == '${DATA.category}') {
+			$('option').eq(1).prop('selected', true);
+		} else {
+			$('option').eq(2).prop('selected', true);
+		}
 		$('#cbtn').click(function() {
 			$('#frm').attr('action', '/study/reviewboard/reviewBoardDetail.mentor');
 			$('#frm').submit();
@@ -25,12 +35,18 @@
 		$('#ebtn').click(function() {
 			var ttitle = $('#title').val().trim();
 			var tbody = $('#body').val().trim();
+			var tcategory = $('option:selected').val();
+			
 			if(!ttitle || ttitle == '${DATA.title}') {
 				$('#title').prop('disabled', true);
 			}
 			
 			if(!tbody || tbody == '${DATA.body}') {
 				$('#body').prop('disabled', true);
+			}
+			
+			if(tcategory == '${DATA.category}') {
+				$('select').prop('disabled', true);
 			}
 			
 			$('#frm').submit();			
@@ -44,6 +60,13 @@
 				class="w3-col w3-padding w3-margin-bottom w3-border w3-border-light-grey">
 			<input type="hidden" name="nowPage" id="nowPage" value="${nowPage}">
 			<input type="hidden" name="rvbno" id="rvbno" value="${DATA.rvbno}">
+			<div class="w3-col pdr30">
+				<select class="w3-col w150" name="category">
+					<option value="그룹">그룹</option>
+					<option value="업체">업체</option>
+					<option value="멘토">멘토</option>
+				</select>
+			</div>
 			<div class="w3-col w3-margin-top pdb10 w3-border-bottom w3-border-light-grey">
 				<div class="w3-rest pdr30">
 					<input name="title" id="title" class="w3-rest ft12" value="${DATA.title}">

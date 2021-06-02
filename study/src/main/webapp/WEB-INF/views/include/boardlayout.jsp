@@ -8,6 +8,6 @@
 </head>
 <body>
 	<%@ include file="header.jsp" %>
-	<%@ include file="aside.jsp" %>
+	<%@ include file="boardaside.jsp" %>
 </body>
 </html>

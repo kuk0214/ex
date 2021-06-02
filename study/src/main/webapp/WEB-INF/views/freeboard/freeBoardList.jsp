@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/study/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/study/css/w3-colors-flat.css">
+<link rel="stylesheet" type="text/css" href="/study/css/layout.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script type="text/javascript" src="/study/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/study/js/w3color.js"></script>
@@ -73,7 +75,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body  class="w3-content" style="max-width:1200px">
-	<%@ include file="../include/layout.jsp" %>
+	<%@ include file="../include/boardlayout.jsp" %>
 	<form method="POST" action="/study/freeboard/freeBoardList.mentor" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 		<input type="hidden" name="frbno" id="frbno">
@@ -93,7 +95,7 @@ $(document).ready(function(){
 			</select>
 		</div>
 		
-		<div class="w3-col w3-margin-top datafr">
+		<div class="w3-col w3-margin-top">
 			<div class="w3-col w3-margin-top w3-border-bottom bgc bdt h40">
 				<span class="w3-col w650 mgt5 w3-center w3-border-right">제목</span>
 				<span class="w3-col w120 mgt5 w3-center w3-border-right">작성자</span>
@@ -103,6 +105,8 @@ $(document).ready(function(){
 			
 			<!-- 글 리스트 -->
 <c:forEach var="data" items="${LIST}">
+	<fmt:formatDate var="nowDate" type="date" value="${data.sysdate}" pattern="yyyy.MM.dd"/>
+	<fmt:formatDate var="wDate" type="date" value="${data.wdate}" pattern="yyyy.MM.dd"/>
 			<div class="w3-col  w3-border-bottom w3-hover-lime list" id="l${data.frbno}">
 				<span class="w3-col w650 pdl30">
 					${data.title}
@@ -112,7 +116,12 @@ $(document).ready(function(){
 				</span>
 				<span class="w3-col w120 w3-center ">${data.wid}</span>
 				<span class="w3-col w100 w3-center ">${data.click}</span>
+			<c:if test="${nowDate eq wDate}">
+				<div class="w3-rest w3-center">${data.sdate2}</div>
+			</c:if>
+			<c:if test="${nowDate ne wDate}">
 				<div class="w3-rest w3-center">${data.sdate1}</div>
+			</c:if>
 			</div>
 </c:forEach>
 		<c:if test="${empty LIST}">
@@ -146,7 +155,7 @@ $(document).ready(function(){
 				<span class="w3-bar-item w3-button w3-hover-lime pbtn">next</span>
 	</c:if>
 			</div>
-		<div class="w3-button w3-right w3-margin-top w3-border w3-border-lime" id="wbtn">글쓰기</div>
+			<div class="w3-button w3-right w3-margin-top w3-border w3-border-lime" id="wbtn">글쓰기</div>
 		</div>
 		
 	</section>

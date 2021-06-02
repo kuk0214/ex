@@ -20,7 +20,7 @@ import com.increpas.study.vo.*;
  * 			작업이력 ]
  * 					2021.06.01	-	담당자		: 조경국
  * 									작업내용	: 클래스제작
- * 												  자유게시판 리스트, 상세보기, 자유게시판 댓글 등록 처리
+ * 												  자유게시판 리스트, 상세보기, 댓글 등록
  * 												  
  *
  */
@@ -32,7 +32,7 @@ public class FreeBoard {
 	FreeBoardDao fDao;
 	
 	@RequestMapping("/freeBoardList.mentor")
-	public ModelAndView freeboardList(ModelAndView mv, PageUtil page) {
+	public ModelAndView freeBoardList(ModelAndView mv, PageUtil page) {
 		int nowPage = page.getNowPage();
 		if(nowPage == 0) {
 			nowPage = 1;
@@ -55,9 +55,11 @@ public class FreeBoard {
 		page.setPage(nowPage, total, 10, 5);
 		List list = fDao.freeBRDReply(page);
 		BoardVO bVO = fDao.freeBRDDetail(frbno);
+		int cnt = fDao.replyCnt(frbno);
 		mv.addObject("LIST", list);
 		mv.addObject("PAGE", page);
 		mv.addObject("DATA", bVO);
+		mv.addObject("CNT", cnt);
 		
 		return mv;
 	}

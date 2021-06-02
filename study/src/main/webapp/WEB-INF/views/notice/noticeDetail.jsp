@@ -61,7 +61,7 @@
 		</div>
 		<div class="w3-col w3-margin-top">
 			<div class="w3-thrid w3-button w3-green" id="lbtn">목록보기</div>
-	<c:if test="${SID eq '관리자1'}">
+	<c:if test="${SID eq 'admin1'}">
 			<div class="w3-thrid w3-button w3-right w3-blue" id="ebtn">수정하기</div>
 			<div class="w3-thrid w3-button w3-right w3-red" id="dbtn">삭제하기</div>
 	</c:if>

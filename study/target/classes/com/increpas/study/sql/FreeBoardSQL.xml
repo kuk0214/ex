@@ -42,15 +42,25 @@
 			isShow = 'Y'
 	</select>
 	
+	<!-- 댓글 수 조회 질의명령 -->
+	<select id="replyCnt" resultType="int" parameterType="int">
+		SELECT
+			COUNT(frbno) cnt
+		FROM
+			freeboardreply
+		WHERE
+			frbno = #{frbno}
+			AND isShow = 'Y'
+	</select>
 	<!-- 자유게시판 상세보기 질의명령 -->
-	<select id="freeBRDDetail" resultType="bVO">
+	<select id="freeBRDDetail" resultType="bVO" parameterType="int">
 		SELECT
 			    frbno, title, body, wid, click, wdate 
-			FROM
-			    freeboard
-			WHERE
-			    frbno = #{frbno}
-			    AND isShow = 'Y'
+		FROM
+		    freeboard
+		WHERE
+		    frbno = #{frbno}
+		    AND isShow = 'Y'
 	</select>
 	
 	<!-- 자유게시판 댓글 보기 질의명령 -->

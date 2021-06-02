@@ -1,11 +1,11 @@
 package com.increpas.study.vo;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.*;
 
 public class BoardVO {
 	private int frbno, frreno, no, qnabno, rvbno, sbno, askno, upno, mtno, click, cnt, groupno;
-	private String id, wid, upid, title, body, category, loc, juje, sdate, sdate1;
+	private String id, wid, upid, title, body, category, loc, juje, sdate, sdate1, sdate2;
 	private Date wdate, sysdate;
 	public int getFrbno() {
 		return frbno;
@@ -131,29 +131,32 @@ public class BoardVO {
 		return sdate;
 	}
 	public void setSdate() {
-		
-		SimpleDateFormat form = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+		SimpleDateFormat form = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 		sdate = form.format(wdate);
 	}
-	public void setSdate(String sdate) {
-		this.sdate = sdate;
+	public void setSdate(Date wdate) {
+		SimpleDateFormat form1 = new SimpleDateFormat("yyyy/MM/dd");
+		sdate = form1.format(wdate);
 	}
 	public String getSdate1() {
 		return sdate1;
 	}
 	public void setSdate1() {
-		Date nowDate = sysdate;
-		Date wDate = wdate;
-		SimpleDateFormat form = null;
-		if(wDate == nowDate) {
-			form = new SimpleDateFormat("HH:mm");			
-		} else {
-			form = new SimpleDateFormat("MM.dd");
-		}
+		SimpleDateFormat form = new SimpleDateFormat("MM.dd");
 		sdate1 = form.format(wdate);
 	}
 	public void setSdate1(String sdate1) {
 		this.sdate1 = sdate1;
+	}
+	public String getSdate2() {
+		return sdate2;
+	}
+	public void setSdate2() {
+		SimpleDateFormat form = new SimpleDateFormat("HH:mm");
+		sdate2 = form.format(wdate);
+	}
+	public void setSdate2(String sdate2) {
+		this.sdate2 = sdate2;
 	}
 	public Date getSysdate() {
 		return sysdate;
@@ -168,5 +171,6 @@ public class BoardVO {
 		this.wdate = wdate;
 		setSdate();
 		setSdate1();
+		setSdate2();
 	}
 }
