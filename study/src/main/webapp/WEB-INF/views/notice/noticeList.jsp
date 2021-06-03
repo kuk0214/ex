@@ -84,15 +84,15 @@ $(document).ready(function(){
 		<div class="w3-col w3-margin-top w3-margin-bottom">
 			<h2 class="w3-padding mgb10 ft24">공지사항</h2>
 		</div>
-		<div class="w3-right w500">
-			<div class="w3-col w3-button w70 h20 mgl10 w3-right pd0 w3-green">검색</div>
-			<input type="text" class="w3-col mgl10 w120 h20 w3-right" id="search" name="search">
-			<select class="w3-col w70 h20 w3-right">
-				<option>제목</option>
-				<option>내용</option>
-				<option>작성자</option>
+		<form method="POST" action="/study/notice/noticeList.mentor" class="w3-right w500">
+			<button type="submit" class="w3-col w3-button w70 h20 mgl10 w3-right pd0 w3-green">검색</button>
+			<input type="text" class="w3-col mgl10 w120 h20 w3-right" name="keyword" value="${keyword}">
+			<select class="w3-col w70 h20 w3-right" name="option">
+				<option value="stitle"<c:if test="${option eq 'stitle'}">selected</c:if>>제목</option>
+				<option value="sbody"<c:if test="${option eq 'sbody'}">selected</c:if>>내용</option>
+				<option value="swid"<c:if test="${option eq 'swid'}">selected</c:if>>작성자</option>
 			</select>
-		</div>
+		</form>
 		<div class="w3-col w3-margin-top">
 			<div class="w3-col w3-margin-top w3-border-bottom bgc bdt h40">
 				<span class="w3-col w650 mgt5 w3-center w3-border-right">제목</span>

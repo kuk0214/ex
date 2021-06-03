@@ -173,4 +173,5 @@ public class BoardVO {
 		setSdate1();
 		setSdate2();
 	}
+	
 }

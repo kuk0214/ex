@@ -27,12 +27,17 @@
 		$('#sbtn').click(function() {
 			var title = $('#title').val().trim();
 			var body = $('#body').val().trim();
+			var category = $('option:selected').val();
 			if(!title){
 				alert('# 제목을 확인하세요! #');
 				return;
 			}
 			if(!body){
 				alert('# 내용을 확인하세요! #');
+				return;
+			}
+			if(category == '카테고리') {
+				alert('# 카테고리를 선택하세요 #');
 				return;
 			}
 			

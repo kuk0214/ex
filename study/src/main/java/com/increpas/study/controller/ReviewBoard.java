@@ -25,6 +25,8 @@ import com.increpas.study.dao.*;
  * 									작업내용	:	클래스제작
  * 					2021.06.02	-	담당자		:	조경국
  * 									작업내용	:	리뷰게시판 리스트 보기, 상세보기, 글 등록, 수정, 삭제
+ * 					2021.06.03	-	담당자		:	조경국
+ * 									작업내용	:	검색기능
  *
  */
 
@@ -44,9 +46,12 @@ public class ReviewBoard {
 		int total = rvDao.totalCnt();
 		page.setPage(nowPage, total, 10, 5);
 		List list = rvDao.reviewBRDList(page);
-		
+		String keyword = page.getKeyword();
+		String option = page.getOption();
 		mv.addObject("LIST", list);
 		mv.addObject("PAGE", page);
+		mv.addObject("keyword", keyword);
+		mv.addObject("option", option);
 		return mv;
 	}
 	

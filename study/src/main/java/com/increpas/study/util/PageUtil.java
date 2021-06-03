@@ -16,6 +16,8 @@ public class PageUtil {
 	
 	private int frbno;
 	
+	private String option, keyword;
+	
 	public PageUtil() {
 		nowPage = 1;
 	}
@@ -144,6 +146,22 @@ public class PageUtil {
 
 	public void setFrbno(int frbno) {
 		this.frbno = frbno;
+	}
+
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 
 	@Override

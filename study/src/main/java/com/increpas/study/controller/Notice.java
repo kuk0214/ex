@@ -26,6 +26,8 @@ import com.increpas.study.vo.*;
  * 									작업내용	:	클래스제작
  * 					2021.06.02	-	담당자		:	조경국
  * 									작업내용	:	공지사항 리스트 보기, 상세보기, 글쓰기, 수정, 삭제
+ * 					2021.06.03	-	담당자		:	조경국
+ * 									작업내용	:	검색
  *
  */
 
@@ -46,9 +48,13 @@ public class Notice {
 		
 		page.setPage(nowPage, total, 3, 5);
 		List list = nDao.noticeList(page);
+		String keyword = page.getKeyword();
+		String option = page.getOption();
 		
 		mv.addObject("LIST", list);
 		mv.addObject("PAGE", page);
+		mv.addObject("keyword", keyword);
+		mv.addObject("option", option);
 		return mv;
 	}
 	

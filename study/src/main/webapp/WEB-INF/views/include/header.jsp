@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/study/css/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="/study/css/layout.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -36,6 +36,7 @@
 					<li class="active"><a href="/study/main.mentor">Home</a></li>
 					<li><a class="drop" href="#">스터디</a>
 						<ul>
+							<li><a href="/study/group/addGroup.mentor">스터디 만들기</a></li>
 							<li><a href="pages/gallery.html">스터디 관리</a></li>
 							<li><a href="pages/full-width.html">스터디 모집</a></li>
 						</ul>
