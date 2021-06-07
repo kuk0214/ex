@@ -24,6 +24,9 @@
 					<li><a href="/study/member/logout.mentor">로그아웃</a></li>				
 				</c:if>
 					<li><a href="#">가입하기</a></li>
+				<c:if test="${SID eq 'admin1'}">
+					<li><a href="/study/db/DBSetData.mentor">더미데이터 생성</a></li>
+				</c:if>
 				</ul>
 			</div>
 		</div>
@@ -38,7 +41,7 @@
 						<ul>
 							<li><a href="/study/group/addGroup.mentor">스터디 만들기</a></li>
 							<li><a href="pages/gallery.html">스터디 관리</a></li>
-							<li><a href="pages/full-width.html">스터디 모집</a></li>
+							<li><a href="/study/group/studyBoard.mentor">스터디원 모집</a></li>
 						</ul>
 					</li>
 					<li><a class="drop" href="/study/freeboard/freeBoardList.mentor">게시판</a>

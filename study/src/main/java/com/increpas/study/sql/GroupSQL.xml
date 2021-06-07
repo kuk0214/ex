@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybaits.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="gSQL">
+	<!-- 스터디 생성 질의명령 -->
+ 	<insert id="addGroup" parameterType="gVO">
+ 		<selectKey keyProperty="sno" resultType="int" order="BEFORE">
+			SELECT 
+				NVL(MAX(sno) + 1, 1001) 
+			FROM 
+				groupinfo
+ 		</selectKey>
+ 		INSERT INTO
+ 			groupinfo(sno, leaderid, sname, maxcnt, loc)
+		VALUES(
+			#{sno}, #{id}, #{sname}, #{maxcnt}, #{loc}
+		)
+ 	</insert>
+
+ 	<!-- 스터디 그룹장 등록 질의명령 -->
+ 	<insert id="addGroupLeader" parameterType="gVO">
+ 		INSERT INTO
+ 			grouplist(no, id, sno)
+		VALUES(
+			(SELECT NVL(MAX(no) + 1, 100001) FROM grouplist),
+			#{id}, #{sno}
+		)
+ 	</insert>
+ 	
+ 	<!-- 나의 스터디 리스트 보기 질의명령 -->
+ 	<select id="myGroupList" resultType="gVO" parameterType="string">
+ 		SELECT
+ 			gi.sno, sname, nowcnt, maxcnt, leaderid id, wdate, loc
+		FROM
+			groupinfo gi, grouplist gl
+		WHERE
+			gi.sno = gl.sno
+			AND leaderid = #{id}
+ 	</select>
+ 	
+ 	<!-- 스터디원 모집 리스트 보기 질의명령 -->
+ 	<select id="studyBRDList" resultType="gVO" parameterType="page">
+ 		SELECT
+		    rno, sbno, nowcnt, maxcnt, title, loc, id, wdate, click, sysdate
+		FROM
+		    (
+		        SELECT
+		            ROWNUM rno, sbno, nowcnt, maxcnt, title, loc, id, wdate, click, sysdate
+		        FROM
+		            (
+		                SELECT
+		                    sbno, nowcnt, maxcnt, title, loc, wid id, wdate, click, sysdate
+		                FROM
+		                    studyboard
+		                WHERE
+		                    isShow = 'Y'
+	                    <choose>
+	                    	<when test="option neq null and option eq 'stitle'">
+	                    		AND title LIKE '%' ||#{keyword}|| '%'
+	                    	</when>
+	                    	<when test="option eq 'sbody'">
+	                    		AND body LIKE '%' ||#{keyword}|| '%'
+	                    	</when>
+	                    	<when test="option eq 'swid'">
+	                    		AND wid LIKE '%' ||#{keyword}|| '%'
+	                    	</when>
+	                    </choose>
+		                ORDER BY
+		                    wdate DESC
+		            )
+		    )
+		WHERE
+		    rno BETWEEN #{startCont} AND #{endCont}
+ 	</select>
+ 	
+ 	<!-- 스터디원 모집 총 게시글 수 조회 질의명령 -->
+ 	<select id="getTotal" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+		FROM
+			studyboard
+		WHERE
+			isShow = 'Y'
+ 	</select>
+ 	
+ 	<!-- 스터디원 모집 글 등록 질의명령 -->
+ 	<insert id="studyBRDWriteProc" parameterType="gVO">
+ 		INSERT INTO
+ 			studyboard(sbno, wid, title, body, loc, nowcnt, maxcnt, sno)
+		VALUES(
+			(SELECT NVL(MAX(sbno) + 1, 100001) FROM studyboard),
+			#{id}, #{title}, #{body}, #{loc}, #{nowcnt}, #{maxcnt}, #{sno}
+		)
+ 	</insert>
+ 	
+ 	<!-- 스터디그룹 정보 조회 질의명령 -->
+ 	<select id="groupInfo" resultType="gVO" parameterType="int">
+ 		SELECT
+ 			sno, sname, nowcnt, maxcnt, leaderid id, wdate, loc
+		FROM
+			groupinfo
+		WHERE
+			sno = #{sno}
+ 	</select>
+</mapper>

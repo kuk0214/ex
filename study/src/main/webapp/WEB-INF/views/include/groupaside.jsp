@@ -26,9 +26,9 @@
 	<aside class=" mxw190 w3-bar-block w3-white"id="mySidebar">
 	  <div class="pdt10 w3-large w3-text-grey">
 	  	<a><h1 class="ft24 mgt20 w3-button" id="main">스터디</h1></a><br>
-	    <a href="/study/notice/noticeList.mentor" class="w3-bar-item w3-button" id="notice"> 스터디 만들기</a>
+	    <a href="/study/group/addGroup.mentor" class="w3-bar-item w3-button" id="notice"> 스터디 만들기</a>
 	    <a href="#" class="w3-bar-item w3-button" id="qnaBRD"> 내 스터디 관리</a>
-	    <a href="#" class="w3-bar-item w3-button" id="reviewBRD"> 스터디 모집</a>
+	    <a href="/study/group/studyBoard.mentor" class="w3-bar-item w3-button" id="reviewBRD"> 스터디 모집</a>
 	  </div>
 	  <div class="w3-padding-64">
 		  <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a> 

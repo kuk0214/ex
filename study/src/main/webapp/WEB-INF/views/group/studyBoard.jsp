@@ -29,34 +29,18 @@ $(document).ready(function(){
 		// 예 ]		id="l100001"	==> 100001
 		var tno = $(this).attr('id').substring(1);
 		// 추출한 글번호를 폼태그의 입력태그에 셋팅해주고
-		$('#frbno').val(tno);
+		$('#sbno').val(tno);
 		
 		// 폼태그가 전송될 주소를 셋팅하고
-		$('#frm').attr('action', '/study/freeboard/freeBoardDetail.mentor');
+		$('#frm').attr('action', '/study/group/studyBoardDetail.mentor');
 		
 		// 폼태그를 전송한다.
 		$('#frm').submit();
 	});
 	
 	$('#wbtn').click(function() {
-		$('#frm').attr('action', '/study/freeboard/freeBoardWrite.mentor')
+		$('#frm').attr('action', '/study/group/studyBoardWrite.mentor')
 		$('#frm').submit();
-	});
-	
-	$('#jbtn').click(function() {
-		$(location).attr('href', '/study/join.mentor');
-	});
-	
-	$('#lbtn').click(function() {
-		$(location).attr('href', '/study/login.mentor');
-	});
-	
-	$('#outbtn').click(function() {
-		$(location).attr('href', '/study/logout.mentor');
-	});
-	
-	$('#hbtn').click(function() {
-		$(location).attr('href', '/study/main.mentor');
 	});
 	
 	$('.w3-button.pbtn').click(function(){
@@ -75,30 +59,30 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<%@ include file="../include/boardlayout.jsp" %>
-	<form method="POST" action="/study/freeboard/freeBoardList.mentor" id="frm" name="frm">
+	<%@ include file="../include/grouplayout.jsp" %>
+	<form method="POST" action="/study/notice/noticeList.mentor" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
-		<input type="hidden" name="frbno" id="frbno">
+		<input type="hidden" name="sbno" id="sbno">
 	</form>
-	
 	<section class="w3-content w3-margin-top">
 		<div class="w3-col w3-margin-top w3-margin-bottom">
-			<h2 class="w3-padding mgb10 ft24">자유게시판</h2>
+			<h2 class="w3-padding mgb10 ft24">스터디원 모집</h2>
 		</div>
-		<div class="w3-right w500">
-			<div class="w3-col w3-button w70 h20 mgl10 w3-right pd0 w3-green">검색</div>
-			<input type="text" class="w3-col mgl10 w120 h20 w3-right" id="search" name="search">
-			<select class="w3-col w70 h20 w3-right">
-				<option>제목</option>
-				<option>내용</option>
-				<option>작성자</option>
+		<form method="POST" action="/study/group/studyBoard.mentor" class="w3-right w500">
+			<button type="submit" class="w3-col w3-button w70 h20 mgl10 w3-right pd0 w3-green">검색</button>
+			<input type="text" class="w3-col mgl10 w120 h20 w3-right" name="keyword" value="${keyword}">
+			<select class="w3-col w70 h20 w3-right" name="option">
+				<option value="stitle"<c:if test="${option eq 'stitle'}">selected</c:if>>제목</option>
+				<option value="sbody"<c:if test="${option eq 'sbody'}">selected</c:if>>내용</option>
+				<option value="swid"<c:if test="${option eq 'swid'}">selected</c:if>>작성자</option>
 			</select>
-		</div>
-		
+		</form>
 		<div class="w3-col w3-margin-top">
 			<div class="w3-col w3-margin-top w3-border-bottom bgc bdt h40">
-				<span class="w3-col w650 mgt5 w3-center w3-border-right">제목</span>
-				<span class="w3-col w120 mgt5 w3-center w3-border-right">작성자</span>
+				<span class="w3-col w450 mgt5 w3-center w3-border-right">제목</span>
+				<span class="w3-col w100 mgt5 w3-center w3-border-right">작성자</span>
+				<span class="w3-col w100 mgt5 w3-center w3-border-right">인원수</span>
+				<span class="w3-col w100 mgt5 w3-center w3-border-right">지역</span>
 				<span class="w3-col w100 mgt5 w3-center w3-border-right">조회수</span>
 				<div class="w-rest mgt5 w3-center">작성일</div>
 			</div>
@@ -107,15 +91,12 @@ $(document).ready(function(){
 <c:forEach var="data" items="${LIST}">
 	<fmt:formatDate var="nowDate" type="date" value="${data.sysdate}" pattern="yyyy.MM.dd"/>
 	<fmt:formatDate var="wDate" type="date" value="${data.wdate}" pattern="yyyy.MM.dd"/>
-			<div class="w3-col  w3-border-bottom w3-hover-lime list" id="l${data.frbno}">
-				<span class="w3-col w650 pdl30">
-					${data.title}
-			<c:if test="${data.cnt != 0}">
-					<i class='far fa-comment-alt'></i> ${data.cnt}
-			</c:if> 
-				</span>
-				<span class="w3-col w120 w3-center ">${data.wid}</span>
-				<span class="w3-col w100 w3-center ">${data.click}</span>
+			<div class="w3-col  w3-border-bottom w3-hover-lime list" id="l${data.sbno}">
+				<span class="w3-col w450 pdl30">${data.title}</span>
+				<span class="w3-col w100 w3-center">${data.id}</span>
+				<span class="w3-col w100 w3-center">${data.nowcnt} / ${data.maxcnt}</span>
+				<span class="w3-col w100 w3-center">${data.loc}</span>
+				<span class="w3-col w100 w3-center">${data.click}</span>
 			<c:if test="${nowDate eq wDate}">
 				<div class="w3-rest w3-center">${data.sdate2}</div>
 			</c:if>
@@ -135,7 +116,7 @@ $(document).ready(function(){
 		<div class="w3-center w3-margin-bottom">
 			<div class="w3-bar w3-border w3-round w3-margin-top">
 	<c:if test="${PAGE.startPage == 1}">
-
+				<span class="w3-bar-item w3-grey">pre</span>
 	</c:if>
 	<c:if test="${PAGE.startPage != 1}">
 				<span class="w3-bar-item w3-button w3-hover-lime pbtn">pre</span>
@@ -149,7 +130,7 @@ $(document).ready(function(){
 	</c:if>
 </c:forEach>
 	<c:if test="${PAGE.endPage == PAGE.totalPage}">
-
+				<span class="w3-bar-item w3-grey">next</span>
 	</c:if>
 	<c:if test="${PAGE.endPage != PAGE.totalPage}">
 				<span class="w3-bar-item w3-button w3-hover-lime pbtn">next</span>
@@ -157,7 +138,6 @@ $(document).ready(function(){
 			</div>
 			<div class="w3-button w3-right w3-margin-top w3-border w3-border-lime" id="wbtn">글쓰기</div>
 		</div>
-		
 	</section>
 </body>
 </html>

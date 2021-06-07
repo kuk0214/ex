@@ -43,22 +43,6 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});
 	
-	$('#jbtn').click(function() {
-		$(location).attr('href', '/study/join.mentor');
-	});
-	
-	$('#lbtn').click(function() {
-		$(location).attr('href', '/study/login.mentor');
-	});
-	
-	$('#outbtn').click(function() {
-		$(location).attr('href', '/study/logout.mentor');
-	});
-	
-	$('#hbtn').click(function() {
-		$(location).attr('href', '/study/main.mentor');
-	});
-	
 	$('.w3-button.pbtn').click(function(){
 		var pno = $(this).html();
 		
@@ -74,13 +58,13 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<body class="w3-content" style="max-width:1200px">
+<body class="">
 	<%@ include file="../include/servicelayout.jsp" %>
 	<form method="POST" action="/study/notice/noticeList.mentor" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
-		<input type="hidden" name="no" id="no" value="${data.no}">
+		<input type="hidden" name="no" id="no">
 	</form>
-	<section class="w3-content w3-margin-top">
+	<section class="w3-content w3-margin-top w3-margin-left">
 		<div class="w3-col w3-margin-top w3-margin-bottom">
 			<h2 class="w3-padding mgb10 ft24">공지사항</h2>
 		</div>

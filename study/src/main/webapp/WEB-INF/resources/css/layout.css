@@ -26,8 +26,8 @@ File: Layout CSS
 #topbar{padding:15px 0; font-size:.8rem; text-transform:uppercase;}
 
 #topbar *{margin:0;}
-#topbar ul li{display:inline-block; margin-right:10px; padding-right:15px; border-right:1px solid;}
-#topbar ul li:last-child{margin-right:0; padding-right:0; border-right:none;}
+#topbar ul li{display:inline-block;  margin-right:10px; padding-right:15px; border-right:1px solid;}
+#topbar ul li:last-child{margin-right:80px; padding-right:0; border-right:none;}
 #topbar i{margin:0 5px 0 0; line-height:normal;}
 
 
@@ -143,13 +143,13 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 /* Top Navigation */
 #mainav{}
-#mainav ul.clear{margin-top:3px; height: 50px;}
+#mainav ul.clear{margin-top:3px; margin-right:80px; height: 50px;}
 #mainav ul{text-transform:uppercase;}
 #mainav ul ul{z-index:9999; position:absolute; width:180px; text-transform:none;}
 #mainav ul ul ul{left:180px; top:0;}
 #mainav li{display:inline-block; position:relative; margin:0 15px 0 0; padding:0;}
 #mainav li:last-child{margin-right:0;}
-#mainav li li{width:100%; margin:0;}
+#mainav li li{width:80%; margin:0;}
 #mainav li a{display:block; padding:5px 0;}
 #mainav li li a{border:solid; border-width:0 0 1px 0;}
 #mainav .drop{padding-left:15px;}
@@ -240,12 +240,12 @@ td{border-width:0 1px;}
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
-body{}
+body{max-width:1200px;margin-left:auto;margin-right:auto}
 a{color: black;}
 a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey background */
 hr, .borderedbox{border-color:#D7D7D7;}
 
-input:focus, textarea:focus, *:required:focus{border-color:#A3D044;}
+input:focus, textarea:focus, *:required:focus{}
 .overlay{color:#FFFFFF; background-color:inherit;}
 .overlay::after{color:inherit; background-color:rgba(0,0,0,.55); background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhJREFUeNpiYGBgePz//38GRhABAgABBgBFTAbfCBNE2AAAAABJRU5ErkJggg==");}
 
@@ -308,8 +308,8 @@ input:focus, textarea:focus, *:required:focus{border-color:#A3D044;}
 
 
 /* Tables + Comments */
-table, th, td, #comments .avatar, #comments input, #comments textarea{border-color:#D7D7D7;}
-#comments input:focus, #comments textarea:focus, #comments *:required:focus{border-color:#A3D044;}
+table, th, td, #comments .avatar, #comments input, #comments textarea{}
+#comments input:focus, #comments textarea:focus, #comments *:required:focus{}
 th{color:#FFFFFF; background-color:#373737;}
 tr, #comments li, #comments input[type="submit"], #comments input[type="reset"]{color:inherit; background-color:#FBFBFB;}
 tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color:#F7F7F7;}
@@ -338,70 +338,6 @@ table a, #comments a{background-color:inherit;}
 	z-index: 2;
 }
 
-/* Mobile Devices
---------------------------------------------------------------------------------------------------------------- */
-@media screen and (max-width:900px){
-	.hoc{max-width:90%;}
-
-	#topbar{}
-
-	#header{padding:30px 0;}
-	#header #logo{margin:0;}
-
-	#mainav{}
-	#mainav ul{display:none;}
-	#mainav form{display:block; margin-top:8px;}
-
-	#breadcrumb{}
-
-	.container{}
-	#comments input[type="reset"]{margin-top:10px;}
-	.pagination li{display:inline-block; margin:0 5px 5px 0;}
-
-	#footer{}
-
-	#copyright{}
-	#copyright p:first-of-type{margin-bottom:10px;}
-}
-
-
-@media screen and (max-width:1500px){
-	.imgl, .imgr{display:inline-block; float:none; margin:0 0 10px 0;}
-	.fl_left, .fl_right{display:block; float:none;}
-	.one_half, .one_third, .two_third, .one_quarter, .two_quarter, .three_quarter{display:block; float:none; width:auto; margin:0 0 30px 0; padding:0;}
-
-	#topbar{padding-top:15px; text-align:center;}
-	#topbar ul{margin:0px; line-height:normal;}
-
-	#header{}
-	#header #logo{margin:0 0 30px 0;}
-
-	#mainav form{margin-top:0;}
-
-	#pageintro article div .heading{margin-bottom:30px; font-size:38px;}
-	#pageintro article div p:first-of-type{margin-bottom:20px; font-size:18px;}
-
-	.container, #footer{padding-bottom:50px;}/* Not neccessary - just looks better */
-}
-
-
-@media screen and (max-width:450px){
-	#topbar ul li{margin-bottom:2px; padding-right:0; border-right:none;}
-}
-
-
-/* Other
---------------------------------------------------------------------------------------------------------------- */
-@media screen and (max-width:650px){
-	.scrollable{display:block; width:100%; margin:0 0 30px 0; padding:0 0 15px 0; overflow:auto; overflow-x:scroll;}
-	.scrollable table{margin:0; padding:0; white-space:nowrap;}
-
-	.inline li{display:block; margin-bottom:10px;}
-	.pushright li{margin-right:0;}
-
-	.font-x2{font-size:1.4rem;}
-	.font-x3{font-size:1.6rem;}
-}
 /* user.css
 -------------------------------------------------------------------------------------------------- */
 .mxw190 {
@@ -460,6 +396,9 @@ table a, #comments a{background-color:inherit;}
 .mgt20 {
 	margin-top: 20px;
 }
+.mgt50 {
+	margin-top: 50px;
+}
 .mgb0 {
 	margin-bottom: 0px;
 }
@@ -468,6 +407,9 @@ table a, #comments a{background-color:inherit;}
 }
 .mgb20 {
 	margin-bottom: 20px;
+}
+.mgl50 {
+	margin-left: 50px;
 }
 .mgl10 {
 	margin-left: 10px;
@@ -518,6 +460,12 @@ table a, #comments a{background-color:inherit;}
 }
 
 /* size */
+.w800 {
+	width: 800px;
+}
+.w450 {
+	width: 450px;
+}
 .w500 {
 	width: 500px;
 }
@@ -643,3 +591,9 @@ section {
 	float: right;
 	overflow: hidden;
 }
+aside {
+	float: left;
+	overflow: hidden;
+}
+
+

@@ -9,10 +9,6 @@
 <link rel="stylesheet" type="text/css" href="/study/css/w3-colors-flat.css">
 <link href="/study/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <style type="text/css">
-	aside {
-		float: left;
-		overflow: hidden;
-	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
