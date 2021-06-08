@@ -40,7 +40,7 @@
 					<li><a class="drop" href="#">스터디</a>
 						<ul>
 							<li><a href="/study/group/addGroup.mentor">스터디 만들기</a></li>
-							<li><a href="pages/gallery.html">스터디 관리</a></li>
+							<li><a href="/study/group/myGroup.mentor">내 스터디 관리</a></li>
 							<li><a href="/study/group/studyBoard.mentor">스터디원 모집</a></li>
 						</ul>
 					</li>

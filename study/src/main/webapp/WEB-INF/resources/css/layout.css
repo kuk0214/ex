@@ -436,8 +436,17 @@ table a, #comments a{background-color:inherit;}
 .pdt10 {
 	padding-top: 10px;
 }
+.pdt20 {
+	padding-top: 20px;
+}
+.pdt30 {
+	padding-top: 30px;
+}
 .pdb10 {
 	padding-bottom: 10px;
+}
+.pdb20 {
+	padding-bottom: 20px;
 }
 .pdl10 {
 	padding-left: 10px;
@@ -500,6 +509,9 @@ table a, #comments a{background-color:inherit;}
 .h40 {
 	height: 40px;
 }
+.h50 {
+	height: 50px;
+}
 .h100per {
 	height: auto;
 	bottom: 0px;
@@ -542,6 +554,9 @@ table a, #comments a{background-color:inherit;}
 .ft14 {
 	font-size: 14pt;
 	font-weight: bold;
+}
+.ft16 {
+	font-size: 16pt;
 }
 .ft24 {
 	font-size: 24pt;

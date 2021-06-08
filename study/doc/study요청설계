@@ -191,3 +191,23 @@
 	처리함수	:	noticeDel()
 	뷰			:	redirect ]
 						성공&실패 : /study/noticeList.mentor
+						
+======================================================================================================================
+
+# 스터디 그룹 관련
+
+1. 스터디 그룹 생성 폼보기 요청
+	요청내용	:	/study/group//addGroup.mentor
+	파라미터	:	무
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	addGroup()
+	뷰			:	/WEB-INF/views/study/group/addGroup.jsp
+ 
+2. 스터디 그룹 생성 처리 요청
+	요청내용	:	/study/group//addGroupProc.mentor
+	파라미터	:	id, sname, maxcnt, loc
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	addGroupProc()
+	뷰			:	redirect ]
+						성공&실패 : /.mentor
+ 

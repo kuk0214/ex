@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class GroupVO {
 	private int no, sno, sbno, nowcnt, maxcnt, mno, click;
-	private String sname, id, title, body, loc, sdate, sdate1, sdate2;
+	private String sname, id, sid, title, body, loc, sdate, sdate1, sdate2, sdate3;
 	private Date wdate, sysdate;
 	
 	public int getNo() {
@@ -62,6 +62,12 @@ public class GroupVO {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public String getSid() {
+		return sid;
+	}
+	public void setSid(String sid) {
+		this.sid = sid;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -111,6 +117,16 @@ public class GroupVO {
 	public void setSdate2(String sdate2) {
 		this.sdate2 = sdate2;
 	}
+	public String getSdate3() {
+		return sdate3;
+	}
+	public void setSdate3() {
+		SimpleDateFormat form = new SimpleDateFormat("yyyy.MM.dd");
+		sdate3 = form.format(wdate);
+	}
+	public void setSdate3(String sdate3) {
+		this.sdate3 = sdate3;
+	}
 	public Date getWdate() {
 		return wdate;
 	}
@@ -119,6 +135,7 @@ public class GroupVO {
 		setSdate();
 		setSdate1();
 		setSdate2();
+		setSdate3();
 	}
 	public Date getSysdate() {
 		return sysdate;

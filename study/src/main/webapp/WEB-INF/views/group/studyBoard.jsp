@@ -27,10 +27,11 @@ $(document).ready(function(){
 	$('.list').click(function() {
 		// 선택된 태그의 아이디값에서 두번째 자리에서부터 마지막까지 잘라서 꺼내보자.
 		// 예 ]		id="l100001"	==> 100001
-		var tno = $(this).attr('id').substring(1);
+		var sbno = $(this).attr('id').substring(1);
+		var sno = $(this).children().eq(0).attr('id');
 		// 추출한 글번호를 폼태그의 입력태그에 셋팅해주고
-		$('#sbno').val(tno);
-		
+		$('#sbno').val(sbno);
+		$('#sno').val(sno);
 		// 폼태그가 전송될 주소를 셋팅하고
 		$('#frm').attr('action', '/study/group/studyBoardDetail.mentor');
 		
@@ -60,9 +61,11 @@ $(document).ready(function(){
 </head>
 <body>
 	<%@ include file="../include/grouplayout.jsp" %>
-	<form method="POST" action="/study/notice/noticeList.mentor" id="frm" name="frm">
+	<form method="POST" action="/study/group/studyBoard.mentor" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 		<input type="hidden" name="sbno" id="sbno">
+		<input type="hidden" name="sno" id="sno">
+		<input type="hidden" name="sid" id="sid" value="${SID}">
 	</form>
 	<section class="w3-content w3-margin-top">
 		<div class="w3-col w3-margin-top w3-margin-bottom">
@@ -92,7 +95,7 @@ $(document).ready(function(){
 	<fmt:formatDate var="nowDate" type="date" value="${data.sysdate}" pattern="yyyy.MM.dd"/>
 	<fmt:formatDate var="wDate" type="date" value="${data.wdate}" pattern="yyyy.MM.dd"/>
 			<div class="w3-col  w3-border-bottom w3-hover-lime list" id="l${data.sbno}">
-				<span class="w3-col w450 pdl30">${data.title}</span>
+				<span class="w3-col w450 pdl30" id="${data.sno}">${data.title}</span>
 				<span class="w3-col w100 w3-center">${data.id}</span>
 				<span class="w3-col w100 w3-center">${data.nowcnt} / ${data.maxcnt}</span>
 				<span class="w3-col w100 w3-center">${data.loc}</span>

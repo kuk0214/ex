@@ -19,8 +19,8 @@
 		)
  	</insert>
 
- 	<!-- 스터디 그룹장 등록 질의명령 -->
- 	<insert id="addGroupLeader" parameterType="gVO">
+ 	<!-- 스터디원 등록 질의명령 -->
+ 	<insert id="addGroupMember" parameterType="gVO">
  		INSERT INTO
  			grouplist(no, id, sno)
 		VALUES(
@@ -28,6 +28,16 @@
 			#{id}, #{sno}
 		)
  	</insert>
+ 	
+ 	<!-- 스터디원 등록 인원수 증가 질의명령 -->
+ 	<update id="addNowCnt" parameterType="int">
+ 		UPDATE
+ 			groupinfo
+		SET
+			nowcnt = nowcnt + 1
+		WHERE
+			sno = #{sno}
+ 	</update>
  	
  	<!-- 나의 스터디 리스트 보기 질의명령 -->
  	<select id="myGroupList" resultType="gVO" parameterType="string">
@@ -37,25 +47,28 @@
 			groupinfo gi, grouplist gl
 		WHERE
 			gi.sno = gl.sno
-			AND leaderid = #{id}
+			AND id = #{sid}
+		ORDER BY
+			wdate DESC
  	</select>
  	
  	<!-- 스터디원 모집 리스트 보기 질의명령 -->
  	<select id="studyBRDList" resultType="gVO" parameterType="page">
  		SELECT
-		    rno, sbno, nowcnt, maxcnt, title, loc, id, wdate, click, sysdate
+		    rno, sbno, sno, nowcnt, maxcnt, title, loc, id, wdate, click, sysdate
 		FROM
 		    (
 		        SELECT
-		            ROWNUM rno, sbno, nowcnt, maxcnt, title, loc, id, wdate, click, sysdate
+		            ROWNUM rno, sbno, sno, nowcnt, maxcnt, title, loc, id, wdate, click, sysdate
 		        FROM
 		            (
 		                SELECT
-		                    sbno, nowcnt, maxcnt, title, loc, wid id, wdate, click, sysdate
+		                    sbno, gi.sno sno, gi.nowcnt nowcnt, gi.maxcnt maxcnt, title, gi.loc loc, wid id, sb.wdate wdate, click, sysdate
 		                FROM
-		                    studyboard
+		                    studyboard sb, groupinfo gi
 		                WHERE
-		                    isShow = 'Y'
+		                    sb.isShow = 'Y'
+		                    AND sb.sno = gi.sno
 	                    <choose>
 	                    	<when test="option neq null and option eq 'stitle'">
 	                    		AND title LIKE '%' ||#{keyword}|| '%'
@@ -68,7 +81,7 @@
 	                    	</when>
 	                    </choose>
 		                ORDER BY
-		                    wdate DESC
+		                    sb.wdate DESC
 		            )
 		    )
 		WHERE
@@ -104,4 +117,61 @@
 		WHERE
 			sno = #{sno}
  	</select>
+ 	
+ 	<!-- 모집 글 상세보기 질의명령 -->
+ 	<select id="studyBRDDetail" resultType="gVO" parameterType="gVO">
+		SELECT
+		    sbno, gi.sno, title, body, gi.nowcnt, gi.maxcnt, wid id, gi.loc, click, sb.wdate
+		FROM
+		    studyboard sb, groupinfo gi
+		WHERE
+		    sbno = #{sbno}
+		    AND gi.sno = #{sno}
+ 	</select>
+ 	
+ 	<!-- 가입 요청 질의명령 -->
+ 	<insert id="requestJoin" parameterType="gVO">
+ 		INSERT INTO
+ 			requestjoin(jno, jid, ldid, jsno)
+		VALUES(
+			(SELECT NVL(MAX(jno) + 1, 1) FROM requestjoin),
+			#{sid}, #{id}, #{sno}
+		)
+ 	</insert>
+ 	
+ 	<!-- 가입 요청 여부 확인 질의명령 -->
+ 	<select id="rqJoinCheck" resultType="int" parameterType="gVO">
+ 		SELECT
+ 			COUNT(*)
+		FROM
+			requestjoin
+		WHERE
+			isShow = 'Y'
+			AND jid = #{sid}
+			AND jsno = #{sno}
+ 	</select>
+ 	
+ 	<!-- 가입 요청 리스트 보기 질의명령 -->
+ 	<select id="requestJoinList" resultType="gVO" parameterType="int">
+ 		SELECT
+ 			jid id, jsno sno
+ 		FROM
+ 			requestjoin
+		WHERE
+			jsno = #{sno}
+			AND isShow = 'Y'
+		ORDER BY
+			jno
+ 	</select>
+ 	
+ 	<!-- 가입요청 응답처리 질의명령 -->
+ 	<update id="requestResponse" parameterType="gVO">
+ 		UPDATE
+ 			requestjoin
+		SET
+			isShow = 'N'
+		WHERE
+			jid = #{id}
+			AND jsno = #{sno}
+ 	</update>
 </mapper>

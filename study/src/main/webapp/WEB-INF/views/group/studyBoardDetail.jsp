@@ -23,21 +23,33 @@
 		});
 		
 		$('#ebtn').click(function() {
-			$('#pfrm').attr('action', '/study/notice/noticeEdit.mentor');
+			$('#pfrm').attr('action', '/study/group/studyBRDEdit.mentor');
 			$('#pfrm').submit();
 		});
 		
 		$('#dbtn').click(function() {
-			$('#pfrm').attr('action', '/study/notice/noticeDel.mentor');
+			$('#pfrm').attr('action', '/study/group/studyBRDDel.mentor');
+			$('#pfrm').submit();
+		});
+		
+		$('#jbtn').click(function() {
+			if(${DATA.nowcnt} == ${DATA.maxcnt}) {
+				alert('인원이 꽉 찾습니다.');
+				return
+			}
+			$('#pfrm').attr('action', '/study/group/groupRequestJoin.mentor');
 			$('#pfrm').submit();
 		});
 	});
 </script>
 </head>
 <body>
-	<form method="POST" action="/study/notice/noticeList.mentor" id="pfrm" name="pfrm">
+	<form method="POST" action="/study/group/studyBoard.mentor" id="pfrm" name="pfrm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${nowPage}">
-		<input type="hidden" name="no" id="no" value="${DATA.no}">
+		<input type="hidden" name="sno" id="sno" value="${DATA.sno}">
+		<input type="hidden" name="sbno" id="sbno" value="${DATA.sbno}">
+		<input type="hidden" name="sid" id="sid" value="${SID}">
+		<input type="hidden" name="id" id="id" value="${DATA.id}">
 	</form>
 	<div class="w3-content mxw700 w3-margin-top w3-padding">
 		<div class="w3-col w3-padding w3-margin-bottom w3-border w3-border-light-grey">
@@ -48,22 +60,31 @@
 			</div>
 			<div class="w3-col w3-margin-top pdb10 w3-border-bottom w3-border-light-grey">
 				<div class="w3-rest">
-					<span class="w3-col w100 ft10">${DATA.mno}</span>
+					<span class="w3-col w100 ft10">${DATA.id}</span>
+					<span class="w3-col w100 ft10">${DATA.nowcnt} / ${DATA.maxcnt}</span>
 					<span class="w3-col w50 ft10"><i class='far fa-eye'></i> ${DATA.click}</span>
 					<span class="w3-col w150 ft10 w3-right">${DATA.sdate}</span>
 				</div>
 			</div>
 			<div class="w3-col w3-margin-top pdAll10 w3-border w3-border-light-grey">
-				<div class="w3-rest ">
+				<div class="w3-rest">
 					<span class="w3-col ft12">${DATA.body}</span>
 				</div>
 			</div>
 		</div>
 		<div class="w3-col w3-margin-top">
 			<div class="w3-thrid w3-button w3-green" id="lbtn">목록보기</div>
-	<c:if test="${SID eq 'admin1'}">
+	<c:if test="${DATA.id eq SID}">
 			<div class="w3-thrid w3-button w3-right w3-blue" id="ebtn">수정하기</div>
 			<div class="w3-thrid w3-button w3-right w3-red" id="dbtn">삭제하기</div>
+	</c:if>		
+	<c:if test="${DATA.id ne SID}">
+		<c:if test="${CNT == 0}">
+			<div class="w3-thrid w3-button w3-right w3-blue" id="jbtn">가입요청</div>
+		</c:if>
+		<c:if test="${CNT == 1}">
+			<div class="w3-thrid w3-button w3-right w3-red" id="jcbtn">요청취소</div>
+		</c:if>
 	</c:if>
 		</div>
 	</div>
