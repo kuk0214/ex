@@ -17,6 +17,8 @@ import com.increpas.study.vo.GroupVO;
  * 			작업이력 ]
  * 				2021.06.08	- 	담당자		: 조경국
  *								작업내용	: 클래스제작, 스터디 그룹 관련, 스터디원 모집 관련
+ * 				2021.06.09	- 	담당자		: 조경국
+ *								작업내용	: 그룹원 리스트 보기, 그룹원 감소, 그룹원 추방&탈퇴, 재가입, 그룹 해체
  */
 
 public class GroupDao {
@@ -86,5 +88,40 @@ public class GroupDao {
 	// 가입요청 응답처리 데이터베이스 전담 처리함수
 	public int requestResponse(GroupVO gVO) {
 		return sqlSession.update("gSQL.requestResponse", gVO);
+	}
+	
+	// 그룹원 리스트 보기 데이터베이스 전담 처리함수
+	public List groupMemberList(int sno) {
+		return sqlSession.selectList("gSQL.groupMemberList", sno);
+	}
+	
+	// 스터디 그룹 인원 감소 데이터베이스 전담 처리함수
+	public int deNowCnt(int sno) {
+		return sqlSession.update("gSQL.deNowCnt", sno);
+	}
+	
+	// 스터디 그룹원 추방&탈퇴 데이터베이스 전담 처리함수
+	public int groupMemberOut(String id) {
+		return sqlSession.update("gSQL.groupMemberOut", id);
+	}
+	
+	// 재가입 여부 확인 데이터베이스 전담 처리함수
+	public int reentrance(GroupVO gVO) {
+		return sqlSession.selectOne("gSQL.reentrance", gVO);
+	}
+	
+	// 스터디 그룹 재가입 데이터베이스 전담 처리함수
+	public int reJoin(GroupVO gVO) {
+		return sqlSession.update("gSQL.reJoin", gVO);
+	}
+	
+	// 스터디 그룹 수정 데이터베이스 전담 처리함수
+	public int groupEditProc(GroupVO gVO) {
+		return sqlSession.update("gSQL.groupEditProc", gVO);
+	}
+	
+	// 스터디 그룹 해체 데이터베이스 전담 처리함수
+	public int groupDel(int sno) {
+		return sqlSession.update("gSQL.groupDel", sno);
 	}
 }

@@ -77,30 +77,6 @@ $(document).ready(function(){
 			</div>
 		</c:if>
 		</div>
-		
-		<div id="msgWin" class="w3-modal">
-			<div class="w3-modal-content w450 w3-card-4">
-				<header class="w3-container w3-green">
-					<span class="w3-button w3-display-topright" id="closeBtn">&times;</span>
-					<h2 class="w3-padding">가입요청 목록</h2>
-				</header>
-				<div class="w3-center w3-margin-bottom">
-		<c:forEach var="data" items="${LIST}">
-					<div class="w3-padding h50">
-						<span class="pdt30 ft16">${data.id}</span>
-						<div class="w3-right w3-button w3-red">거절</div>			
-						<div class="w3-right w3-button w3-blue">수락</div>			
-				</div>
-		</c:forEach>
-			</div>
-		</div>
-		<script type="text/javascript">
-			$(function() {
-				$('#closeBtn').click(function() {
-					$('#msgWin').css('display', 'none');
-				});
-			});
-		</script>
 	</section>
 </body>
 </html>

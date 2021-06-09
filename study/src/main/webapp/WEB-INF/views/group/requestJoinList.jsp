@@ -57,21 +57,21 @@ $(document).ready(function(){
 					<h2 class="w3-padding">가입요청 목록</h2>
 				</header>
 				<div class="w3-center w3-margin-bottom">
-			<c:forEach var="data" items="${LIST}">
+		<c:forEach var="data" items="${LIST}">
 					<div class="w3-padding h50">
 						<span class="pdt30 ft16" id="${data.id}">${data.id}</span>
 						<div class="w3-right w3-button w3-red d" id="${data.sno}">거절</div>			
 						<div class="w3-right w3-button w3-blue a" id="${data.sno}">수락</div>			
 					</div>
-			</c:forEach>					
+		</c:forEach>					
 				</div>
-			<c:if test="${empty LIST}">
+		<c:if test="${empty LIST}">
 				<div class="w3-center w3-margin-bottom">
 					<h1>가입요청이 없습니다</h1>
 				</div>
-			</c:if>
+		</c:if>
 			</div>
-		</div>
+	</div>
 		
 </body>
 </html>

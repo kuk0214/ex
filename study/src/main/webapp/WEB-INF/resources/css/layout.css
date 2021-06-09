@@ -76,20 +76,7 @@ img {
 .services article i{margin-bottom:15px;}
 .services article .heading{margin-bottom:10px;}
 
-/* Comments */
-#comments ul{margin:0 0 40px 0; padding:0; list-style:none;}
-#comments li{margin:0 0 10px 0; padding:15px;}
-#comments .avatar{float:right; margin:0 0 10px 10px; padding:3px; border:1px solid;}
-#comments address{font-weight:bold;}
-#comments time{font-size:smaller;}
-#comments .comcont{display:block; margin:0; padding:0;}
-#comments .comcont p{margin:10px 5px 10px 0; padding:0;}
 
-#comments form{display:block; width:100%;}
-#comments input, #comments textarea{width:100%; padding:10px; border:1px solid;}
-#comments textarea{overflow:auto;}
-#comments div{margin-bottom:15px;}
-#comments input[type="submit"], #comments input[type="reset"]{display:inline-block; width:auto; min-width:150px; margin:0; padding:8px 5px; cursor:pointer;}
 
 /* Sidebar */
 .container .sidebar{}
@@ -196,23 +183,6 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 #backtotop.visible{visibility:visible; opacity:.5;}
 #backtotop:hover{opacity:1;}
 
-
-/* Tables
---------------------------------------------------------------------------------------------------------------- */
-table, th, td{border:1px solid; border-collapse:collapse; vertical-align:top;}
-table, th{table-layout:auto;}
-table{width:100%; margin-bottom:15px;}
-th, td{padding:5px 8px;}
-td{border-width:0 1px;}
-
-
-/* Gallery
---------------------------------------------------------------------------------------------------------------- */
-#gallery{display:block; width:100%; margin-bottom:50px;}
-#gallery figure figcaption{display:block; width:100%; clear:both;}
-#gallery li{margin-bottom:30px;}
-
-
 /* Font Awesome Social Icons
 --------------------------------------------------------------------------------------------------------------- */
 .faico{margin:0; padding:0; list-style:none;}
@@ -307,13 +277,7 @@ input:focus, textarea:focus, *:required:focus{}
 #backtotop{color:#FFFFFF; background-color:#A3D044;}
 
 
-/* Tables + Comments */
-table, th, td, #comments .avatar, #comments input, #comments textarea{}
-#comments input:focus, #comments textarea:focus, #comments *:required:focus{}
-th{color:#FFFFFF; background-color:#373737;}
-tr, #comments li, #comments input[type="submit"], #comments input[type="reset"]{color:inherit; background-color:#FBFBFB;}
-tr:nth-child(even), #comments li:nth-child(even){color:inherit; background-color:#F7F7F7;}
-table a, #comments a{background-color:inherit;}
+
 
 
 /* ------------------------------------------------------------------------------------------------------------ */
@@ -364,6 +328,9 @@ table a, #comments a{background-color:inherit;}
 }
 .mxw800 {
 	max-width: 800px;
+}
+.mxw802 {
+	max-width: 802px;
 }
 .mxw850 {
 	max-width: 850px;
@@ -487,6 +454,9 @@ table a, #comments a{background-color:inherit;}
 .w250 {
 	width: 250px;
 }
+.w200 {
+	width: 200px;
+}
 .w150 {
 	width: 150px;
 }
@@ -609,6 +579,10 @@ section {
 aside {
 	float: left;
 	overflow: hidden;
+}
+
+input {
+	border: none;
 }
 
 

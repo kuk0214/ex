@@ -48,6 +48,7 @@
 		WHERE
 			gi.sno = gl.sno
 			AND id = #{sid}
+			AND gl.isShow = 'Y'
 		ORDER BY
 			wdate DESC
  	</select>
@@ -116,6 +117,7 @@
 			groupinfo
 		WHERE
 			sno = #{sno}
+			AND isShow = 'Y'
  	</select>
  	
  	<!-- 모집 글 상세보기 질의명령 -->
@@ -173,5 +175,87 @@
 		WHERE
 			jid = #{id}
 			AND jsno = #{sno}
+ 	</update>
+ 	
+ 	<!-- 그룹원 리스트 보기 질의명령 -->
+ 	<select id="groupMemberList" resultType="gVO" parameterType="int">
+ 		SELECT
+		    id
+		FROM
+		    grouplist
+		WHERE
+		    isShow = 'Y'
+		    AND sno = #{sno}
+ 	</select>
+ 	
+ 	<!-- 스터디 그룹 인원 감소 질의명령 -->
+ 	<update id="deNowCnt" parameterType="int">
+ 		UPDATE
+ 			groupinfo
+		SET
+			nowcnt = nowcnt - 1
+		WHERE
+			sno = #{sno}
+ 	</update>
+ 	
+ 	<!-- 스터디 그룹원 추방&탈퇴 질의명령 -->
+ 	<update id="groupMemberOut" parameterType="string">
+ 		UPDATE
+ 			grouplist
+ 		SET
+ 			isShow = 'N'
+ 		WHERE
+ 			id = #{id}
+ 	</update>
+ 	
+ 	<!-- 스터디 재가입 여부 확인 질의명령-->
+ 	<select id="reentrance" resultType="int" parameterType="gVO">
+ 		SELECT
+		    COUNT(*)
+		FROM
+		    grouplist
+		WHERE
+		    sno = #{sno}
+		    AND id = #{id}
+ 	</select>
+ 	
+ 	<!-- 스터디 재가입 질의명령 -->
+ 	<update id="reJoin" parameterType="gVO">
+ 		UPDATE
+ 			grouplist
+		SET
+			isShow = 'Y'
+		WHERE
+			sno = #{sno}
+			AND id = #{id}
+ 	</update>
+ 	
+ 	<!-- 스터디 그룹 수정 질의명령 -->
+ 	<update id="groupEditProc" parameterType="gVO">
+ 		UPDATE
+ 			groupinfo
+		<set>
+			<if test="sname neq null">
+				sname = #{sname},
+			</if>
+			<if test="loc neq null">
+				loc = #{loc},
+			</if>
+			<if test="maxcnt neq null">
+				maxcnt = #{maxcnt},
+			</if>
+		</set>
+		WHERE
+			sno = #{sno}
+ 	</update>
+ 	
+ 	<!-- 스터디 그룹 해체 질의명령 -->
+ 	<update id="groupDel" parameterType="int">
+ 		UPDATE
+ 			groupinfo
+		SET
+			isShow = 'N'
+		WHERE
+			sno = #{sno}
  	</update>
 </mapper>

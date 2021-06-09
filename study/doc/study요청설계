@@ -197,17 +197,131 @@
 # 스터디 그룹 관련
 
 1. 스터디 그룹 생성 폼보기 요청
-	요청내용	:	/study/group//addGroup.mentor
+	요청내용	:	/study/group/addGroup.mentor
 	파라미터	:	무
 	컨트롤러	:	com.increpas.study.controller.Group
 	처리함수	:	addGroup()
 	뷰			:	/WEB-INF/views/study/group/addGroup.jsp
  
 2. 스터디 그룹 생성 처리 요청
-	요청내용	:	/study/group//addGroupProc.mentor
+	요청내용	:	/study/group/addGroupProc.mentor
 	파라미터	:	id, sname, maxcnt, loc
 	컨트롤러	:	com.increpas.study.controller.Group
 	처리함수	:	addGroupProc()
 	뷰			:	redirect ]
-						성공&실패 : /.mentor
+						성공 : /study/group/studyBoard.mentor
+						실패 : /study/group/addGroup.mentor
+						
+3. 스터디원 모집 리스트 보기 요청
+	요청내용	:	/study/group/studyBoard.mentor
+	파라미터	:	page
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	studyBRDList()
+	뷰			:	/WEB-INF/views/study/group/studyBoard.jsp
+	
+4. 스터디원 모집 글쓰기 폼보기 요청
+	요청내용	:	/study/group/studyBoardWrite.mentor
+	파라미터	:	무(SID)
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	studyBRDWrite()
+	뷰			:	/WEB-INF/views/study/group/studyBoardWrite.jsp
+	
+5. 스터디원 모집 글 등록 요청
+	요청내용	:	/study/group/studyBoardWriteProc.mentor
+	파라미터	:	sno, loc, nowcnt, maxcnt, id, title, body
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	studyBRDWriteProc()
+	뷰			:	redirect ]
+						성공 : /study/group/studyBoard.mentor
+						실패 : /study/group/studyBoardWrite.mentor
+	
+6. 스터디원 모집 글 상세보기 요청
+	요청내용	:	/study/group/studyBoardDetail.mentor
+	파라미터	:	무(SID)
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	studyBRDDetail()
+	뷰			:	/WEB-INF/views/study/group/studyBoardDetail.jsp
+	
+7. 스터디 가입 요청
+	요청내용	:	/study/group/groupRequestJoin.mentor
+	파라미터	:	sbno, sno, id(ldid), (SID)
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	requestJoin()
+	뷰			:	/WEB-INF/views/study/group/studyBoardDetail.jsp
+	
+8. 내 스터디 관리 보기 요청
+	요청내용	:	/study/group/myGroup.mentor
+	파라미터	:	무(SID)
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	myGroup()
+	뷰			:	/WEB-INF/views/study/group/myGroup.jsp
  
+9. 가입 요청 리스트 보기 요청
+	요청내용	:	/study/group/requestJoinList.mentor
+	파라미터	:	sno
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	requestJoinList()
+	뷰			:	/WEB-INF/views/study/group/requestJoinList.jsp
+	
+10. 가입 요청 수락
+	요청내용	:	/study/group/requestAccept.mentor
+	파라미터	:	sno, id(jid)
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	requestAccept()
+	뷰			:	/WEB-INF/views/study/group/requestJoinList.jsp
+	
+11. 가입 요청 거절
+	요청내용	:	/study/group/requestDeny.mentor
+	파라미터	:	sno, id(jid)
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	requestDeny()
+	뷰			:	/WEB-INF/views/study/group/requestJoinList.jsp
+
+12. 스터디 그룹 상세보기
+	요청내용	:	/study/group/groupDetail.mentor
+	파라미터	:	sno
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	groupDetail()
+	뷰			:	/WEB-INF/views/study/group/groupDetail.jsp
+	
+12. 스터디 그룹원 추방 요청 
+	요청내용	:	/study/group/expelGroupMember.mentor
+	파라미터	:	id, sno
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	expelGroupMember()
+	뷰			:	redirect ]
+						성공&실패 : /study/group/groupDetail.mentor
+						
+12. 스터디 그룹 탈퇴 요청 
+	요청내용	:	/study/group/groupMemberOut.mentor
+	파라미터	:	id, sno
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	groupMemberOut()
+	뷰			:	redirect ]
+						성공 : /study/group/myGroup.mentor
+						실패 : /study/group/groupDetail.mentor
+
+13. 스터디 그룹 수정 폼보기 요청
+	요청내용	:	/study/group/groupEdit.mentor
+	파라미터	:	sno
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	groupEdit()
+	뷰			:	/WEB-INF/views/study/group/groupEdit.jsp
+	
+13. 스터디 그룹 수정 요청
+	요청내용	:	/study/group/groupEditProc.mentor
+	파라미터	:	sno, (sname || loc || maxcnt)
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	groupEditProc()
+	뷰			:	redirect ]
+						성공 : /study/group/groupDetail.mentor
+						실패 : /study/group/groupEdit.mentor
+
+14. 스터디 그룹 해체 요청
+	요청내용	:	/study/group/groupDel.mentor
+	파라미터	:	sno
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	groupDel()
+	뷰			:	redirect ]
+						성공 : /study/group/myGroup.mentor
+						실패 : /study/group/groupDetail.mentor
