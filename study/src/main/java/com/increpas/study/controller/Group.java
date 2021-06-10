@@ -14,7 +14,7 @@ import com.increpas.study.dao.*;
 import com.increpas.study.util.PageUtil;
 import com.increpas.study.vo.GroupVO;
 
-import oracle.net.aso.r;
+
 
 /**
  * 이 클래스는 스터디 그룹 관련 요청 처리할 클래스
@@ -27,6 +27,8 @@ import oracle.net.aso.r;
  * 									작업내용	:	클래스제작, 스터디 그룹 관련(생성, 가입 등), 스터디원 모집관련(모집글 리스트, 등록 등) 
  * 					2021.06.09	-	담당자		:	조경국
  * 									작업내용	:	스터디 그룹 상세보기, 그룹원 추방, 그룹 탈퇴, 그룹 정보 수정, 그룹 해체
+ * 					2021.06.10	-	담당자		:	조경국
+ * 									작업내용	:	스터디원 모집 글 삭제, 스터디원 모집 글 수정
  *
  */
 
@@ -107,11 +109,9 @@ public class Group {
 	
 	// 스터디원 모집 글 상세보기 요청 처리함수
 	@RequestMapping("/studyBoardDetail.mentor")
-	public ModelAndView studyBRDDetail(GroupVO gVO, ModelAndView mv, HttpSession session) {
-		String sid = (String) session.getAttribute("SID");
-		gVO = gDao.studyBRDDetail(gVO);
-		gVO.setSid(sid);
+	public ModelAndView studyBRDDetail(GroupVO gVO, ModelAndView mv) {
 		int cnt = gDao.rqJoinCheck(gVO);
+		gVO = gDao.studyBRDDetail(gVO);
 		mv.addObject("DATA", gVO);
 		mv.addObject("CNT", cnt);
 		return mv;
@@ -238,8 +238,58 @@ public class Group {
 	
 	// 스터디 그룹 해체 요청 처리함수
 	@RequestMapping("/groupDel.mentor")
-	public ModelAndView groupDel(int sno, ModelAndView mv, RedirectView rv) {
+	public ModelAndView groupDel(int sno, String id, ModelAndView mv, RedirectView rv) {
 		int cnt = gDao.groupDel(sno);
+		gDao.groupMemberOut(id);
+		gDao.studyBRDDel2(sno);
+		if(cnt == 1) {
+			rv.setUrl("/study/group/myGroup.mentor");
+			mv.setView(rv);
+			return mv;
+		}
+		mv.addObject("PATH", "/study/group/groupDetail.mentor");
+		mv.addObject("SNO", sno);
+		mv.setViewName("group/redirectView");
+		return mv;
+	}
+	
+	// 스터디원 모집 글 삭제 요청 처리함수
+	@RequestMapping("/studyBoardDel.mentor")
+	public ModelAndView studyBRDDel(int sbno, int sno, ModelAndView mv, RedirectView rv) {
+		int cnt = gDao.studyBRDDel(sbno);
+		if(cnt == 1) {
+			rv.setUrl("/study/group/studyBoard.mentor");
+			mv.setView(rv);
+			return mv;
+		}
+		mv.addObject("PATH", "/study/group/studyBoardDetail.mentor");
+		mv.addObject("SBNO", sbno);
+		mv.addObject("SNO", sno);
+		mv.setViewName("group/redirectView");
+		return mv;
+	}
+	
+	// 스터디원 모집 글 수정 폼보기 요청 처리함수
+	@RequestMapping("/studyBoardEdit.mentor")
+	public ModelAndView studyBRDEdit(GroupVO gVO, ModelAndView mv) {
+		gVO = gDao.studyBRDDetail(gVO);
+		mv.addObject("DATA", gVO);
+
+		return mv;
+	}
+	
+	// 스터디원 모집 글 수정 요청 처리함수
+	@RequestMapping("/studyBoardEditProc.mentor")
+	public ModelAndView studyBRDEditProc(GroupVO gVO, ModelAndView mv) {
+		int cnt = gDao.studyBRDEditProc(gVO);
+		mv.addObject("SBNO", gVO.getSbno());
+		mv.addObject("SNO", gVO.getSno());
+		if(cnt == 1) {
+			mv.addObject("PATH", "/study/group/studyBoardDetail.mentor");
+		} else {
+			mv.addObject("PATH", "/study/group/studyBoardEdit.mentor");
+		}
+		mv.setViewName("group/redirectView");
 		return mv;
 	}
 }

@@ -53,13 +53,13 @@
 		</div>
 		
 		<form method="POST" action="/study/group/groupEditProc.mentor" id="frm" name="frm"
-					class="w3-col mxw802 w3-border w3-margin-top">
+					class="w3-col mxw803 w3-border w3-margin-top">
 			<input type="hidden" name="sno" value="${DATA.sno}">
 			<div class="w3-col w3-border-bottom h40">
 				<label for="sname" class="w3-col w200 w3-center w3-border-right w3-border-bottom bgc ft14 h40 pdt10">스터디 이름</label>
-				<input type="text" class="w3-col w200 w3-center w3-border-right w3-border-bottom ft14 h40" name="sname" id="sname" value="${DATA.sname}">
+				<input type="text" class="w3-col w200 w3-center w3-border-right w3-border-bottom ft14 h40 bordernone" name="sname" id="sname" value="${DATA.sname}">
 				<label for="loc" class="w3-col w200 w3-center w3-border-right w3-border-bottom bgc ft14 h40 pdt10">지역</label>
-				<input type="text" class="w3-col w200 w3-center w3-border-bottom ft14 h40" name="loc" id="loc" value="${DATA.loc}">
+				<input type="text" class="w3-col w200 w3-center w3-border-bottom ft14 h40 bordernone" name="loc" id="loc" value="${DATA.loc}">
 			</div>
 			<div class="w3-col w3-border-bottom h40">
 				<div class="w3-col w200 w3-center w3-border-right w3-border-bottom bgc ft14 h40 pdt10">그룹장</div>
@@ -71,7 +71,7 @@
 				<div class="w3-col w200 w3-center w3-border-right  bgc ft14 h40 pdt10">현재 인원수</div>
 				<div class="w3-col w200 w3-center w3-border-right ft14 h40 pdt10" id="nowcnt">${DATA.nowcnt}</div>
 				<label for="maxcnt" class="w3-col w200 w3-center w3-border-right bgc ft14 h40 pdt10">최대 인원수</label>
-				<input type="text" class="w3-col w200 w3-center ft14 h40" name="maxcnt" id="maxcnt" value="${DATA.maxcnt}">
+				<input type="text" class="w3-col w200 w3-center ft14 h40 bordernone" name="maxcnt" id="maxcnt" value="${DATA.maxcnt}">
 			</div>
 		</form>
 		<div class="w3-col w3-margin-top">

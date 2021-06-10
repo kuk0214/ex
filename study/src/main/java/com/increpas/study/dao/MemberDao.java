@@ -41,4 +41,7 @@ public class MemberDao {
 		 return sqlSession.insert("mSQL.addMember", mVO);
 	 }
 	
+	 public List<MemberVO> getLoc() {
+			return sqlSession.selectList("mSQL.getLoc");
+		}
 }

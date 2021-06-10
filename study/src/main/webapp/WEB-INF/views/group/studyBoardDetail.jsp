@@ -23,12 +23,12 @@
 		});
 		
 		$('#ebtn').click(function() {
-			$('#pfrm').attr('action', '/study/group/studyBRDEdit.mentor');
+			$('#pfrm').attr('action', '/study/group/studyBoardEdit.mentor');
 			$('#pfrm').submit();
 		});
 		
 		$('#dbtn').click(function() {
-			$('#pfrm').attr('action', '/study/group/studyBRDDel.mentor');
+			$('#pfrm').attr('action', '/study/group/studyBoardDel.mentor');
 			$('#pfrm').submit();
 		});
 		
@@ -60,10 +60,15 @@
 			</div>
 			<div class="w3-col w3-margin-top pdb10 w3-border-bottom w3-border-light-grey">
 				<div class="w3-rest">
-					<span class="w3-col w100 ft10">${DATA.id}</span>
+					<span class="w3-col w100 ft10 w3-border-right">${DATA.id}</span>
 					<span class="w3-col w100 ft10">${DATA.nowcnt} / ${DATA.maxcnt}</span>
 					<span class="w3-col w50 ft10"><i class='far fa-eye'></i> ${DATA.click}</span>
 					<span class="w3-col w150 ft10 w3-right">${DATA.sdate}</span>
+				</div>
+			</div>
+			<div class="w3-col w3-margin-top pdb10 w3-border-bottom w3-border-light-grey">
+				<div class="w3-rest">
+					<span class="w3-col ft10">스터디 그룹 이름 : ${DATA.sname}</span>
 				</div>
 			</div>
 			<div class="w3-col w3-margin-top pdAll10 w3-border w3-border-light-grey">

@@ -48,7 +48,7 @@
 		WHERE
 			gi.sno = gl.sno
 			AND id = #{sid}
-			AND gl.isShow = 'Y'
+			AND gi.isShow = 'Y'
 		ORDER BY
 			wdate DESC
  	</select>
@@ -123,7 +123,7 @@
  	<!-- 모집 글 상세보기 질의명령 -->
  	<select id="studyBRDDetail" resultType="gVO" parameterType="gVO">
 		SELECT
-		    sbno, gi.sno, title, body, gi.nowcnt, gi.maxcnt, wid id, gi.loc, click, sb.wdate
+		    sbno, gi.sno, sname, title, body, gi.nowcnt, gi.maxcnt, wid id, gi.loc, click, sb.wdate
 		FROM
 		    studyboard sb, groupinfo gi
 		WHERE
@@ -257,5 +257,41 @@
 			isShow = 'N'
 		WHERE
 			sno = #{sno}
+ 	</update>
+ 	
+ 	<!-- 스터디원 모집글 삭제 질의명령 -->
+ 	<update id="studyBRDDel" parameterType="int">
+ 		UPDATE
+ 			studyboard
+		SET
+			isShow = 'N'
+		WHERE
+			sbno = #{sbno}
+ 	</update>
+ 	
+ 	<!-- 스터디 그룹 해체시 모집글 삭제 질의명령 -->
+ 	<update id="studyBRDDel2" parameterType="int">
+ 		UPDATE
+ 			studyboard
+		SET
+			isShow = 'N'
+		WHERE
+			sno = #{sno}
+ 	</update>
+ 	
+ 	<!-- 스터디원 모집 글 수정 질의명령 -->
+ 	<update id="studyBRDEditProc" parameterType="gVO">
+ 		UPDATE
+ 			studyboard
+		<set>
+			<if test="title neq null">
+				title = #{title},
+			</if>
+			<if test="body neq null">
+				body = #{body},
+			</if>
+		</set>
+		WHERE
+			sbno = #{sbno}
  	</update>
 </mapper>

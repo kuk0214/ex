@@ -319,9 +319,34 @@
 
 14. 스터디 그룹 해체 요청
 	요청내용	:	/study/group/groupDel.mentor
-	파라미터	:	sno
+	파라미터	:	id, sno
 	컨트롤러	:	com.increpas.study.controller.Group
 	처리함수	:	groupDel()
 	뷰			:	redirect ]
 						성공 : /study/group/myGroup.mentor
 						실패 : /study/group/groupDetail.mentor
+						
+15. 스터디원 모집 글 삭제 요청
+	요청내용	:	/study/group/studyBoardDel.mentor
+	파라미터	:	sbno
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	studyBRDDel()
+	뷰			:	redirect ]
+						성공 : /study/group/studyBoard.mentor
+						실패 : /study/group/studyBoardDetail.mentor
+
+16. 스터디원 모집 글 수정 폼보기 요청
+	요청내용	:	/study/group/studyBoardEdit.mentor
+	파라미터	:	sbno, sno, sid
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	studyBRDEdit()
+	뷰			:	/WEB-INF/views/study/group/studyBoardEdit.jsp
+
+17. 스터디원 모집 글 수정 요청
+	요청내용	:	/study/group/studyBoardEditProc.mentor
+	파라미터	:	sbno, (title || body)
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	studyBRDEditProc()
+	뷰			:	redirect ]
+						성공 : /study/group/studyBoardDetail.mentor
+						실패 : /study/group/studyBoardEdit.mentor

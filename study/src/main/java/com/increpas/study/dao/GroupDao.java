@@ -19,6 +19,8 @@ import com.increpas.study.vo.GroupVO;
  *								작업내용	: 클래스제작, 스터디 그룹 관련, 스터디원 모집 관련
  * 				2021.06.09	- 	담당자		: 조경국
  *								작업내용	: 그룹원 리스트 보기, 그룹원 감소, 그룹원 추방&탈퇴, 재가입, 그룹 해체
+ * 				2021.06.10	- 	담당자		: 조경국
+ *								작업내용	: 스터디원 모집 글 삭제, 수정
  */
 
 public class GroupDao {
@@ -123,5 +125,20 @@ public class GroupDao {
 	// 스터디 그룹 해체 데이터베이스 전담 처리함수
 	public int groupDel(int sno) {
 		return sqlSession.update("gSQL.groupDel", sno);
+	}
+	
+	// 스터디원 모집 글 삭제 데이터베이스 전담 처리함수
+	public int studyBRDDel(int sbno) {
+		return sqlSession.update("gSQL.studyBRDDel", sbno);
+	}
+	
+	// 스터디 그룹 해체시 모집글 삭제 데이터베이스 전담 처리함수
+	public int studyBRDDel2(int sno) {
+		return sqlSession.update("gSQL.studyBRDDel2", sno);
+	}
+	
+	// 스터디 모집 글 수정 데이터베이스 전담 처리함수
+	public int studyBRDEditProc(GroupVO gVO) {
+		return sqlSession.update("gSQL.studyBRDEditProc", gVO);
 	}
 }

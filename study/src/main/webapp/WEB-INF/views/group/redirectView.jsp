@@ -16,6 +16,8 @@
 	<form method="post" action="${PATH}" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${nowPage}">
 		<input type="hidden" name="sno" id="sno" value="${SNO}">
+		<input type="hidden" name="sbno" id="sbno" value="${SBNO}">
+		<input type="hidden" name="sid" id="sid" value="${SID}">
 	</form>
 </body>
 </html>

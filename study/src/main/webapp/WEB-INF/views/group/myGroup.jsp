@@ -43,6 +43,7 @@ $(document).ready(function(){
 	<%@ include file="../include/grouplayout.jsp" %>
 	<form method="POST" action="/study/group/requestJoinList.mentor" id="frm" name="frm">
 		<input type="hidden" name="sno" id="sno">
+		<input type="hidden" name="sid" value="${SID}">
 	</form>
 	<section class="w3-content w3-margin-top w3-margin-left">
 		<div class="w3-col w3-margin-top w3-margin-bottom">

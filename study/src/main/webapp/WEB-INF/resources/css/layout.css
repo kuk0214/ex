@@ -329,8 +329,8 @@ input:focus, textarea:focus, *:required:focus{}
 .mxw800 {
 	max-width: 800px;
 }
-.mxw802 {
-	max-width: 802px;
+.mxw803 {
+	max-width: 803px;
 }
 .mxw850 {
 	max-width: 850px;
@@ -581,7 +581,7 @@ aside {
 	overflow: hidden;
 }
 
-input {
+.bordernone {
 	border: none;
 }
 

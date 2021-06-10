@@ -7,13 +7,15 @@
 <title>STUSY Main</title>
 <link rel="stylesheet" type="text/css" href="/study/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/study/css/user.css">
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c1afd2a16f49bfa19fe8410db6196e66"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c1afd2a16f49bfa19fe8410db6196e66&libraries=services"></script>
 <script type="text/javascript" src="/study/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/study/js/w3color.js"></script>
+
 <style type="text/css">
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
 		$('#itemBar').click(function(){
 			$('#mySidebar').css('display', 'block');
 			$('#myOverlay').css('display', 'block');
@@ -60,16 +62,9 @@
 		$('#searchIcon').click(function(){
 			$('#searchModal').css('display', 'block');
 		});
-	});
-</script>
-</head>
-<body class="w3-content" style="max-width:1200px">
-
-	<%@ include file="include/header.jsp" %>
-	<div id="map"  style="width:1200px;height:800px;"></div>
-		<script>
-		var container = document.getElementById('map');
-		var options = {
+		
+		var mapContainer = document.getElementById('map');
+		var mapOptions = {
 			center: new kakao.maps.LatLng(37.55507, 126.97070),
 			level: 8,
 			scrollwheel : false,
@@ -77,9 +72,38 @@
 			disableDoubleClickZoom : false,
 			disableDoubleClick : false
 		};
+		var map = new kakao.maps.Map(mapContainer, mapOptions);
+		
+		
 
-		var map = new kakao.maps.Map(container, options);
-	</script>
+			var geocoder = new kakao.maps.services.Geocoder();
+			
+			geocoder.addressSearch('서울시 구로구', function(result, status) {
+	
+			     if (status === kakao.maps.services.Status.OK) {
+	
+			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+			        var marker = new kakao.maps.Marker({
+			            map: map,
+			            position: coords
+			        });
+	
+			        var infowindow = new kakao.maps.InfoWindow({
+			            content: '<div style="width:150px;text-align:center;padding:6px 0;">1</div>'
+			        });
+			        infowindow.open(map, marker);
+			     }
+		     });
+		
+	});
+</script>
+</head>
+<body class="w3-content" style="max-width:1200px">
+
+	<%@ include file="include/header.jsp" %>
+	<div id="map"  style="width:1200px;height:800px;"></div>
+	
 	
 
 	

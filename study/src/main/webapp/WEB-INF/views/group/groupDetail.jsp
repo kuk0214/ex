@@ -62,7 +62,7 @@
 			<h2 class="w3-padding mgb10 ft24">${DATA.sname}</h2>
 		</div>
 		
-		<div class="w3-col mxw802 w3-border w3-margin-top">
+		<div class="w3-col mxw803 w3-border w3-margin-top">
 			<div class="w3-col w3-border-bottom h40">
 				<div class="w3-col w200 w3-center w3-border-right w3-border-bottom bgc ft14 h40 pdt10">스터디 이름</div>
 				<div class="w3-col w200 w3-center w3-border-right ft14 h40 pdt10">${DATA.sname}</div>
