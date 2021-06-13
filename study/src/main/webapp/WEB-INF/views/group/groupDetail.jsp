@@ -75,11 +75,15 @@
 				<div class="w3-col w200 w3-center w3-border-right w3-border-bottom bgc ft14 h40 pdt10">생성일</div>
 				<div class="w3-col w200 w3-center ft14 h40 pdt10">${DATA.sdate3}</div>
 			</div>
-			<div class="w3-col h40">
-				<div class="w3-col w200 w3-center w3-border-right  bgc ft14 h40 pdt10">현재 인원수</div>
+			<div class="w3-col w3-border-bottom h40">
+				<div class="w3-col w200 w3-center w3-border-right w3-border-bottom bgc ft14 h40 pdt10">현재 인원수</div>
 				<div class="w3-col w200 w3-center w3-border-right ft14 h40 pdt10">${DATA.nowcnt}</div>
-				<div class="w3-col w200 w3-center w3-border-right bgc ft14 h40 pdt10">최대 인원수</div>
+				<div class="w3-col w200 w3-center w3-border-right w3-border-bottom bgc ft14 h40 pdt10">최대 인원수</div>
 				<div class="w3-col w200 w3-center ft14 h40 pdt10">${DATA.maxcnt}</div>
+			</div>
+			<div class="w3-col h40">
+				<div class="w3-col w200 w3-center w3-border-right  bgc ft14 h40 pdt10">멘토</div>
+				<div class="w3-col w200 w3-center w3-border-right ft14 h40 pdt10">전은석</div>
 			</div>
 		</div>
 		<div class="w3-col w3-margin-top">

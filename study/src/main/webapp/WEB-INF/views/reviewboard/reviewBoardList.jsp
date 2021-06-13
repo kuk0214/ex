@@ -71,6 +71,7 @@ $(document).ready(function(){
 		$('#nowPage').val(pno);
 		$('#frm').submit();
 	});
+	
 });
 </script>
 </head>
@@ -85,7 +86,7 @@ $(document).ready(function(){
 		<div class="w3-col w3-margin-top w3-margin-bottom">
 			<h2 class="w3-padding mgb10 ft24">리뷰게시판</h2>
 		</div>
-		<form method="POST" action="/study/reviewboard/reviewBoardList.mentor" class="w3-right w500">
+		<form method="POST" action="/study/reviewboard/reviewBoardList.mentor">
 			<button type="submit" class="w3-col w3-button w70 h20 mgl10 w3-right pd0 w3-green">검색</button>
 			<input type="text" class="w3-col mgl10 w120 h20 w3-right" name="keyword" value="${keyword}">
 			<select class="w3-col w70 h20 w3-right" name="option">	

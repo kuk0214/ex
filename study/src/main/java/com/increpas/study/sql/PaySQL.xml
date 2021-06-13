@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="pSQL">
+
+	<!-- 결제 요청 정보 입력 질의명령 -->
+	<insert id="addPayInfo"  parameterType="aVO" >	
+		<selectKey keyProperty="pno" resultType="int" order="BEFORE">
+			SELECT 
+				NVL(MAX(pno) + 1, 1001) 
+			FROM 
+				payInfo
+		</selectKey>
+		
+		INSERT INTO
+		    payinfo(pno, tid, cid, partner_order_id, partner_user_id, item_name, quantity, total_amount, vat_amount, tax_free_amount)
+		VALUES
+		    (#{pno}, #{tid}, #{cid}, #{partner_order_id}, #{partner_user_id}, #{item_name}, #{quantity}, #{total_amount}, #{vat_amount}, #{tax_free_amount}
+		    )
+	</insert>
+	
+	<!-- 결제 요청 정보 조회 질의명령 -->
+	<select id="getPayInfo" resultType="aVO" parameterType="string">
+		SELECT
+			cid, tid, partner_order_id, partner_user_id, total_amount
+		FROM
+			payInfo
+		WHERE
+			partner_order_id = #{oid}
+	</select>
+	
+	<!-- 포인트 충전 질의명령 -->
+	<update id="chargePoint" parameterType="kVO">
+		UPDATE
+			member
+		SET
+			point =  (point + #{amount.total})
+		WHERE
+			id = #{partner_user_id}		
+	</update>
+	
+	<!-- 결제정보 승인 질의명령 -->
+	<update id="pointApprove" parameterType="kVO">
+		UPDATE
+			payinfo
+		SET
+			isshow = 'Y'
+		WHERE
+			tid = #{tid}		
+	</update>
+
+	
+</mapper>

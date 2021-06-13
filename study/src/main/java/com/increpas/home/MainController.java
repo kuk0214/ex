@@ -1,13 +1,28 @@
 package com.increpas.home;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+import com.increpas.study.dao.MemberDao;
+import com.increpas.study.vo.MemberVO;
 
 @Controller
 public class MainController {
+	@Autowired
+	MemberDao mDao;
 	
 	@RequestMapping("/")
-	public String main() {
-		return "main";
+	public ModelAndView main(ModelAndView mv) {
+		List<MemberVO> list = mDao.getLoc();
+		Gson gson = new Gson(); 
+	    String str = gson.toJson(list);
+		mv.addObject("STR", str);
+		mv.setViewName("main");
+		return mv;
 	}
 }

@@ -20,17 +20,17 @@
 		                    reviewboard
 		                WHERE
 		                    isShow = 'Y'
-	                    <choose>
-	                    	<when test="option neq null and option eq 'stitle'">
-	                    		AND title LIKE '%' ||#{keyword}|| '%'
-	                    	</when>
-	                    	<when test="option eq 'sbody'">
-	                    		AND body LIKE '%' ||#{keyword}|| '%'
-	                    	</when>
-	                    	<when test="option eq 'swid'">
-	                    		AND wid LIKE '%' ||#{keyword}|| '%'
-	                    	</when>
-	                    </choose>
+		                    <choose>
+		                    	<when test="option neq null and option eq 'stitle'">
+		                    		AND title LIKE '%' ||#{keyword}|| '%'
+		                    	</when>
+		                    	<when test="option eq 'sbody'">
+		                    		AND body LIKE '%' ||#{keyword}|| '%'
+		                    	</when>
+		                    	<when test="option eq 'swid'">
+		                    		AND wid LIKE '%' ||#{keyword}|| '%'
+		                    	</when>
+		                    </choose>
 		                ORDER BY
 		                    wdate DESC
 		            )

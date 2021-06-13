@@ -292,4 +292,5 @@ public class Group {
 		mv.setViewName("group/redirectView");
 		return mv;
 	}
+
 }

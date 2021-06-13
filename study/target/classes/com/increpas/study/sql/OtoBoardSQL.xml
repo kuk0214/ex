@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybaits.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="oSQL">
+ 	 <!-- 1대1 문의 게시판 리스트 보기 질의명령 -->
+ 	 <select id="otoList" resultType="bVO" parameterType="bVO">
+ 	 	SELECT
+		    rno, askno, title, wid, wdate, process, click, sysdate
+		FROM
+		    (
+		        SELECT
+		            ROWNUM rno, askno, title, wid, wdate, process, click, sysdate
+		        FROM
+		            (
+		                SELECT
+		                    askno, title,  wid,  wdate, process, click, sysdate
+		                FROM
+		                    contactus
+		                WHERE
+		                    isShow = 'Y'
+		                    AND upno IS NULL
+	                    <choose>
+	                    	<when test="option neq null and option eq 'stitle'">
+	                    		AND title LIKE '%' ||#{keyword}|| '%'
+	                    	</when>
+	                    	<when test="option eq 'sbody'">
+	                    		AND body LIKE '%' ||#{keyword}|| '%'
+	                    	</when>
+	                    	<when test="option eq 'swid'">
+	                    		AND wid LIKE '%' ||#{keyword}|| '%'
+	                    	</when>
+	                    </choose>
+		                ORDER BY
+		                    wdate DESC
+		            )
+		    )
+		WHERE
+		    rno BETWEEN #{page.startCont} AND #{page.endCont}
+ 	 </select>
+ 	 
+ 	  	 
+ 	 <!-- 1대1 문의 게시판 상세보기 질의명령 -->
+ 	 <select id="otoDetail" resultType="bVO" parameterType="int">
+		SELECT
+		    askno, title, body, wid, upno, wdate, isshow, process, level - 1 as step
+		FROM
+		    contactus
+		WHERE
+		    askno = #{askno} 
+		    OR upno = #{askno}
+		    AND isshow = 'Y'
+		START WITH
+		    upno IS NULL
+		CONNECT BY
+		    PRIOR askno = upno
+		ORDER SIBLINGS BY
+		    wdate DESC
+ 	 </select>
+ 	 
+ 	 <!-- 1대1 문의 게시판 총 게시글 수 조회 질의명령 -->
+ 	 <select id="totalCnt" resultType="int">
+ 	 	SELECT
+ 	 		COUNT(*)
+ 		FROM
+ 			 contactus
+		WHERE
+			isShow = 'Y'
+ 	 </select>
+ 	 
+ 	 <!-- 1대1 문의 게시판 글 등록 질의명령 -->
+ 	 <insert id="otoWriteProc" parameterType="bVO">
+ 	 	<selectKey keyProperty="askno" resultType="int" order="BEFORE">
+			SELECT 
+				NVL(MAX(askno) + 1, 100001) 
+			FROM 
+				contactus
+		</selectKey>
+ 	 	INSERT INTO
+			    contactus(askno, title, body, wid)
+		VALUES(
+		    #{askno}, #{title}, #{body}, #{wid}
+		)
+ 	 </insert>
+
+ 	 
+ 	 <!-- 1대1 문의 게시판 수정 질의명령 -->
+ 	 <update id="otoEditProc" parameterType="bVO">
+ 	 	UPDATE
+ 	 		contactus
+ 		<set>
+			<if test="title neq null">
+				title = #{title},
+			</if>
+			<if test="body neq null">
+				body = #{body},
+			</if>
+		</set>
+		WHERE
+			askno = #{askno}
+ 	 </update>
+ 	 
+ 	 <!-- 1대1 문의 게시판 삭제 질의명령 -->
+ 	 <update id="otoDel" parameterType="int">
+ 	 	UPDATE
+ 	 		contactus
+ 		SET
+ 			isShow = 'N'
+		WHERE
+			askno = #{askno}
+
+ 	 </update>
+ 	 
+ 	 <!-- 1대1 문의 게시판 내 문의글 전체 조회 숫자 질의명령 -->
+ 	 <select id="getMyTotalCnt" resultType="int" parameterType="string">
+ 	 	SELECT
+ 	 		COUNT(*)
+ 		FROM
+ 			 contactus
+		WHERE
+			isShow = 'Y'
+			AND wid = #{id}
+ 	 </select>
+ 	 
+ 	  	 <!-- 1대1 문의 게시판 글 등록 질의명령 -->
+ 	 <insert id="otoReplyWriteProc" parameterType="bVO">
+ 	 	<selectKey keyProperty="askno" resultType="int" order="BEFORE">
+			SELECT 
+				NVL(MAX(askno) + 1, 100001) 
+			FROM 
+				contactus
+		</selectKey>
+ 	 	INSERT INTO
+			    contactus(askno, title, body, wid, upno)
+		VALUES(
+		    #{askno}, #{title}, #{body}, #{wid}, #{upno}
+		)
+ 	 </insert>
+ 	 
+ 	 <!-- 1대1 문의 게시판 상태변경 질의명령 -->
+ 	 <update id="otoProcess" parameterType="int">
+ 	 	UPDATE
+ 	 		contactus
+ 		SET
+ 			process = '답변완료'
+		WHERE
+			askno = #{upno}
+
+ 	 </update>
+ 	 
+ 	 <!-- 조회수 증가 질의명령 -->
+ 	 <update id="plusClick" parameterType="int">
+ 	 	UPDATE
+ 	 		reviewboard
+ 		SET
+ 			click = click + 1
+		WHERE
+			rvbno = #{rvbno}
+ 	 </update>
+</mapper>

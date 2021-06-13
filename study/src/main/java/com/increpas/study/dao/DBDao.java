@@ -36,6 +36,10 @@ public class DBDao {
 	public int addGroupMember(int no) {
 		return sqlSession.insert("DBSQL.addGroupMember", no);
 	}
+	// 스더디그룹 리더 가입 데이터 등록 전담 처리함수
+	public int addGroupLeader(int no) {
+		return sqlSession.insert("DBSQL.addGroupLeader", no);
+	}
 	
 	// 멘토 등록 데이터 전담 처리함수
 	public int addMentor(int no) {
@@ -65,5 +69,25 @@ public class DBDao {
 	// 공지사항 데이터 전담 처리함수
 	public int notice() {
 		return sqlSession.insert("DBSQL.notice");
+	}
+	
+	// 후기게시판 멘토 데이터 전담 처리함수
+	public int reviewMentor(int no) {
+		return sqlSession.insert("DBSQL.reviewMentor", no);
+	}
+	
+	// 후기게시판 그룹 데이터 전담 처리함수
+	public int reviewGroup(int no) {
+		return sqlSession.insert("DBSQL.reviewGroup", no);
+	}
+	
+	// 지역별 그룹 데이터 전담 처리함수
+	public int addLocGroup(String loc) {
+		return sqlSession.insert("DBSQL.addLocGroup", loc);
+	}
+	
+	// 첫그룹 데이터 전담 처리함수
+	public int add1stGroup() {
+		return sqlSession.insert("DBSQL.add1stGroup");
 	}
 }

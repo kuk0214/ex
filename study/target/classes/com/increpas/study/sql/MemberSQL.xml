@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="mSQL">
-	<!-- 회원가입시 이메일 체크 질의 명령 -->
+	
 	<select id="getLoc" resultType="mVO">
 		SELECT
 		    loc, count(*) cnt
@@ -19,13 +19,13 @@
 	</select>
 
 	<!-- 회원가입시 이메일 체크 질의 명령 -->
-	<select id="email" resultType="string" parameterType="int">
+	<select id="getMail" resultType="string" parameterType="String">
 		SELECT
 			mail
 		FROM
 			member
 		WHERE
-			mno = #{mno}
+			id = #{id}
 	</select>
 	
 	<!-- 회원가입시 아이디 체크 질의 명령 -->
@@ -35,7 +35,7 @@
 		FROM
 			member
 		WHERE
-			id = #{id}
+			id = #{sid}
 	</select>
 	
 	<!-- 로그인 처리 질의 명령 -->
@@ -132,24 +132,23 @@
 			<if test="gen neq null">
 				gen = #{gen},
 			</if>
-
 		</trim>		
 		WHERE
 			id = #{id}		
 	</update>
 
 	<!-- 메일인증 처리 질의명령 -->
-	<update id="editIsshow" parameterType="int">
+	<update id="editIsshow" parameterType="string">
 		UPDATE
 			member
 		SET
 			isshow = 'Y'
 		WHERE
-			mno = #{mno}
+			id = #{id}
 	</update>
 
 	<!-- 회원탈퇴 처리 질의명령 -->
-	<update id="delMember" parameterType="string">
+	<update id="delUser" parameterType="string">
 		UPDATE
 			member
 		SET
@@ -158,5 +157,24 @@
 			id = #{id}
 	</update>
 	
+	<!-- 패스워드 변경 질의명령 -->
+	<update id="editPass" parameterType="mVO">
+		UPDATE
+			member
+		SET
+			pw = #{pw}
+		WHERE
+			id = #{id}
+	</update>
+	
+	<!-- 포인트 충전 질의명령 -->
+	<update id="pointCharge" parameterType="mVO">
+		UPDATE
+			member
+		SET
+			point = #{point}
+		WHERE
+			id = #{id}
+	</update>
 	
 </mapper>

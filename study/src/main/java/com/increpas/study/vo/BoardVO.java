@@ -1,12 +1,16 @@
 package com.increpas.study.vo;
 
 import java.util.Date;
+
+import com.increpas.study.util.PageUtil;
+
 import java.text.*;
 
 public class BoardVO {
 	private int frbno, frreno, no, qnabno, rvbno, sbno, askno, upno, mtno, click, cnt, groupno;
-	private String id, wid, upid, title, body, category, loc, juje, sdate, sdate1, sdate2;
+	private String id, wid, upid, title, body, category, loc, sdate, sdate1, sdate2, process, option, keyword;
 	private Date wdate, sysdate;
+	private PageUtil page;
 	public int getFrbno() {
 		return frbno;
 	}
@@ -121,14 +125,26 @@ public class BoardVO {
 	public void setLoc(String loc) {
 		this.loc = loc;
 	}
-	public String getJuje() {
-		return juje;
-	}
-	public void setJuje(String juje) {
-		this.juje = juje;
-	}
 	public String getSdate() {
 		return sdate;
+	}
+	public String getProcess() {
+		return process;
+	}
+	public void setProcess(String process) {
+		this.process = process;
+	}
+	public String getOption() {
+		return option;
+	}
+	public void setOption(String option) {
+		this.option = option;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 	public void setSdate() {
 		SimpleDateFormat form = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
@@ -173,5 +189,10 @@ public class BoardVO {
 		setSdate1();
 		setSdate2();
 	}
-	
+	public PageUtil getPage() {
+		return page;
+	}
+	public void setPage(PageUtil page) {
+		this.page = page;
+	}
 }

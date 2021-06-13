@@ -63,14 +63,23 @@
 		    1001, 'user' || #{no}
 		)
 	</insert>
+	<!-- 스터디그룹 리더 가입 -->
+	<insert id="addGroupLeader" parameterType="int">
+		INSERT INTO
+			    grouplist(no, sno, id)
+		VALUES(
+		    (SELECT NVL(MAX(no) + 1, 100001) FROM grouplist),
+		    1000 + #{no}, 'user' || #{no}
+		)
+	</insert>
 	
 	<!-- 멘토등록 -->
 	<insert id="addMentor" parameterType="int">
 		INSERT INTO
-		    mentor(no, mentorid, pr)
+		    mentor(no, mentorid, pr, isShow)
 		VALUES(
 		    (SELECT NVL(MAX(no) + 1, 1001) FROM mentor),
-		    'user' || #{no}, '경력' || #{no} || '년차고, 주말에 가능합니다.'
+		    'user' || #{no}, '경력' || #{no} || '년차고, 주말에 가능합니다.', 'Y'
 		)
 	</insert>
 	
@@ -123,6 +132,46 @@
 		VALUES(
 		    (SELECT NVL(MAX(no) + 1, 100001) FROM notice),
 			'공지사항', '현재는 서울만 서비스하고 그외 지역은 온라인으로만 이용가능합니다', 'admin1'
+		)
+	</insert>
+	
+	<!-- 후기 게시판 멘토 -->
+	<insert id="reviewMentor" parameterType="int">
+		INSERT INTO
+			reviewboard(rvbno, category, title, body, wid)
+		VALUES(
+			(SELECT NVL(MAX(rvbno) + 1, 100001) FROM reviewboard),
+			'멘토', 'user' || #{no} || '멘토님 후기', '잘알려주셔서 좋았습니다', 'user1'
+		)
+	</insert>
+	
+	<!-- 후기 게시판 그룹 -->
+	<insert id="reviewGroup" parameterType="int">
+		INSERT INTO
+			reviewboard(rvbno, category, title, body, wid)
+		VALUES(
+			(SELECT NVL(MAX(rvbno) + 1, 100001) FROM reviewboard),
+			'그룹', '스터디그룹1 그룹 후기', '같이 공부하면서 집중도 더 잘되서 도움이 많이 됐습니다', 'user' || #{no}
+		)
+	</insert>
+	
+	<!-- 지역별 그룹 생성 -->
+	<insert id="addLocGroup" parameterType="string">
+		INSERT INTO
+		    groupinfo(sno, sname, loc, maxcnt, leaderid)
+		VALUES(
+		    (SELECT NVL(MAX(sno) + 1, 1001) FROM groupinfo),
+		    '스프링 스터디', #{loc}, 5, 'user5'
+		)
+	</insert>
+	
+	<!-- 첫 그룹 -->
+	<insert id="add1stGroup" parameterType="int">
+		INSERT INTO
+		    groupinfo(sno, sname, loc, nowcnt, maxcnt, leaderid)
+		VALUES(
+		    (SELECT NVL(MAX(sno) + 1, 1001) FROM groupinfo),
+		    '스프링 프로젝트', '서울 구로구', 4, 4, 'user1'
 		)
 	</insert>
 </mapper>

@@ -74,12 +74,16 @@
 		};
 		var map = new kakao.maps.Map(mapContainer, mapOptions);
 		
+		var obj = ${STR}
 		
-
+		for (let i = 0 ; i < obj.length ; i++ ) {
+			
 			var geocoder = new kakao.maps.services.Geocoder();
 			
-			geocoder.addressSearch('서울시 구로구', function(result, status) {
-	
+			geocoder.addressSearch((obj[i].loc.substring(3) == '노원구')? '동일로 213길' : (obj[i].loc == '온라인')? '경기 고양시 덕양구 내곡동 1-4' : 
+									(obj[i].loc.substring(3) == '중구')? '마른내로2길' : obj[i].loc.substring(3),
+									function(result, status) {
+
 			     if (status === kakao.maps.services.Status.OK) {
 	
 			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
@@ -90,12 +94,20 @@
 			        });
 	
 			        var infowindow = new kakao.maps.InfoWindow({
-			            content: '<div style="width:150px;text-align:center;padding:6px 0;">1</div>'
+			            content: '<div class="w150 w3-center">'+ ((obj[i].loc == '온라인') ? obj[i].loc : obj[i].loc.substring(3)) + ' 그룹 ' + obj[i].cnt + '</div>'
 			        });
 			        infowindow.open(map, marker);
 			     }
 		     });
+		}
 		
+		var title = '<h2 class="ft24 w3-center w3-blue">이용하고있는 그룹 수</h2>';
+		var position = new kakao.maps.LatLng(37.65507, 126.94070);
+		var customOverlay = new kakao.maps.CustomOverlay({
+		    position: position,
+		    content: title   
+		});
+		customOverlay.setMap(map);
 	});
 </script>
 </head>

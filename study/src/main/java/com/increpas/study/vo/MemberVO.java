@@ -6,18 +6,10 @@ import java.text.SimpleDateFormat;
 
 
 public class MemberVO {
-	private int mno, point, cnt;
+	private int mno, point;
 	private String name, id, pw, mail, tel,  gen, loc, grade, sdate;
 	private Date jDate;
 	private Time jTime;
-	
-	
-	public int getCnt() {
-		return cnt;
-	}
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
-	}
 	public int getMno() {
 		return mno;
 	}

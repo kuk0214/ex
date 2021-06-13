@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class GroupVO {
 	private int no, sno, sbno, nowcnt, maxcnt, mno, click;
-	private String sname, id, sid, title, body, loc, sdate, sdate1, sdate2, sdate3;
+	private String mname, sname, mentorid, id, sid, title, body, loc, sdate, sdate1, sdate2, sdate3;
 	private Date wdate, sysdate;
 	
 	public int getNo() {
@@ -50,11 +50,23 @@ public class GroupVO {
 	public void setClick(int click) {
 		this.click = click;
 	}
+	public String getMname() {
+		return mname;
+	}
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
 	public String getSname() {
 		return sname;
 	}
 	public void setSname(String sname) {
 		this.sname = sname;
+	}
+	public String getMentorid() {
+		return mentorid;
+	}
+	public void setMentorid(String mentorid) {
+		this.mentorid = mentorid;
 	}
 	public String getId() {
 		return id;
