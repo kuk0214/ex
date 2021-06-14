@@ -294,4 +294,28 @@
 		WHERE
 			sbno = #{sbno}
  	</update>
+ 	
+ 	<!-- 지역별 그룹 수 조회 질의명령 -->
+ 	<select id="getLoc" resultType="gVO">
+		SELECT
+		    loc, count(*) cnt
+		FROM
+		    groupinfo
+		WHERE
+		    isshow = 'Y'
+		GROUP BY
+		    loc
+		ORDER BY
+		    loc
+	</select>
+	
+	<!-- 조회수 증가 질의명령 -->
+ 	 <update id="plusClick" parameterType="int">
+ 	 	UPDATE
+ 	 		studyboard
+		SET
+			click = click + 1
+		WHERE
+			sbno = #{sbno}
+ 	 </update>
 </mapper>

@@ -56,6 +56,7 @@
 	<form method="POST" action="/study/group/groupEdit.mentor" name="frm" id="frm">
 		<input type="hidden" name="id" id="id" value="${SID}">
 		<input type="hidden" name="sno" value="${DATA.sno}">
+		<input type="hidden" name="nowPage" value="${nowPage}">
 	</form>
 	<section class="w3-content w3-margin-top">
 		<div class="w3-col w3-margin-top w3-margin-bottom">

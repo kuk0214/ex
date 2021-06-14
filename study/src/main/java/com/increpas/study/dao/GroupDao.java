@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.increpas.study.util.PageUtil;
 import com.increpas.study.vo.GroupVO;
+import com.increpas.study.vo.MemberVO;
 
 /**
  * 이 클래스는 스터디 그룹 관련 데이터베이스 작업을 전담해서 처리할 클래스
@@ -21,6 +22,8 @@ import com.increpas.study.vo.GroupVO;
  *								작업내용	: 그룹원 리스트 보기, 그룹원 감소, 그룹원 추방&탈퇴, 재가입, 그룹 해체
  * 				2021.06.10	- 	담당자		: 조경국
  *								작업내용	: 스터디원 모집 글 삭제, 수정
+ * 				2021.06.14	- 	담당자		: 조경국
+ *								작업내용	: 지역별 그룹수 조회, 스터디원 모집 글 조회수 증가
  */
 
 public class GroupDao {
@@ -140,5 +143,15 @@ public class GroupDao {
 	// 스터디 모집 글 수정 데이터베이스 전담 처리함수
 	public int studyBRDEditProc(GroupVO gVO) {
 		return sqlSession.update("gSQL.studyBRDEditProc", gVO);
+	}
+	
+	// 지역별 그룹 수 조회 데이터베이스 전담 처리함수
+	public List<GroupVO> getLoc() {
+		return sqlSession.selectList("gSQL.getLoc");
+	}
+	
+	// 스터디원 모집 글 조회수 증가 데이터베이스 전담 처리함수
+	public int plusClick(int sbno) {
+		return sqlSession.update("gSQL.plusClick", sbno);
 	}
 }

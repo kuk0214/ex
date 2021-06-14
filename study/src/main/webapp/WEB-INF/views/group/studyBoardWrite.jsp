@@ -48,7 +48,7 @@
 </script>
 </head>
 <body>
-	<form method="POST"  action="/study/reviewboard/reviewBoardList.mentor" id="pfrm" name="pfrm">
+	<form method="POST"  action="/study/group/studyBoard.mentor" id="pfrm" name="pfrm">
 		<input type="hidden" id="nowPage" name="nowPage" value="${nowPage}">
 	</form>
 	<div class="w3-content mxw700 w3-margin-top w3-padding">

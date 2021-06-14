@@ -57,8 +57,9 @@
 			var tbody = $('#body').val().trim();
 			var tfrbno = $('#frbno').val();
 			var id = $(this).parent().parent().attr('id').substring(2);
-			var twid = $('#i' + id).html();
+			var tupid = $('#i' + id).html();
 			var tgno = $('#g' + id).html();
+			var wid = '${SID}';
 			
 			if(!tbody) {
 				alert('내용이 없습니다');
@@ -71,11 +72,12 @@
 				data: {
 					body: tbody,
 					frbno: tfrbno,
-					upid: twid,
-					gno: tgno
+					upid: tupid,
+					groupno: tgno,
+					wid: wid
 				},
 				success: function(obj) {
-					if(obj.result == 'YES') {
+					if(obj.result == 'OK') {
 						document.location.reload();
 					} else {
 						alert('*** 댓글 달기에 실패했습니다! ***');
@@ -104,7 +106,7 @@
 					frreno: tfrreno
 				},
 				success: function(obj) {
-					if(obj.result == 'YES') {
+					if(obj.result == 'OK') {
 						document.location.reload();
 					} else {
 						alert('*** 댓글 수정에 실패했습니다! ***');
@@ -127,7 +129,7 @@
 					frreno: tfrreno
 				},
 				success: function(obj) {
-					if(obj.result == 'YES') {
+					if(obj.result == 'OK') {
 						document.location.reload();
 					} else {
 						alert('*** 댓글 삭제에 실패했습니다! ***');
@@ -206,11 +208,14 @@
 				pno = '${PAGE.endPage + 1}';
 			}
 			
-			$('#nowPage1').val(pno);
+			$('#nowPage').val(pno);
 			$('#pfrm').submit();
 		});
 		
-		
+		$('#dbtn').click(function() {
+			$('#pfrm').attr('action', '/study/freeboard/freeBoardDel.mentor');
+			$('#pfrm').submit();
+		});
 		
 		$('#ebtn').click(function() {
 			$('#pfrm').attr('action', '/study/freeboard/freeBoardEdit.mentor');
@@ -221,7 +226,7 @@
 </head>
 <body>
 	<form method="POST" action="/study/freeboard/freeBoardDetail.mentor" id="pfrm" name="pfrm">
-		<input type="hidden" name="nowPage1" id="nowPage1" value="${Page.nowPage}">
+		<input type="hidden" name="nowPage" id="nowPage" value="${nowPage}">
 		<input type="hidden" name="frbno" id="frbno" value="${DATA.frbno}">
 	</form>
 	<div class="w3-content mxw700 w3-margin-top w3-padding">

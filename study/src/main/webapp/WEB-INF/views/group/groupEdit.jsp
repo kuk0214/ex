@@ -27,7 +27,10 @@
 				alert('### 현재 인원수보다 낮게 할 수 없습니다. ###');
 				return
 			}
-			
+			if(tsname == '${DATA.sname}' && tloc == '${DATA.loc}' && tmaxcnt == ${DATA.maxcnt}) {
+				alert('### 수정된 내용이 없습니다. ###');
+				return
+			}
 			if(tsname == '${DATA.sname}') {
 				$('#sname').prop('disabled', true);
 			}
@@ -55,6 +58,7 @@
 		<form method="POST" action="/study/group/groupEditProc.mentor" id="frm" name="frm"
 					class="w3-col mxw803 w3-border w3-margin-top">
 			<input type="hidden" name="sno" value="${DATA.sno}">
+			<input type="hidden" name="nowPage" value="${nowPage}">
 			<div class="w3-col w3-border-bottom h40">
 				<label for="sname" class="w3-col w200 w3-center w3-border-right w3-border-bottom bgc ft14 h40 pdt10">스터디 이름</label>
 				<input type="text" class="w3-col w200 w3-center w3-border-right w3-border-bottom ft14 h40 bordernone" name="sname" id="sname" value="${DATA.sname}">

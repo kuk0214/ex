@@ -33,7 +33,7 @@ $(document).ready(function(){
 		
 		// 폼태그가 전송될 주소를 셋팅하고
 		$('#frm').attr('action', '/study/freeboard/freeBoardDetail.mentor');
-		
+		$('#nowPage').prop('disabled', true);
 		// 폼태그를 전송한다.
 		$('#frm').submit();
 	});
@@ -78,7 +78,7 @@ $(document).ready(function(){
 	<%@ include file="../include/boardlayout.jsp" %>
 	<form method="POST" action="/study/freeboard/freeBoardList.mentor" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
-		<input type="hidden" name="frbno" id="frbno">
+		<input type="hidden" name="frbno" id="frbno" value="0">
 	</form>
 	
 	<section class="w3-content w3-margin-top">

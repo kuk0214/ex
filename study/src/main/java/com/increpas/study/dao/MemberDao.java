@@ -67,8 +67,4 @@ public class MemberDao {
 	 public int pointCharge(MemberVO mVO) {
 		 return sqlSession.update("mSQL.pointCharge", mVO);
 	 }
-
-	 public List<MemberVO> getLoc() {
-			return sqlSession.selectList("mSQL.getLoc");
-		}
 }

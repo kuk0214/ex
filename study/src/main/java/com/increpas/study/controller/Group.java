@@ -29,6 +29,8 @@ import com.increpas.study.vo.GroupVO;
  * 									작업내용	:	스터디 그룹 상세보기, 그룹원 추방, 그룹 탈퇴, 그룹 정보 수정, 그룹 해체
  * 					2021.06.10	-	담당자		:	조경국
  * 									작업내용	:	스터디원 모집 글 삭제, 스터디원 모집 글 수정
+ * 					2021.06.14	-	담당자		:	조경국
+ * 									작업내용	:	스터디원 모집 글 조회수 증가
  *
  */
 
@@ -81,10 +83,11 @@ public class Group {
 	
 	// 스터디원 모집 글쓰기 폼보기 요청 처리함수
 	@RequestMapping("/studyBoardWrite.mentor")
-	public ModelAndView studyBRDWrite(ModelAndView mv, HttpSession session) {
+	public ModelAndView studyBRDWrite(int nowPage, ModelAndView mv, HttpSession session) {
 		String sid = (String) session.getAttribute("SID");
 		List list = gDao.myGroupList(sid);
 		mv.addObject("LIST", list);
+		mv.addObject("nowPage", nowPage);
 		return mv;
 	}
 	
@@ -109,11 +112,13 @@ public class Group {
 	
 	// 스터디원 모집 글 상세보기 요청 처리함수
 	@RequestMapping("/studyBoardDetail.mentor")
-	public ModelAndView studyBRDDetail(GroupVO gVO, ModelAndView mv) {
+	public ModelAndView studyBRDDetail(GroupVO gVO, int nowPage, ModelAndView mv) {
+		gDao.plusClick(gVO.getSbno());
 		int cnt = gDao.rqJoinCheck(gVO);
 		gVO = gDao.studyBRDDetail(gVO);
 		mv.addObject("DATA", gVO);
 		mv.addObject("CNT", cnt);
+		mv.addObject("nowPage", nowPage);
 		return mv;
 	}
 	
@@ -271,9 +276,10 @@ public class Group {
 	
 	// 스터디원 모집 글 수정 폼보기 요청 처리함수
 	@RequestMapping("/studyBoardEdit.mentor")
-	public ModelAndView studyBRDEdit(GroupVO gVO, ModelAndView mv) {
+	public ModelAndView studyBRDEdit(GroupVO gVO, int nowPage, ModelAndView mv) {
 		gVO = gDao.studyBRDDetail(gVO);
 		mv.addObject("DATA", gVO);
+		mv.addObject("nowPage", nowPage);
 
 		return mv;
 	}

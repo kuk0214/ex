@@ -51,8 +51,43 @@ public class FreeBoardDao {
 		return sqlSession.selectList("fSQL.freeBRDReply", page);
 	}
 	
-	// 자유게시판 댓글 등록 전담 처리함수
+	// 자유게시판 댓글 등록 데이터베이스 전담 처리함수
 	public int freeBRDReplyProc(BoardVO bVO) {
 		return sqlSession.insert("fSQL.freeBRDReplyProc", bVO);
+	}
+	
+	// 자유게시판 대댓글 등록 데이터베이스 전담 처리함수
+	public int freeBRDReplyProc2(BoardVO bVO) {
+		return sqlSession.insert("fSQL.freeBRDReplyProc2", bVO);
+	}
+	
+	// 자유게시판 글 등록 데이터베이스 전담 처리함수
+	public int freeBRDWriteProc(BoardVO bVO) {
+		return sqlSession.insert("fSQL.freeBRDWriteProc", bVO);
+	}
+	
+	// 자유게시판 글 삭제 데이터베이스 전담 처리함수
+	public int freeBRDDel(int frbno) {
+		return sqlSession.update("fSQL.freeBRDDel", frbno);
+	}
+	
+	// 자유게시판 글 수정 데이터베이스 전담 처리함수
+	public int freeBRDEditProc(BoardVO bVO) {
+		return sqlSession.update("fSQL.freeBRDEditProc", bVO);
+	}
+	
+	// 자유게시판 댓글 수정 데이터베이스 전담 처리함수
+	public int freeBRDReplyEditProc(BoardVO bVO) {
+		return sqlSession.update("fSQL.freeBRDReplyEditProc", bVO);
+	}
+	
+	// 자유게시판 댓글 삭제 데이터베이스 전담 처리함수
+	public int freeBRDReplyDelProc(BoardVO bVO) {
+		return sqlSession.update("fSQL.freeBRDReplyDelProc", bVO);
+	}
+	
+	// 자유게시판 글 삭제시 댓글 삭제 데이터베이스 전담 처리함수
+	public int delBRDReply(int frbno) {
+		return sqlSession.update("fSQL.delBRDReply", frbno);
 	}
 }

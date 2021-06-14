@@ -26,6 +26,11 @@
 			var ttitle = $('#title').val().trim();
 			var tbody = $('#body').val().trim();
 			
+			if(ttitle == '${DATA.title}' && tbody == '${DATA.body}') {
+				alert('### 수정된 내용이 없습니다. ###');
+				return
+			}
+			
 			if(!ttitle || ttitle == '${DATA.title}') {
 				$('#title').prop('disabled', true);
 			}

@@ -88,7 +88,7 @@
 		    rno BETWEEN #{startCont} AND #{endCont}
 	</select>
 	
-	<!-- 댓글 등록 요청 질의명령 -->
+	<!-- 댓글 등록 질의명령 -->
 	<insert id="freeBRDReplyProc" parameterType="bVO">
 		INSERT INTO
 		    freeboardreply(frreno, groupno, frbno, body, wid)
@@ -98,4 +98,80 @@
 		     #{frbno}, #{body}, #{wid}
 		)
 	</insert>
+	
+	<!-- 대댓글 등록 질의명령 -->
+	<insert id="freeBRDReplyProc2" parameterType="bVO">
+		INSERT INTO
+		    freeboardreply(frreno, groupno, frbno, body, wid, upid)
+		VALUES(
+		    (SELECT NVL(MAX(frreno) + 1, 1000001) FROM freeboardreply),
+		    #{groupno}, #{frbno}, #{body}, #{wid}, #{upid}
+		)
+	</insert>
+	
+	<!-- 자유게시판 글 등록 질의명령 -->
+	<insert id="freeBRDWriteProc" parameterType="bVO">
+		INSERT INTO 
+		    freeboard(frbno, title, body, wid) 
+		VALUES( 
+		    (SELECT NVL(MAX(frbno) + 1, 100001) FROM freeboard), 
+		    #{title}, #{body}, #{wid} 
+		) 
+	</insert>
+	
+	<!-- 자유게시판 글 삭제 질의명령 -->
+	<update id="freeBRDDel" parameterType="int">
+		UPDATE
+			freeboard
+		SET
+			isShow = 'N'
+		WHERE
+			frbno = #{frbno}
+	</update>
+	
+	<!-- 자유게시판 글 수정 질의명령 -->
+	<update id="freeBRDEditProc" parameterType="bVO">
+ 	 	UPDATE
+			freeboard
+		<set>
+			<if test="title neq null">
+				title = #{title},
+			</if>
+			<if test="body neq null">
+				body = #{body},
+			</if>
+		</set>
+		WHERE
+			frbno = #{frbno}
+ 	 </update>
+ 	 
+ 	 <!-- 자유게시판 댓글 수정 질의명령 -->
+ 	<update id="freeBRDReplyEditProc" parameterType="bVO">
+ 	 	UPDATE
+		    freeboardreply 
+		SET
+		    body = #{body}
+		WHERE
+		    frreno = #{frreno}
+ 	</update>
+ 	
+ 	<!-- 자유게시판 댓글 삭제 질의명령 -->
+ 	<update id="freeBRDReplyDelProc" parameterType="int">
+ 		UPDATE
+		    freeboardreply 
+		SET
+		    isShow = 'N'
+		WHERE
+		    frreno = #{frreno}
+ 	</update>
+ 	
+ 	<!-- 자유게시판 글 삭제시 댓글 삭제 질의명령 -->
+ 	<update id="delBRDReply" parameterType="int">
+ 		UPDATE
+ 			freeboardreply
+		SET
+			isShow = 'N'
+		WHERE
+			frbno = #{frbno}
+ 	</update>
 </mapper>

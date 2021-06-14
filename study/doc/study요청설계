@@ -8,63 +8,82 @@
 	요청내용	:	/study/freeboard/freeBoardList.mentor
 	파라미터	:	무
 	컨트롤러	:	com.increpas.study.controller.FreeBoard
-	처리함수	:	freeBoardList();
+	처리함수	:	freeBRDList();
 	뷰			:	/WEB-INF/views/study/freeboard/freeBoardList.jsp
 
 2. 자유게시판 글 상세 보기 요청
 	요청내용	:	/study/freeboard/freeBoardDetail.mentor
 	파라미터	:	frbno, nowPage
-	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardDetail
+	컨트롤러	:	com.increpas.study.controller.FreeBoard
+	처리함수	:	freeBRDDetail();
 	뷰			:	/WEB-INF/views/study/freeboard/freeBoardDetail.jsp
 	
 3. 자유게시판 댓글 등록 처리 요청
 	요청내용	:	/study/freeboard/freeBoardReplyProc.mentor
 	파라미터	:	frbno, body
-	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardReplyProc
+	컨트롤러	:	com.increpas.study.controller.FreeBoard
+	처리함수	:	freeBRDReplyProc();
 	뷰			:	ajax ] json
 	
 4. 자유게시판 대댓글 등록 처리 요청
 	요청내용	:	/study/freeboard/freeBoardReplyProc2.mentor
-	파라미터	:	frbno, body
+	파라미터	:	frbno, body, groupno, upid
 	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardReplyProc2
+	처리함수	:	freeBRDReplyProc2();
 	뷰			:	ajax ] json
 	
 5. 자유게시판 글 작성 폼보기 요청
 	요청내용	:	/study/freeboard/freeBoardWrite.mentor
 	파라미터	:	무(SID)
-	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardWrite
+	컨트롤러	:	com.increpas.study.controller.FreeBoard
+	처리함수	:	freeBRDWrite();
 	뷰			:	/WEB-INF/views/study/freeboard/freeBoardWrite.jsp
-
-6. 자유게시판 글 삭제 처리 요청
-	요청내용	:	/study/freeboard/freeBoardDel.mentor
-	파라미터	:	frbno(SID)
-	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardDel
+	
+6. 자유게시판 글 등록 처리 요청
+	요청내용	:	/study/freeboard/freeBoardWriteProc.mentor
+	파라미터	:	SID(title || body) 
+	컨트롤러	:	com.increpas.study.controller.FreeBoard
+	처리함수	:	freeBRDWriteProc();
 	뷰			:	redirect ]
-						성공&실패 : /WEB-INF/views/study/notice/noticeList.jsp
+						성공 : /study/freeboard/freeBoardList.mentor
+						실패 : /study/freeboard/freeBoardWrite.mentor
 
-7. 자유게시판 글 수정 폼보기 요청
+7. 자유게시판 글 삭제 처리 요청
+	요청내용	:	/study/freeboard/freeBoardDel.mentor
+	파라미터	:	frbno
+	컨트롤러	:	com.increpas.study.controller.FreeBoard
+	처리함수	:	freeBRDDel();
+	뷰			:	redirect ]
+						성공 & 실패 : /study/freeboardboard/freeBoardList.mentor
+
+8. 자유게시판 글 수정 폼보기 요청
 	요청내용	:	/study/freeboard/freeBoardEdit.mentor
-	파라미터	:	무(SID)
-	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardEdit
+	파라미터	:	frbno, title, body
+	컨트롤러	:	com.increpas.study.controller.FreeBoard
+	처리함수	:	freeBRDEdit();
 	뷰			:	/WEB-INF/views/study/freeboard/freeBoardEdit.jsp
 	
-8. 자유게시판 글 수정 처리 요청
+9. 자유게시판 글 수정 처리 요청
 	요청내용	:	/study/freeboard/freeBoardEditProc.mentor
-	파라미터	:	frbno, title || body
-	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardEditProc
+	파라미터	:	frbno, (title || body)
+	컨트롤러	:	com.increpas.study.controller.FreeBoard
+	처리함수	:	freeBRDEditProc();
 	뷰			:	redirect ]
-						성공 : /WEB-INF/views/study/freeboard/freeBoardList.jsp
+						성공 : /study/freeboard/freeBoardList.mentor
+						실패 : /study/freeboard/freeBoardEdit.mentor
 
-9. 자유게시판 댓글 수정 처리 요청
+10. 자유게시판 댓글 수정 처리 요청
 	요청내용	:	/study/freeboard/freeBoardReplyEditProc.mentor
 	파라미터	:	frreno, body
-	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardReplyEditProc
+	컨트롤러	:	com.increpas.study.controller.FreeBoard
+	처리함수	:	freeBRDReplyEditProc();
 	뷰			:	ajax ] json
 	
-9. 자유게시판 댓글 삭제 처리 요청
+11. 자유게시판 댓글 삭제 처리 요청
 	요청내용	:	/study/freeboard/freeBoardReplyDelProc.mentor
 	파라미터	:	frreno
-	컨트롤러	:	com.increpas.study.controller.freeboard.FreeBoardReplyEditDelProc
+	컨트롤러	:	com.increpas.study.controller.FreeBoard
+	처리함수	:	freeBRDReplyDelProc();
 	뷰			:	ajax ] json
 	
 ======================================================================================================================

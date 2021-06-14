@@ -33,17 +33,10 @@
 	
 	<beans:import resource="daoContext.xml" />
 	<beans:import resource="srvcContext.xml" />
+	<beans:import resource="InterceptorContext.xml" />
 	
 	<context:component-scan base-package="com.increpas.study" />
 	
-	<!-- websocket handlers -->
-	<websocket:handlers allowed-origins="*" >
-		<websocket:mapping handler="groupChatHandler" path="/study/chat"/>
-		<websocket:sockjs websocket-enabled="true" />
-		<!-- <websocket:handshake-interceptors>
-           <beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
-       </websocket:handshake-interceptors> -->
-	</websocket:handlers>
-	<beans:bean id="groupChatHandler" class="com.increpas.study.handler.GroupChatHandler"/>
+
 	
 </beans:beans>

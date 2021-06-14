@@ -17,14 +17,19 @@
 </style>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#cbtn').click(function() {
-			$('#frm').attr('action', '/study/freeboard/freeBoardDetail.mentor');
+		/* $('#cbtn').click(function() {
+			$('#frm').attr('action', '/study/freeboard/freeBoardList.mentor');
 			$('#frm').submit();
-		});
+		}); */
 		
 		$('#ebtn').click(function() {
 			var ttitle = $('#title').val().trim();
 			var tbody = $('#body').val().trim();
+			
+			if(ttitle == '${DATA.title}' && tbody == '${DATA.body}') {
+				alert('### 수정된 내용이 없습니다. ###');
+				return
+			}
 			
 			if(!ttitle || ttitle == '${DATA.title}') {
 				$('#title').prop('disabled', true);
@@ -41,6 +46,7 @@
 </head>
 <body>
 	<div class="w3-content mxw700 w3-margin-top w3-padding">
+		<h1 class="w3-purple w3-padding w3-center w3-card-4 w3-margin-top w3-margin-bottom">글 수정</h1>
 		<form method="POST" action="/study/freeboard/freeBoardEditProc.mentor" name="frm" id="frm"
 				class="w3-col w3-padding w3-margin-bottom w3-border w3-border-light-grey">
 			<input type="hidden" name="nowPage" id="nowPage" value="${nowPage}">
@@ -57,7 +63,7 @@
 			</div>
 		</form>
 		<div class="w3-col w3-margin-top">
-			<div class="w3-thrid w3-button w3-green" id="cbtn">취소</div>
+			<!-- <div class="w3-thrid w3-button w3-green" id="cbtn">취소</div> -->
 			<div class="w3-thrid w3-button w3-right w3-blue" id="ebtn">수정완료</div>
 		</div>
 	</div>

@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GroupVO {
-	private int no, sno, sbno, nowcnt, maxcnt, mno, click;
+	private int no, sno, sbno, nowcnt, maxcnt, mno, click, cnt;
 	private String mname, sname, mentorid, id, sid, title, body, loc, sdate, sdate1, sdate2, sdate3;
 	private Date wdate, sysdate;
 	
@@ -49,6 +49,12 @@ public class GroupVO {
 	}
 	public void setClick(int click) {
 		this.click = click;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	public String getMname() {
 		return mname;

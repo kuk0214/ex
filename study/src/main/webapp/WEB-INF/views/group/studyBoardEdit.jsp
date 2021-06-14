@@ -58,7 +58,7 @@
 </head>
 <body>
 	<form method="POST"  action="/study/group/studyBoard.mentor" id="pfrm" name="pfrm">
-		<input type="hidden" id="nowPage" name="nowPage" value="${nowPage}">
+		<input type="hidden" name="nowPage" value="${nowPage}">
 	</form>
 	<div class="w3-content mxw700 w3-margin-top w3-padding">
 		<h1 class="w3-purple w3-padding w3-center w3-card-4 w3-margin-top w3-margin-bottom">글 수정</h1>
