@@ -318,4 +318,15 @@
 		WHERE
 			sbno = #{sbno}
  	 </update>
+ 	 
+ 	 <!-- 가입요청 취소 질의명령 -->
+ 	 <update id="requestJoinCancle" parameterType="gVO">
+ 	 	UPDATE
+ 	 		requestjoin
+ 		SET
+ 			isShow = 'N'
+		WHERE
+			jid = #{sid}
+			AND jsno = #{sno}
+ 	 </update>
 </mapper>

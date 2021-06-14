@@ -8,6 +8,9 @@
 <script type="text/javascript" src="/study/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		if("${MSG}") {
+			alert('### 인원이 가득 찼습니다. ###');
+		}
 		$('#frm').submit();
 	});
 </script>

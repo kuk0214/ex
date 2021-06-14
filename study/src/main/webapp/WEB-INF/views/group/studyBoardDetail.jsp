@@ -40,6 +40,11 @@
 			$('#pfrm').attr('action', '/study/group/groupRequestJoin.mentor');
 			$('#pfrm').submit();
 		});
+		
+		$('#jcbtn').click(function() {
+			$('#pfrm').attr('action', '/study/group/requestJoinCancle.mentor');
+			$('#pfrm').submit();
+		});
 	});
 </script>
 </head>
@@ -50,6 +55,8 @@
 		<input type="hidden" name="sbno" id="sbno" value="${DATA.sbno}">
 		<input type="hidden" name="sid" id="sid" value="${SID}">
 		<input type="hidden" name="id" id="id" value="${DATA.id}">
+		<input type="hidden" name="nowcnt" value="${DATA.nowcnt}">
+		<input type="hidden" name="maxcnt" value="${DATA.maxcnt}">
 	</form>
 	<div class="w3-content mxw700 w3-margin-top w3-padding">
 		<div class="w3-col w3-padding w3-margin-bottom w3-border w3-border-light-grey">

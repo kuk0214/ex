@@ -11,4 +11,5 @@
 						
 	<bean id="kSrvc" class="com.increpas.study.service.KakaoPayService" />
 	<bean id="ORSrvc" class="com.increpas.study.service.OtoReplyService" />
+	<bean id="gSrvc" class="com.increpas.study.service.GroupService" />
 </beans>

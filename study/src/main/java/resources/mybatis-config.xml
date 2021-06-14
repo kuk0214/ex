@@ -28,6 +28,7 @@
 		<typeAlias alias="bVO" type="com.increpas.study.vo.BoardVO" />
 		<typeAlias alias="mVO" type="com.increpas.study.vo.MemberVO" />
 		<typeAlias alias="gVO" type="com.increpas.study.vo.GroupVO" />
+		<typeAlias alias="mtVO" type="com.increpas.study.vo.MentorVO" />
 		<typeAlias alias="page" type="com.increpas.study.util.PageUtil" />
 	</typeAliases>
 	<!--  
@@ -87,6 +88,7 @@
 		<mapper resource="com/increpas/study/sql/ReviewBoardSQL.xml" />
 		<mapper resource="com/increpas/study/sql/GroupSQL.xml" />
 		<mapper resource="com/increpas/study/sql/DBSQL.xml" />
+		<mapper resource="com/increpas/study/sql/MentorSQL.xml" />
 	</mappers>
 
 </configuration>

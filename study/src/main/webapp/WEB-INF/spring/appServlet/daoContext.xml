@@ -17,4 +17,5 @@
 	<bean id="gDao" class="com.increpas.study.dao.GroupDao" />
 	<bean id="DBDao" class="com.increpas.study.dao.DBDao" />
 	<bean id="pDao" class="com.increpas.study.dao.PayDao" />
+	<bean id="mtDao" class="com.increpas.study.dao.MentorDao" />
 </beans>

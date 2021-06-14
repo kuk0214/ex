@@ -23,7 +23,7 @@ import com.increpas.study.vo.MemberVO;
  * 				2021.06.10	- 	담당자		: 조경국
  *								작업내용	: 스터디원 모집 글 삭제, 수정
  * 				2021.06.14	- 	담당자		: 조경국
- *								작업내용	: 지역별 그룹수 조회, 스터디원 모집 글 조회수 증가
+ *								작업내용	: 지역별 그룹수 조회, 스터디원 모집 글 조회수 증가, 가입요청 취소
  */
 
 public class GroupDao {
@@ -153,5 +153,10 @@ public class GroupDao {
 	// 스터디원 모집 글 조회수 증가 데이터베이스 전담 처리함수
 	public int plusClick(int sbno) {
 		return sqlSession.update("gSQL.plusClick", sbno);
+	}
+	
+	// 스터디그룹 가입요청 취소 데이터베이스 전담 처리함수
+	public int requestJoinCancle(GroupVO gVO) {
+		return sqlSession.update("gSQL.requestJoinCancle", gVO);
 	}
 }
