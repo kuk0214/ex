@@ -13,50 +13,37 @@
 <script type="text/javascript" src="/study/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/study/js/w3color.js"></script>
 <style type="text/css">
-	span.h25 {
-		line-height: 50%;
-	}
-	img {
-		height: 20px;
-		width: auto;
-	}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
-	// 게시글 상세보기 이벤트 처리
+	
 	$('.list').click(function() {
-		// 선택된 태그의 아이디값에서 두번째 자리에서부터 마지막까지 잘라서 꺼내보자.
-		// 예 ]		id="l100001"	==> 100001
-		var tno = $(this).attr('id').substring(1);
-		// 추출한 글번호를 폼태그의 입력태그에 셋팅해주고
-		$('#rvbno').val(tno);
-		
-		// 폼태그가 전송될 주소를 셋팅하고
-		$('#frm').attr('action', '/study/reviewboard/reviewBoardDetail.mentor');
-		
-		// 폼태그를 전송한다.
+		var no = $(this).attr('id').substring(1);
+		$.ajax({
+			url: '/study/mentor/mentorPr.mentor',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				no: no
+			},
+			success: function(obj) {
+				$('#msgWin').css('display', 'block');
+				$('#pr').html(obj.pr);
+				$('#name').html(obj.name + ' 멘토 자기소개');
+			},
+			error: function() {
+				alert('####### 통신 에러 #######')
+			}
+		});
+	});
+	
+	$('#closeBtn').click(function() {
+		$('#msgWin').css('display', 'none');
+	});
+	
+	$('#rbtn').click(function() {
+		$('#frm').attr('action', '/study/mentor/mentorWrite.mentor')
 		$('#frm').submit();
-	});
-	
-	$('#wbtn').click(function() {
-		$('#frm').attr('action', '/study/reviewboard/reviewBoardWrite.mentor')
-		$('#frm').submit();
-	});
-	
-	$('#jbtn').click(function() {
-		$(location).attr('href', '/study/join.mentor');
-	});
-	
-	$('#lbtn').click(function() {
-		$(location).attr('href', '/study/login.mentor');
-	});
-	
-	$('#outbtn').click(function() {
-		$(location).attr('href', '/study/logout.mentor');
-	});
-	
-	$('#hbtn').click(function() {
-		$(location).attr('href', '/study/main.mentor');
 	});
 	
 	$('.w3-button.pbtn').click(function(){
@@ -71,60 +58,54 @@ $(document).ready(function(){
 		$('#nowPage').val(pno);
 		$('#frm').submit();
 	});
-	
 });
 </script>
 </head>
 <body class="">
-	<%@ include file="../include/boardlayout.jsp" %>
-	<form method="POST" action="/study/reviewboard/reviewBoardList.mentor" id="frm" name="frm">
+	<%@ include file="../include/grouplayout.jsp" %>
+	<form method="POST" action="/study/mentor/mentorList.mentor" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
-		<input type="hidden" name="rvbno" id="rvbno" value="${data.rvbno}">
 	</form>
-	
 	<section class="w3-content w3-margin-top">
 		<div class="w3-col w3-margin-top w3-margin-bottom">
-			<h2 class="w3-padding mgb10 ft24">리뷰게시판</h2>
+			<h2 class="w3-padding mgb10 ft24">멘토 리스트</h2>
 		</div>
-		<form method="POST" action="/study/reviewboard/reviewBoardList.mentor">
+		<form method="POST" action="/study/mentor/mentorList.mentor">
 			<button type="submit" class="w3-col w3-button w70 h20 mgl10 w3-right pd0 w3-green">검색</button>
 			<input type="text" class="w3-col mgl10 w120 h20 w3-right" name="keyword" value="${keyword}">
 			<select class="w3-col w70 h20 w3-right" name="option">	
-				<option value="stitle"<c:if test="${option eq 'stitle'}">selected</c:if>>제목</option>
-				<option value="sbody"<c:if test="${option eq 'sbody'}">selected</c:if>>내용</option>
-				<option value="swid"<c:if test="${option eq 'swid'}">selected</c:if>>작성자</option>
+				<option value="subject"<c:if test="${option eq 'subject'}">selected</c:if>>과목</option>
+				<option value="title"<c:if test="${option eq 'title'}">selected</c:if>>제목</option>
+				<option value="mtid"<c:if test="${option eq 'mtid'}">selected</c:if>>멘토id</option>
 			</select>
 		</form>
 		
 		<div class="w3-col w3-margin-top">
-			<div class="3-col w3-margin-top w3-border-bottom bgc bdt h40">
-				<span class="w3-col w100 mgt5 w3-center w3-border-right">분류</span>
+			<div class="w3-col w3-margin-top w3-border-bottom bgc bdt h40">
+				<span class="w3-col w250 mgt5 w3-center w3-border-right">과목</span>
 				<span class="w3-col w550 mgt5 w3-center w3-border-right">제목</span>
-				<span class="w3-col w120 mgt5 w3-center w3-border-right">작성자</span>
-				<span class="w3-col w100 mgt5 w3-center w3-border-right">조회수</span>
-				<div class="w-rest mgt5 w3-center">작성일</div>
+				<span class="w3-col w100 mgt5 w3-center w3-border-right">멘토id</span>
+				<div class="w-rest mgt5 w3-center">등록일</div>
 			</div>
 			
-			<!-- 글 리스트 -->
 <c:forEach var="data" items="${LIST}">
 	<fmt:formatDate var="nowDate" type="date" value="${data.sysdate}" pattern="yyyy.MM.dd"/>
 	<fmt:formatDate var="wDate" type="date" value="${data.wdate}" pattern="yyyy.MM.dd"/>
-			<div class="w3-col  w3-border-bottom w3-hover-lime list" id="l${data.rvbno}">
-				<span class="w3-col w100 w3-center">${data.category}</span>
+			<div class="w3-col  w3-border-bottom w3-hover-lime">
+				<span class="w3-col w250 w3-center list" id="l${data.no}">${data.subject}</span>
 				<span class="w3-col w550 pdl30">${data.title}</span>
-				<span class="w3-col w120 w3-center">${data.wid}</span>
-				<span class="w3-col w100 w3-center">${data.click}</span>
-			<c:if test="${nowDate eq wDate}">
+				<span class="w3-col w100 w3-center">${data.mtid}</span>
+		<c:if test="${nowDate eq wDate}">
 				<div class="w3-rest w3-center">${data.sdate2}</div>
-			</c:if>
-			<c:if test="${nowDate ne wDate}">
+		</c:if>
+		<c:if test="${nowDate ne wDate}">
 				<div class="w3-rest w3-center">${data.sdate1}</div>
-			</c:if>
+		</c:if>
 			</div>
 </c:forEach>
 		<c:if test="${empty LIST}">
 			<div class="w3-col w3-padding">
-				<h2 class="w3-text-grey w3-center">입력된 데이터가 없습니다!</h2>
+				<h2 class="w3-text-grey w3-center">등록된 멘토가 없습니다!</h2>
 			</div>
 		</c:if>
 		</div>
@@ -153,9 +134,23 @@ $(document).ready(function(){
 				<span class="w3-bar-item w3-button w3-hover-lime pbtn">next</span>
 	</c:if>
 			</div>
-			<div class="w3-button w3-right w3-margin-top w3-border w3-border-lime" id="wbtn">글쓰기</div>
+		<c:if test="${CNT == 1}">
+			<div class="w3-button w3-right w3-margin-top w3-border w3-border-lime" id="rbtn">멘토 등록</div>
+		</c:if>
 		</div>
-		
 	</section>
+	
+	
+	<div id="msgWin" class="w3-modal">
+		<div class="w3-modal-content mxw600 w3-card-4">
+			<header class="w3-container w3-green">
+				<span class="w3-button w3-display-topright" id="closeBtn">&times;</span>
+				<h2 class="w3-padding" id="name"></h2>
+			</header>
+			<div class="w3-container w3-margin-bottom">
+				<h3 class="w3-padding" id="pr"></h3>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

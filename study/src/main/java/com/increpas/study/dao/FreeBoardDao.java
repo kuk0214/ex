@@ -19,6 +19,10 @@ import com.increpas.study.vo.*;
  *								작업내용	:	클래스제작, 자유게시판 총 게시글 수 조회, 상세보기, 댓글 조회, 댓글 등록
  *				2021.06.02	-	담장자		:	조경국
  *								작업내용	:	댓글 수 조회
+ *				2021.06.14	-	담장자		:	조경국
+ *								작업내용	:	자유게시판 글 등록, 수정, 삭제, 댓글 수정, 삭제, 대댓글 등록
+ *				2021.06.15	-	담장자		:	조경국
+ *								작업내용	:	자유게시판 글 조회수 증가
  *
  */
 
@@ -89,5 +93,10 @@ public class FreeBoardDao {
 	// 자유게시판 글 삭제시 댓글 삭제 데이터베이스 전담 처리함수
 	public int delBRDReply(int frbno) {
 		return sqlSession.update("fSQL.delBRDReply", frbno);
+	}
+	
+	// 자유게시판 글 조회수 증가 데이터베이스 전담 처리함수
+	public int plusclick(int frbno) {
+		return sqlSession.update("fSQL.plusclick", frbno);
 	}
 }

@@ -21,11 +21,12 @@ import com.increpas.study.vo.*;
  * @version v.1.0
  * @see
  * 			작업이력 ]
- * 					2021.06.01	-	담당자		: 조경국
- * 									작업내용	: 클래스제작
- * 												  자유게시판 리스트, 상세보기, 댓글 등록
+ * 					2021.06.01	-	담당자		:	조경국
+ * 									작업내용	:	클래스제작
+ * 												 	자유게시판 리스트, 상세보기, 댓글 등록
+ * 					2021.06.14	-	담당자		:	조경국
+ * 									작업내용	:	자유게시판 댓글 삭제, 수정, 대댓글 등록, 글 등록, 삭제, 수정
  * 												  
- *
  */
 
 @Controller
@@ -52,6 +53,7 @@ public class FreeBoard {
 	// 자유게시판 상세보기 요청 처리함수
 	@RequestMapping("/freeBoardDetail.mentor")
 	public ModelAndView freeBRDDetail(ModelAndView mv, PageUtil page, int frbno) {
+		fDao.plusclick(frbno);
 		int nowPage = page.getNowPage();
 		if(nowPage == 0) {
 			nowPage = 1;
@@ -69,7 +71,7 @@ public class FreeBoard {
 		return mv;
 	}
 	
-	// 자유게시판 댓글 달기 요청 처리함수
+	// 자유게시판 댓글 등록 요청 처리함수
 	@RequestMapping(value="/freeBoardReplyProc.mentor", method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, String> freeBRDReplyProc(BoardVO bVO) {
@@ -84,7 +86,7 @@ public class FreeBoard {
 		return map;
 	}
 	
-	// 자유게시판 대댓글 달기 요청 처리함수
+	// 자유게시판 대댓글 등록 요청 처리함수
 	@RequestMapping(value="/freeBoardReplyProc2.mentor", method=RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, String> freeBRDReplyProc2(BoardVO bVO) {

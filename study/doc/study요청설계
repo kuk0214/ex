@@ -383,9 +383,26 @@
 
 # 멘토 관련 요청 설계
 
-1	멘토등록 폼보기 요청
-	요청내용	:	/study/mentor/RMentor.mentor
+1.	멘토 리스트 보기 요청
+	요청내용	:	/study/mentor/mentorList.mentor
 	파라미터	:	무
 	컨트롤러	:	com.increpas.study.controller.Mentor
-	처리함수	:	RMentor()
-	뷰			:	/WEB-INF/views/study/mentor/RMentor.jsp
+	처리함수	:	mentorList()
+	뷰			:	/WEB-INF/views/study/mentor/mentorList.jsp
+	
+2.	멘토 소개 등록 폼보기 요청
+	요청내용	:	/study/mentor/mentorWrite.mentor
+	파라미터	:	무
+	컨트롤러	:	com.increpas.study.controller.Mentor
+	처리함수	:	mentorWrite()
+	뷰			:	/WEB-INF/views/study/mentor/mentorWrite.jsp
+	
+
+3.	멘토 소개 등록 처리 요청
+	요청내용	:	/study/mentor/mentorWriteProc.mentor
+	파라미터	:	mtid, pr, isShow
+	컨트롤러	:	com.increpas.study.controller.Mentor
+	처리함수	:	mentorWriteProc()
+	뷰			:	redirect ]
+						성공 : /study/mentor/mentorList.mentor
+						실패 : /study/mentor/mentorWrite.mentor

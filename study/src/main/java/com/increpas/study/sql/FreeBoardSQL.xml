@@ -174,4 +174,14 @@
 		WHERE
 			frbno = #{frbno}
  	</update>
+ 	
+	<!-- 조회수 증가 질의명령 -->
+ 	 <update id="plusClick" parameterType="int">
+ 	 	UPDATE
+ 	 		freeboard
+		SET
+			click = click + 1
+		WHERE
+			frbno = #{frbno}
+ 	 </update>
 </mapper>

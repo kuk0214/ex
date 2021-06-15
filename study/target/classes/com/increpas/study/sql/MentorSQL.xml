@@ -4,174 +4,83 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="mtSQL">
-	<!-- member 일반 -->
-	<insert id="memberGeneral" parameterType="int">
-		INSERT INTO
-		    member(mno, name, id, pw, gen, mail, tel, grade, loc)
-		VALUES(
-		    (SELECT NVL(MAX(mno) + 1, 1001) FROM member),
-		    '이름' || #{no}, 'user' || #{no}, 12345, 'M', 'user'|| #{no} || '@increpas.com', '010-1111-123' || #{no}, '일반', '서울 강서구' 
-		)
-	</insert>
 	
-	<!-- member 멘토 -->
-	<insert id="memberMentor" parameterType="int">
-		INSERT INTO
-			    member(mno, name, id, pw, gen, mail, tel, grade, loc)
-			VALUES(
-			    (SELECT NVL(MAX(mno) + 1, 1001) FROM member),
-			    '이름' || #{no}, 'user' || #{no}, 12345, 'M', 'user'|| #{no} || '@increpas.com', '010-1111-12' || #{no}, '멘토', '온라인' 
-			)
-	</insert>
+	<!-- 멘토 리스트 보기 질의명령 -->
+	<select id="mentorList" resultType="mtVO" parameterType="page">
+ 	 	SELECT
+		    rno, no, subject, title, pr, mtid, wdate, sysdate
+		FROM
+		    (
+		        SELECT
+		            ROWNUM rno, no, subject, title, pr, mtid , wdate, sysdate
+		        FROM
+		            (
+		                SELECT
+		                    no, subject, title, pr, mentorid mtid, wdate, sysdate
+		                FROM
+		                    mentor
+		                WHERE
+		                    isShow = 'Y'
+	                    <choose>
+	                    	<when test="option neq null and option eq 'subject'">
+	                    		AND subject LIKE '%' ||#{keyword}|| '%'
+	                    	</when>
+	                    	<when test="option eq 'title'">
+	                    		AND title LIKE '%' ||#{keyword}|| '%'
+	                    	</when>
+	                    	<when test="option eq 'mtid'">
+	                    		AND mentorid LIKE '%' ||#{keyword}|| '%'
+	                    	</when>
+	                    </choose>
+		                ORDER BY
+		                    wdate DESC
+		            )
+		    )
+		WHERE
+		    rno BETWEEN #{startCont} AND #{endCont}
+ 	</select>
+ 	 
+ 	<!-- 등록된 멘토 총 수 조회 질의명령 -->
+ 	<select id="getTotal" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+		FROM
+			mentor
+		WHERE
+			isShow = 'Y'
+ 	</select>
 	
-	<!-- member 업체 -->
-	<insert id="memberBusiness" parameterType="int">
+	<!-- 멘토 소개 등록 질의명령 -->
+	<insert id="mentorWriteProc" parameterType="mtVO">
 		INSERT INTO
-			    member(mno, name, id, pw, gen, mail, tel, grade, loc)
-			VALUES(
-			    (SELECT NVL(MAX(mno) + 1, 1001) FROM member),
-			    '이름' || #{no}, 'user' || #{no}, 12345, 'M', 'user'|| #{no} || '@increpas.com', '010-1111-12' || #{no}, '업체', '서울' 
-			)
-	</insert>
-	
-	<!-- member 관리자 -->
-	<insert id="memberAdmin" parameterType="int">
-		INSERT INTO
-			    member(mno, name, id, pw, gen, mail, tel, grade, loc)
-			VALUES(
-			    (SELECT NVL(MAX(mno) + 1, 1001) FROM member),
-			    '관리자' || #{no}, 'admin' || #{no}, 12345, 'M', 'admin'|| #{no} || '@increpas.com', '010-1111-111' || #{no}, '관리자', '온라인' 
-			)
-	</insert>
-	
-	<!-- 스터디그룹 -->
-	<insert id="addGroup" parameterType="int">
-		INSERT INTO
-		    groupinfo(sno, sname, loc, maxcnt, leaderid)
-		VALUES(
-		    (SELECT NVL(MAX(sno) + 1, 1001) FROM groupinfo),
-		    '스터디그룹' || #{no}, '온라인', 3 + #{no}, 'user' || #{no}
-		)
-	</insert>
-	
-	<!-- 스터디그룹 가입 -->
-	<insert id="addGroupMember" parameterType="int">
-		INSERT INTO
-			    grouplist(no, sno, id)
-		VALUES(
-		    (SELECT NVL(MAX(no) + 1, 100001) FROM grouplist),
-		    1001, 'user' || #{no}
-		)
-	</insert>
-	<!-- 스터디그룹 리더 가입 -->
-	<insert id="addGroupLeader" parameterType="int">
-		INSERT INTO
-			    grouplist(no, sno, id)
-		VALUES(
-		    (SELECT NVL(MAX(no) + 1, 100001) FROM grouplist),
-		    1000 + #{no}, 'user' || #{no}
-		)
-	</insert>
-	
-	<!-- 멘토등록 -->
-	<insert id="addMentor" parameterType="int">
-		INSERT INTO
-		    mentor(no, mentorid, pr, isShow)
+		    mentor(no, mentorid, subject, title, pr)
 		VALUES(
 		    (SELECT NVL(MAX(no) + 1, 1001) FROM mentor),
-		    'user' || #{no}, '경력' || #{no} || '년차고, 주말에 가능합니다.', 'Y'
+		    #{mtid}, #{subject}, #{title}, #{pr}
 		)
 	</insert>
 	
-	<!-- 스터디원 모집 -->
-	<insert id="studyBRD" parameterType="int">
-		INSERT INTO
-		    studyboard(sbno, sno, wid, title, body, loc, nowcnt, maxcnt)
-		VALUES(
-		    (SELECT NVL(MAX(sbno) + 1, 100001) FROM studyboard),
-		    1000 + #{no}, 'user' || #{no}, '스터디그룹 모집', '같이 스프링 공부 하실분들 모집합니다.',
-		    '온라인', 1, 3 + #{no}
-		)
-	</insert>
+	<!-- 멘토 회원 확인 질의명령 -->
+	<select id="mentorCheck" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			member
+		WHERE
+			id = #{sid}
+			AND grade = '멘토'
+	</select>
 	
-	<!-- 자유게시판 글 -->
-	<insert id="freeBRD">
-		INSERT INTO
-			    freeboard(frbno, title, body, wid)
-		VALUES(
-		    (SELECT NVL(MAX(frbno) + 1, 100001) FROM freeboard),
-		    '좋은 하루 되세요', '오늘 하루도 화이팅', 'user1'
-		)
-	</insert>
+	<!-- 멘토 자기소개 보기 질의명령 -->
+	<select id="mentorPr" resultType="mtVO" parameterType="int">
+		SELECT
+			name, pr
+		FROM	
+			member m, mentor mt
+		WHERE
+			id = mentorid
+			AND mt.isShow = 'Y'
+			AND no = #{no}	 
+	</select>
 	
-	<!-- 자유게시판 댓글 -->
-	<insert id="freeBRDReply" parameterType="int">
-		INSERT INTO
-		    freeboardreply(frreno, groupno, frbno, body, wid)
-		VALUES(
-		    (SELECT NVL(MAX(frreno) + 1, 1000001) FROM freeboardreply),
-		    (SELECT NVL(MAX(groupno) + 1, 1) FROM freeboardreply),
-		    100051, '좋은 하루 되세요', 'user' || #{no}
-	    )
-	</insert>
-	
-	<!-- 자유게시판 대댓글 -->
-	<insert id="freeBRDReReply">
-		INSERT INTO
-		    freeboardreply(frreno, groupno, frbno, body, wid, upid)
-		VALUES(
-		    (SELECT NVL(MAX(frreno) + 1, 1000001) FROM freeboardreply),
-			1, 100051, '화이팅', 'user1', 'user2'
-		)
-	</insert>
-	
-	<!-- 공지사항 -->
-	<insert id="notice">
-		INSERT INTO
-			notice(no, title, body, wid)
-		VALUES(
-		    (SELECT NVL(MAX(no) + 1, 100001) FROM notice),
-			'공지사항', '현재는 서울만 서비스하고 그외 지역은 온라인으로만 이용가능합니다', 'admin1'
-		)
-	</insert>
-	
-	<!-- 후기 게시판 멘토 -->
-	<insert id="reviewMentor" parameterType="int">
-		INSERT INTO
-			reviewboard(rvbno, category, title, body, wid)
-		VALUES(
-			(SELECT NVL(MAX(rvbno) + 1, 100001) FROM reviewboard),
-			'멘토', 'user' || #{no} || '멘토님 후기', '잘알려주셔서 좋았습니다', 'user1'
-		)
-	</insert>
-	
-	<!-- 후기 게시판 그룹 -->
-	<insert id="reviewGroup" parameterType="int">
-		INSERT INTO
-			reviewboard(rvbno, category, title, body, wid)
-		VALUES(
-			(SELECT NVL(MAX(rvbno) + 1, 100001) FROM reviewboard),
-			'그룹', '스터디그룹1 그룹 후기', '같이 공부하면서 집중도 더 잘되서 도움이 많이 됐습니다', 'user' || #{no}
-		)
-	</insert>
-	
-	<!-- 지역별 그룹 생성 -->
-	<insert id="addLocGroup" parameterType="string">
-		INSERT INTO
-		    groupinfo(sno, sname, loc, maxcnt, leaderid)
-		VALUES(
-		    (SELECT NVL(MAX(sno) + 1, 1001) FROM groupinfo),
-		    '스프링 스터디', #{loc}, 5, 'user5'
-		)
-	</insert>
-	
-	<!-- 첫 그룹 -->
-	<insert id="add1stGroup" parameterType="int">
-		INSERT INTO
-		    groupinfo(sno, sname, loc, nowcnt, maxcnt, leaderid)
-		VALUES(
-		    (SELECT NVL(MAX(sno) + 1, 1001) FROM groupinfo),
-		    '스프링 프로젝트', '서울 구로구', 4, 4, 'user1'
-		)
-	</insert>
 </mapper>

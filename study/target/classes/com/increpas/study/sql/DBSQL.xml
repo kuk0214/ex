@@ -76,10 +76,10 @@
 	<!-- 멘토등록 -->
 	<insert id="addMentor" parameterType="int">
 		INSERT INTO
-		    mentor(no, mentorid, pr, isShow)
+		    mentor(no, mentorid, subject, title, pr)
 		VALUES(
 		    (SELECT NVL(MAX(no) + 1, 1001) FROM mentor),
-		    'user' || #{no}, '경력' || #{no} || '년차고, 주말에 가능합니다.', 'Y'
+		    'user' || #{no}, '자바', '자바 멘토 합니다' ,'경력' || #{no} || '년차고, 주말에 가능합니다.'
 		)
 	</insert>
 	

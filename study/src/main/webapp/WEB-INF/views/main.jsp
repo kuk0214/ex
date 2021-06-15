@@ -69,8 +69,8 @@
 			level: 8,
 			scrollwheel : false,
 			draggable : false,
-			disableDoubleClickZoom : false,
-			disableDoubleClick : false
+			disableDoubleClickZoom : true,
+			tileAnimation : false
 		};
 		var map = new kakao.maps.Map(mapContainer, mapOptions);
 		
