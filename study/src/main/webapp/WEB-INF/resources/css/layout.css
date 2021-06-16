@@ -304,6 +304,9 @@ input:focus, textarea:focus, *:required:focus{}
 .mgb0 {
 	margin-bottom: 0px;
 }
+.mgb3 {
+	margin-bottom: 3px;
+}
 .mgb10 {
 	margin-bottom: 10px;
 }

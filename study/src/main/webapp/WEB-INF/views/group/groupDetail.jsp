@@ -28,8 +28,17 @@
 		});
 		
 		$('#obtn').click(function() {
-			$('#frm').attr('action', '/study/group/groupMemberOut.mentor');
-			$('#frm').submit();
+			if(confirm('정말로 탈퇴 하시겠습니까?')) {
+				$('#frm').attr('action', '/study/group/groupMemberOut.mentor');
+				$('#frm').submit();				
+			}
+		});
+		
+		$('#mtobtn').click(function() {
+			if(confirm('정말로 추방 하시겠습니까?')) {
+				$('#frm').attr('action', '/study/group/groupMentorOut.mentor');
+				$('#frm').submit();				
+			}
 		});
 		
 		$('#ebtn').click(function() {
@@ -84,7 +93,9 @@
 			</div>
 			<div class="w3-col h40">
 				<div class="w3-col w200 w3-center w3-border-right  bgc ft14 h40 pdt10">멘토</div>
-				<div class="w3-col w200 w3-center w3-border-right ft14 h40 pdt10"></div>
+				<div class="w3-col w200 w3-center w3-border-right ft14 h40 pdt10">${DATA.mname}
+					<span class="w3-button mgb3 pd0" id="mtO">&times;</span>
+				</div>
 			</div>
 		</div>
 		<div class="w3-col w3-margin-top">
@@ -94,7 +105,12 @@
 			<div class="w3-thrid w3-button w3-red" id="dbtn">해체하기</div>
 		</c:if>
 		<c:if test="${DATA.id ne SID}">
+		<c:if test="${CNT == 0}">
 			<div class="w3-thrid w3-button w3-red" id="obtn">탈퇴하기</div>
+		</c:if>
+		<c:if test="${CNT == 1}">
+			<div class="w3-thrid w3-button w3-red" id="mtobtn">멘토탈퇴</div>
+		</c:if>
 		</c:if>
 		</div>
 		<div id="msgWin" class="w3-modal">

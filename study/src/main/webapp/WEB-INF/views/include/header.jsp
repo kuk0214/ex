@@ -42,6 +42,7 @@
 							<li><a href="/study/group/addGroup.mentor">스터디 만들기</a></li>
 							<li><a href="/study/group/myGroup.mentor">내 스터디 관리</a></li>
 							<li><a href="/study/group/studyBoard.mentor">스터디원 모집</a></li>
+							<li><a href="/study/mentor/mentorList.mentor">멘토 리스트</a></li>
 						</ul>
 					</li>
 					<li><a class="drop" href="/study/freeboard/freeBoardList.mentor">게시판</a>

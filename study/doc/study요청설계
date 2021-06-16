@@ -304,7 +304,7 @@
 	처리함수	:	groupDetail()
 	뷰			:	/WEB-INF/views/study/group/groupDetail.jsp
 	
-12. 스터디 그룹원 추방 요청 
+13. 스터디 그룹원 추방 요청 
 	요청내용	:	/study/group/expelGroupMember.mentor
 	파라미터	:	id, sno
 	컨트롤러	:	com.increpas.study.controller.Group
@@ -312,7 +312,7 @@
 	뷰			:	redirect ]
 						성공&실패 : /study/group/groupDetail.mentor
 						
-12. 스터디 그룹 탈퇴 요청 
+14. 스터디 그룹 탈퇴 요청 
 	요청내용	:	/study/group/groupMemberOut.mentor
 	파라미터	:	id, sno
 	컨트롤러	:	com.increpas.study.controller.Group
@@ -321,14 +321,14 @@
 						성공 : /study/group/myGroup.mentor
 						실패 : /study/group/groupDetail.mentor
 
-13. 스터디 그룹 수정 폼보기 요청
+15. 스터디 그룹 수정 폼보기 요청
 	요청내용	:	/study/group/groupEdit.mentor
 	파라미터	:	sno
 	컨트롤러	:	com.increpas.study.controller.Group
 	처리함수	:	groupEdit()
 	뷰			:	/WEB-INF/views/study/group/groupEdit.jsp
 	
-13. 스터디 그룹 수정 요청
+16. 스터디 그룹 수정 요청
 	요청내용	:	/study/group/groupEditProc.mentor
 	파라미터	:	sno, (sname || loc || maxcnt)
 	컨트롤러	:	com.increpas.study.controller.Group
@@ -337,7 +337,7 @@
 						성공 : /study/group/groupDetail.mentor
 						실패 : /study/group/groupEdit.mentor
 
-14. 스터디 그룹 해체 요청
+17. 스터디 그룹 해체 요청
 	요청내용	:	/study/group/groupDel.mentor
 	파라미터	:	id, sno
 	컨트롤러	:	com.increpas.study.controller.Group
@@ -346,7 +346,7 @@
 						성공 : /study/group/myGroup.mentor
 						실패 : /study/group/groupDetail.mentor
 						
-15. 스터디원 모집 글 삭제 요청
+18. 스터디원 모집 글 삭제 요청
 	요청내용	:	/study/group/studyBoardDel.mentor
 	파라미터	:	sbno
 	컨트롤러	:	com.increpas.study.controller.Group
@@ -355,14 +355,14 @@
 						성공 : /study/group/studyBoard.mentor
 						실패 : /study/group/studyBoardDetail.mentor
 
-16. 스터디원 모집 글 수정 폼보기 요청
+19. 스터디원 모집 글 수정 폼보기 요청
 	요청내용	:	/study/group/studyBoardEdit.mentor
 	파라미터	:	sbno, sno, sid
 	컨트롤러	:	com.increpas.study.controller.Group
 	처리함수	:	studyBRDEdit()
 	뷰			:	/WEB-INF/views/study/group/studyBoardEdit.jsp
 
-17. 스터디원 모집 글 수정 요청
+20. 스터디원 모집 글 수정 요청
 	요청내용	:	/study/group/studyBoardEditProc.mentor
 	파라미터	:	sbno, (title || body)
 	컨트롤러	:	com.increpas.study.controller.Group
@@ -371,26 +371,35 @@
 						성공 : /study/group/studyBoardDetail.mentor
 						실패 : /study/group/studyBoardEdit.mentor
 
-18. 스터디 가입 취소 요청
+21. 스터디 가입 취소 요청
 	요청내용	:	/study/group/requestJoinCancle.mentor
 	파라미터	:	sbno, sno, jid(SID)
 	컨트롤러	:	com.increpas.study.controller.Group
 	처리함수	:	requestJoinCancle()
 	뷰			:	redirect ]
 						성공&실패 : /study/group/studyBoardDetail.mentor
+
+22. 스터디 그룹 멘토 탈퇴 요청
+	요청내용	:	/study/group/groupMentorOut.mentor
+	파라미터	:	sno, id
+	컨트롤러	:	com.increpas.study.controller.Group
+	처리함수	:	groupMentorOut()
+	뷰			:	redirect ]
+						성공 : /study/group/myGroup.mentor
+						실패 : /study/group/groupDetail.mentor
 						
 ======================================================================================================================
 
 # 멘토 관련 요청 설계
 
-1.	멘토 리스트 보기 요청
+1. 멘토 리스트 보기 요청
 	요청내용	:	/study/mentor/mentorList.mentor
 	파라미터	:	무
 	컨트롤러	:	com.increpas.study.controller.Mentor
 	처리함수	:	mentorList()
 	뷰			:	/WEB-INF/views/study/mentor/mentorList.jsp
 	
-2.	멘토 소개 등록 폼보기 요청
+2. 멘토 소개 등록 폼보기 요청
 	요청내용	:	/study/mentor/mentorWrite.mentor
 	파라미터	:	무
 	컨트롤러	:	com.increpas.study.controller.Mentor
@@ -398,7 +407,7 @@
 	뷰			:	/WEB-INF/views/study/mentor/mentorWrite.jsp
 	
 
-3.	멘토 소개 등록 처리 요청
+3. 멘토 소개 등록 처리 요청
 	요청내용	:	/study/mentor/mentorWriteProc.mentor
 	파라미터	:	mtid, pr, isShow
 	컨트롤러	:	com.increpas.study.controller.Mentor
@@ -406,3 +415,44 @@
 	뷰			:	redirect ]
 						성공 : /study/mentor/mentorList.mentor
 						실패 : /study/mentor/mentorWrite.mentor
+
+4. 멘토 삭제 처리 요청
+	요청내용	:	/study/mentor/mentorDel.mentor
+	파라미터	:	no
+	컨트롤러	:	com.increpas.study.controller.Mentor
+	처리함수	:	mentorDel()
+	뷰			:	redirect ]
+						성공&실패 : /study/mentor/mentorList.mentor
+
+5. 멘토 수정 폼보기 요청
+	요청내용	:	/study/mentor/mentorEdit.mentor
+	파라미터	:	no
+	컨트롤러	:	com.increpas.study.controller.Mentor
+	처리함수	:	mentorEdit()
+	뷰			:	/WEB-INF/views/study/mentor/mentorEdit.jsp
+	
+5. 멘토 수정 요청
+	요청내용	:	/study/mentor/mentorEditProc.mentor
+	파라미터	:	no, (subject || title || pr)
+	컨트롤러	:	com.increpas.study.controller.Mentor
+	처리함수	:	mentorEditProc()
+	뷰			:	redirect ]
+						성공 : /study/mentor/mentorList.mentor
+						실패 : /study/mentor/mentorEdit.mentor
+
+6. 멘토 가입 요청
+	요청내용	:	/study/mentor/requestMentor.mentor
+	파라미터	:	no, sid, mtid, sno
+	컨트롤러	:	com.increpas.study.controller.Mentor
+	처리함수	:	requestMentor()
+	뷰			:	redirect ]
+						성공&실패 : /study/mentor/mentorList.mentor
+
+7. 멘토 가입 수락 요청
+	요청내용	:	/study/mentor/requestAccept.mentor
+	파라미터	:	sno2, name
+	컨트롤러	:	com.increpas.study.controller.Mentor
+	처리함수	:	requestAccept()
+	뷰			:	redirect ]
+						성공 : /study/group/groupDetail.mentor
+						실패 : /study/mentor/mentorList.mentor

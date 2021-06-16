@@ -24,6 +24,8 @@ import com.increpas.study.vo.MemberVO;
  *								작업내용	: 스터디원 모집 글 삭제, 수정
  * 				2021.06.14	- 	담당자		: 조경국
  *								작업내용	: 지역별 그룹수 조회, 스터디원 모집 글 조회수 증가, 가입요청 취소
+ * 				2021.06.16	- 	담당자		: 조경국
+ *								작업내용	: 스터디 그룹 멘토 탈퇴 & 추방
  */
 
 public class GroupDao {
@@ -106,8 +108,8 @@ public class GroupDao {
 	}
 	
 	// 스터디 그룹원 추방&탈퇴 데이터베이스 전담 처리함수
-	public int groupMemberOut(String id) {
-		return sqlSession.update("gSQL.groupMemberOut", id);
+	public int groupMemberOut(GroupVO gVO) {
+		return sqlSession.update("gSQL.groupMemberOut", gVO);
 	}
 	
 	// 재가입 여부 확인 데이터베이스 전담 처리함수
@@ -158,5 +160,10 @@ public class GroupDao {
 	// 스터디그룹 가입요청 취소 데이터베이스 전담 처리함수
 	public int requestJoinCancle(GroupVO gVO) {
 		return sqlSession.update("gSQL.requestJoinCancle", gVO);
+	}
+	
+	// 스터디그룹 멘토 탈퇴 & 추방 데이터베이스 전담 처리함수
+	public int groupMentorOut(int sno) {
+		return sqlSession.update("gSQL.groupMentorOut", sno);
 	}
 }

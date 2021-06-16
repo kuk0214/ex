@@ -48,7 +48,7 @@
 		WHERE
 			gi.sno = gl.sno
 			AND id = #{sid}
-			AND gi.isShow = 'Y'
+			AND gl.isShow = 'Y'
 		ORDER BY
 			wdate DESC
  	</select>
@@ -112,7 +112,7 @@
  	<!-- 스터디그룹 정보 조회 질의명령 -->
  	<select id="groupInfo" resultType="gVO" parameterType="int">
  		SELECT
- 			sno, sname, nowcnt, maxcnt, leaderid id, wdate, loc
+ 			sno, sname, nowcnt, maxcnt, leaderid id, mentor mname, wdate, loc 
 		FROM
 			groupinfo
 		WHERE
@@ -199,13 +199,14 @@
  	</update>
  	
  	<!-- 스터디 그룹원 추방&탈퇴 질의명령 -->
- 	<update id="groupMemberOut" parameterType="string">
+ 	<update id="groupMemberOut" parameterType="gVO">
  		UPDATE
  			grouplist
  		SET
  			isShow = 'N'
  		WHERE
  			id = #{id}
+ 			AND sno = #{sno}
  	</update>
  	
  	<!-- 스터디 재가입 여부 확인 질의명령-->
@@ -310,23 +311,43 @@
 	</select>
 	
 	<!-- 조회수 증가 질의명령 -->
- 	 <update id="plusClick" parameterType="int">
- 	 	UPDATE
- 	 		studyboard
-		SET
-			click = click + 1
-		WHERE
-			sbno = #{sbno}
- 	 </update>
+ 	<update id="plusClick" parameterType="int">
+ 	UPDATE
+ 		studyboard
+	SET
+		click = click + 1
+	WHERE
+		sbno = #{sbno}
+ 	</update>
  	 
- 	 <!-- 가입요청 취소 질의명령 -->
- 	 <update id="requestJoinCancle" parameterType="gVO">
- 	 	UPDATE
- 	 		requestjoin
- 		SET
- 			isShow = 'N'
-		WHERE
-			jid = #{sid}
-			AND jsno = #{sno}
- 	 </update>
+ 	<!-- 가입요청 취소 질의명령 -->
+ 	<update id="requestJoinCancle" parameterType="gVO">
+ 	UPDATE
+ 		requestjoin
+ 	SET
+ 		isShow = 'N'
+	WHERE
+		jid = #{sid}
+		AND jsno = #{sno}
+ 	</update>
+ 	 
+ 	<!-- 스터디 그룹 멘토 탈퇴&추방 질의명령 -->
+ 	<update id="groupMentorOut" parameterType="gVO">
+ 	UPDATE
+ 		groupinfo
+ 	SET
+ 		mentor = '없음'
+ 	WHERE
+ 		sno = #{sno}
+ 	</update>
+ 	 
+ 	<!-- 멘토 id 조회 질의명령 -->
+ 	<select id="">
+ 	SELECT
+	    id
+	FROM
+	    member
+	WHERE
+	    name = #{mname}
+ 	</select>
 </mapper>

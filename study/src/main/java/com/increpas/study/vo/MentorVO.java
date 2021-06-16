@@ -4,8 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MentorVO {
-	private int no;
-	private String name, mtid, subject, title, pr, isShow, sdate, sdate1, sdate2;
+	private int no, no2, sno, sno2;
+	private String name, sname, sname2, mtid, sid, subject, title, pr, loc, isShow, sdate, sdate1, sdate2;
 	private Date sysdate, wdate;
 	
 	public int getNo() {
@@ -14,17 +14,53 @@ public class MentorVO {
 	public void setNo(int no) {
 		this.no = no;
 	}
+	public int getNo2() {
+		return no2;
+	}
+	public void setNo2(int no2) {
+		this.no2 = no2;
+	}
+	public int getSno() {
+		return sno;
+	}
+	public void setSno(int sno) {
+		this.sno = sno;
+	}
+	public int getSno2() {
+		return sno2;
+	}
+	public void setSno2(int sno2) {
+		this.sno2 = sno2;
+	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+	public String getSname2() {
+		return sname2;
+	}
+	public void setSname2(String sname2) {
+		this.sname2 = sname2;
+	}
 	public String getMtid() {
 		return mtid;
 	}
 	public void setMtid(String mtid) {
 		this.mtid = mtid;
+	}
+	public String getSid() {
+		return sid;
+	}
+	public void setSid(String sid) {
+		this.sid = sid;
 	}
 	public String getSubject() {
 		return subject;
@@ -43,6 +79,12 @@ public class MentorVO {
 	}
 	public void setPr(String pr) {
 		this.pr = pr;
+	}
+	public String getLoc() {
+		return loc;
+	}
+	public void setLoc(String loc) {
+		this.loc = loc;
 	}
 	public String getIsShow() {
 		return isShow;

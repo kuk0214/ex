@@ -74,7 +74,7 @@
 	<!-- 멘토 자기소개 보기 질의명령 -->
 	<select id="mentorPr" resultType="mtVO" parameterType="int">
 		SELECT
-			name, pr
+			name, pr, mentorid mtid
 		FROM	
 			member m, mentor mt
 		WHERE
@@ -83,4 +83,120 @@
 			AND no = #{no}	 
 	</select>
 	
+	<!-- 멘토 삭제 질의명령 -->
+	<update id="mentorDel" parameterType="int">
+		UPDATE
+			mentor
+		SET
+			isShow = 'N'
+		WHERE
+			no = #{no}
+	</update>
+	
+	<!-- 멘토 수정 폼보기 질의명령 -->
+	<select id="mentorEdit" resultType="mtVO" parameterType="int">
+		SELECT
+			no, subject, title, pr
+		FROM
+			mentor
+		WHERE
+			no = #{no}
+	</select>
+	
+	<!-- 멘토 수정 질의명령 -->
+	<update id="mentorEditProc" parameterType="mtVO">
+		UPDATE
+			mentor
+		<set>
+			<if test="subject neq null">
+				subject = #{subject},
+			</if>
+			<if test="title neq null">
+				title = #{title},
+			</if>
+			<if test="pr neq null">
+				pr = #{pr},
+			</if>
+		</set>
+		WHERE
+			no = #{no}
+	</update>
+	
+	<!-- 그룹장 확인 질의명령 -->
+	<select id="leaderCheck" resultType="int" parameterType="string">
+		SELECT
+			COUNT(*)
+		FROM
+			groupinfo
+		WHERE
+			leaderid = #{sid}
+			AND mentor = '없음'
+	</select>
+	
+	<!-- 멘토 요청 그룹 리스트 조회 질의명령 -->
+	<select id="mentorGroupList" resultType="mtVO" parameterType="string">
+		SELECT
+		    sno, sname
+		FROM
+		    groupinfo
+		WHERE
+		    leaderid = #{sid}
+		    AND mentor = '없음'
+	</select>
+	
+	<!-- 멘토 가입 요청 질의명령 -->
+	<insert id="requestMentor" parameterType="mtVO">
+		INSERT INTO
+			requestmentor(no, rid, mentorid, rsno)
+		VALUES(
+			(SELECT NVL(MAX(no) + 1, 1000001) FROM requestmentor),
+			#{sid}, #{mtid}, #{sno}
+		)
+	</insert>
+	
+	<!-- 멘토 가입 요청 여부 확인 질의명령 -->
+	<select id="requestCheck" resultType="int" parameterType="mtVO">
+		SELECT
+			COUNT(*)
+		FROM
+			requestmentor
+		WHERE
+			mentorid = #{mtid}
+			AND rid = #{sid}
+			AND isShow = 'Y'
+	</select>
+	
+	<!-- 멘토 가입 요청 취소 질의명령 -->
+	<update id="requestCancle" parameterType="mtVO">
+		UPDATE
+			requestmentor
+		SET
+			isShow = 'N'
+		WHERE
+			mentorid = #{mtid}
+			AND rid = #{sid}
+	</update>
+	
+	<!-- 멘토 가입 요청 리스트 보기 질의명령 -->
+	<select id="requestMentorList" resultType="mtVO" parameterType="string">
+		SELECT
+		    name, rid sid, rsno sno2, sname sname2, gi.loc
+		FROM
+		    requestmentor rm, groupinfo gi, member
+		WHERE
+		    rsno = sno
+		    AND id = mentorid
+		    AND mentorid = #{sid}
+		    AND rm.isShow = 'Y'
+	</select>
+	
+	<!-- 멘토 가입 수락 질의명령 -->
+	<update id="requestAccept" parameterType="mtVO">
+		UPDATE
+			groupinfo
+		SET
+			mentor = #{name}
+		WHERE
+			sno = #{sno2}
+	</update>
 </mapper>
