@@ -16,6 +16,20 @@ import com.increpas.study.dao.*;
 import com.increpas.study.util.PageUtil;
 import com.increpas.study.vo.*;
 
+/**
+ * 이 클래스는 멘토 관련 요청 처리할 클래스
+ * @author	조경국
+ * @since	2021.06.14
+ * @version v.1.0
+ * @see
+ * 			작업이력 ]
+ * 					2021.06.14	-	담당자		:	조경국
+ * 									작업내용	:	클래스제작
+ * 					2021.06.15	-	담당자		:	조경국
+ * 									작업내용	:	멘토 리스트, 멘토 소개 등록
+ * 					2021.06.16	-	담당자		:	조경국
+ * 									작업내용	:	멘토 소개 보기, 삭제, 수정, 멘토 그룹 가입 요청, 취소, 수락
+ */
 @Controller
 @RequestMapping("/mentor")
 public class Mentor {

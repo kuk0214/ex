@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/study/css/layout.css" rel="stylesheet" type="text/css">
-
 </head>
 <body>
 	<div class="wrapper row0">
@@ -16,7 +15,7 @@
 			</div>
 			<div class="fl_right">
 				<ul class="nospace">
-					<li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+					<li><a href="/study/main.mentor"><i class="fa fa-lg fa-home"></i></a></li>
 				<c:if test="${empty SID}">
 					<li><a href="/study/member/login.mentor">로그인</a></li>
 				</c:if>
